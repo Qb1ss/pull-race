@@ -1,10 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Collections.Generic;
 
 namespace TechSettings
 {
-    [RequireComponent(typeof(Canvas), typeof(RectTransform))]
+    [RequireComponent(typeof(Canvas), typeof(GraphicRaycaster))]
     public class CanvasHelper : MonoBehaviour
     {
         #region CONST

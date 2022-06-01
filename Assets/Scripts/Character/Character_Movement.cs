@@ -15,6 +15,12 @@ namespace Character
 
         #endregion
 
+        #region CONSTS
+
+        private const float FORCE_ROTATE = 20f;
+
+        #endregion
+
         private float _movingSpeed;
         private float _movingTime;
         private float _subtractinSpeedFromTime;
@@ -53,7 +59,8 @@ namespace Character
 
         private void OnEnable()
         {
-            //пуск рогатки и начало движения
+            //пуск рогатки
+            Test.OnStartGame.AddListener(() => _isActiveGame = true);
         }
 
 
@@ -89,6 +96,8 @@ namespace Character
 
             if (_movingSpeed < 0)
             {
+                _isActiveGame = false;
+    
                 OnRunOutTime?.Invoke();
 
                 return;
@@ -96,7 +105,8 @@ namespace Character
 
             _movingSpeed -= Time.deltaTime / _subtractinSpeedFromTime;
 
-            _transform.position += Vector3.forward * _movingSpeed * Time.deltaTime;
+            _transform.localRotation = Quaternion.Euler(0f, direction * FORCE_ROTATE, 0f);
+            _transform.Translate(new Vector3(0f, 0f, _movingSpeed * Time.deltaTime));
         }
 
         #endregion
