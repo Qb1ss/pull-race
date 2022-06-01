@@ -9,13 +9,15 @@ namespace Configs
         [SerializeField] private float _movementSpeed;
         [Space(height: 5f)]
 
-        [SerializeField] private float _movementTimer;
+        [SerializeField] private float _constMovementTimer;
+        [SerializeField] private float _slowerMovementTimer;
 
 
         #region Public Fields
 
         public float MovementSpeed => _movementSpeed;
-        public float MovementTimer => _movementTimer;
+        public float ConstMovementTimer => _constMovementTimer;
+        public float SlowerMovementTimer => _slowerMovementTimer;
 
         #endregion
     }

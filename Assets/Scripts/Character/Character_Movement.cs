@@ -22,7 +22,8 @@ namespace Character
         #endregion
 
         private float _movingSpeed;
-        private float _movingTime;
+        private float _constMovingTime;
+        private float _slowerMovingTime;
         private float _subtractinSpeedFromTime;
 
         private bool _isActiveGame = false;
@@ -34,7 +35,8 @@ namespace Character
 
         private float _movementSpeed => _parameters.MovementSpeed;
 
-        private float _movingTimer => _parameters.MovementTimer;
+        private float _constMovementTime => _parameters.ConstMovementTimer;
+        private float _slowerMovementTime => _parameters.SlowerMovementTimer;
 
         #endregion
 
@@ -52,8 +54,9 @@ namespace Character
         private void Start()
         {
             _movingSpeed = _movementSpeed;
-            _movingTime = _movingTimer;
-            _subtractinSpeedFromTime = _movingTime / _movingSpeed;
+            _constMovingTime = _constMovementTime;
+            _slowerMovingTime = _slowerMovementTime;
+            _subtractinSpeedFromTime = _slowerMovingTime / _movingSpeed;
         }
 
 
@@ -87,12 +90,21 @@ namespace Character
 
         private void Movement(float direction)
         {
-            if(_movingTime < 0)
+            if(_constMovingTime <= 0)
             {
-                return;
+                _movingSpeed -= Time.deltaTime / _subtractinSpeedFromTime;
             }
+            else if (_constMovingTime > 0)
+            {
+                _constMovingTime -= Time.deltaTime;
 
-            _movingTime -= Time.deltaTime;
+                if (_slowerMovingTime < 0)
+                {
+                    return;
+                }
+
+                _slowerMovingTime -= Time.deltaTime;
+            }
 
             if (_movingSpeed < 0)
             {
@@ -102,8 +114,6 @@ namespace Character
 
                 return;
             }
-
-            _movingSpeed -= Time.deltaTime / _subtractinSpeedFromTime;
 
             _transform.localRotation = Quaternion.Euler(0f, direction * FORCE_ROTATE, 0f);
             _transform.Translate(new Vector3(0f, 0f, _movingSpeed * Time.deltaTime));
