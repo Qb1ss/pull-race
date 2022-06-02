@@ -93,10 +93,6 @@ namespace Character
             if(_constMovingTime <= 0)
             {
                 _movingSpeed -= Time.deltaTime / _subtractinSpeedFromTime;
-            }
-            else if (_constMovingTime > 0)
-            {
-                _constMovingTime -= Time.deltaTime;
 
                 if (_slowerMovingTime < 0)
                 {
@@ -104,6 +100,10 @@ namespace Character
                 }
 
                 _slowerMovingTime -= Time.deltaTime;
+            }
+            else if (_constMovingTime > 0)
+            {
+                _constMovingTime -= Time.deltaTime;
             }
 
             if (_movingSpeed < 0)
