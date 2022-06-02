@@ -8,6 +8,7 @@ namespace Character
     public class Character_Movement : MonoBehaviour
     {
         [SerializeField] private CharacterParametersConfig _parameters;
+        [SerializeField] private Joystick _joystick;
 
         #region EVENTS
 
@@ -22,19 +23,21 @@ namespace Character
         #endregion
 
         private float _movingSpeed;
-        private float _movingTime;
+        private float _constMovingTime;
+        private float _slowerMovingTime;
         private float _subtractinSpeedFromTime;
 
         private bool _isActiveGame = false;
 
         private Transform _transform;
-        private Joystick _joystick;
+        private Rigidbody _rigidbody;
 
         #region Private Fields
 
         private float _movementSpeed => _parameters.MovementSpeed;
 
-        private float _movingTimer => _parameters.MovementTimer;
+        private float _constMovementTime => _parameters.ConstMovementTimer;
+        private float _slowerMovementTime => _parameters.SlowerMovementTimer;
 
         #endregion
 
@@ -44,34 +47,33 @@ namespace Character
         private void Awake()
         {
             _transform = GetComponent<Transform>();
-
-            _joystick = FindObjectOfType<Joystick>();
+            _rigidbody = GetComponent<Rigidbody>();
         }
 
 
         private void Start()
         {
             _movingSpeed = _movementSpeed;
-            _movingTime = _movingTimer;
-            _subtractinSpeedFromTime = _movingTime / _movingSpeed;
+            _constMovingTime = _constMovementTime;
+            _slowerMovingTime = _slowerMovementTime;
+            _subtractinSpeedFromTime = _slowerMovingTime / _movingSpeed;
         }
 
 
         private void OnEnable()
         {
-            //пуск рогатки
-            Test.OnStartGame.AddListener(() => _isActiveGame = true);
+            DynamicJoystick.OnStartGame.AddListener(OnStartGame);
         }
 
 
         private void OnDisable()
         {
-            //пуск рогатки
+            DynamicJoystick.OnStartGame.AddListener(OnStartGame);
         }
 
         #endregion
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (_isActiveGame == false)
             {
@@ -85,14 +87,33 @@ namespace Character
 
         #region Private Methods
 
+        private void OnStartGame(float forceTension)
+        {
+            _isActiveGame = true;
+
+            _rigidbody.isKinematic = false;
+
+            _movingSpeed = _movingSpeed * forceTension;
+        }
+
+
         private void Movement(float direction)
         {
-            if(_movingTime < 0)
+            if(_constMovingTime <= 0)
             {
-                return;
-            }
+                _movingSpeed -= Time.deltaTime / _subtractinSpeedFromTime;
 
-            _movingTime -= Time.deltaTime;
+                if (_slowerMovingTime < 0)
+                {
+                    return;
+                }
+
+                _slowerMovingTime -= Time.deltaTime;            
+            }
+            else if (_constMovingTime > 0)
+            {
+                _constMovingTime -= Time.deltaTime;
+            }
 
             if (_movingSpeed < 0)
             {
@@ -102,8 +123,6 @@ namespace Character
 
                 return;
             }
-
-            _movingSpeed -= Time.deltaTime / _subtractinSpeedFromTime;
 
             _transform.localRotation = Quaternion.Euler(0f, direction * FORCE_ROTATE, 0f);
             _transform.Translate(new Vector3(0f, 0f, _movingSpeed * Time.deltaTime));

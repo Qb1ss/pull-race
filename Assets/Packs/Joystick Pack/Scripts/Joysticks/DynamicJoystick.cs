@@ -1,13 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class DynamicJoystick : Joystick
 {
+    public static UnityEvent<float> OnStartGame = new UnityEvent<float>();
+
     public float MoveThreshold { get { return moveThreshold; } set { moveThreshold = Mathf.Abs(value); } }
 
     [SerializeField] private float moveThreshold = 1;
+    [Space(height: 5f)]
+
+    [SerializeField] private bool _isCharacterController = true;
 
     protected override void Start()
     {
@@ -26,6 +32,18 @@ public class DynamicJoystick : Joystick
     public override void OnPointerUp(PointerEventData eventData)
     {
         background.gameObject.SetActive(false);
+
+        if (_isCharacterController == false)
+        {
+            if (Vertical < 0)
+            {
+                OnStartGame?.Invoke(-Vertical);
+
+                gameObject.SetActive(false);
+            }
+        }
+        
+
         base.OnPointerUp(eventData);
     }
 
