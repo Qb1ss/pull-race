@@ -30,6 +30,7 @@ namespace Character
         private bool _isActiveGame = false;
 
         private Transform _transform;
+        private Rigidbody _rigidbody;
 
         #region Private Fields
 
@@ -46,6 +47,7 @@ namespace Character
         private void Awake()
         {
             _transform = GetComponent<Transform>();
+            _rigidbody = GetComponent<Rigidbody>();
         }
 
 
@@ -80,7 +82,6 @@ namespace Character
 
             float direction = _joystick.Horizontal;
 
-
             Movement(direction);
         }
 
@@ -89,6 +90,8 @@ namespace Character
         private void OnStartGame(float forceTension)
         {
             _isActiveGame = true;
+
+            _rigidbody.isKinematic = false;
 
             _movingSpeed = _movingSpeed * forceTension;
         }
