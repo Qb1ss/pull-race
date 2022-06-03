@@ -7,14 +7,16 @@ namespace Character.Slingshot
         [Header("Parameters")]
         [SerializeField] private Transform _startBorder;
         [SerializeField] private Transform _character;
+        [Space(height: 5f)]
 
         [SerializeField] private float _maxDistanceTencion = 4f;
+        [Space(height: 5f)]
 
         [SerializeField] private Joystick _joysticForceTencion;
 
-        private Vector3 _startPosition;
-
         private bool _isStartingGame = false;
+
+        private Vector3 _startPosition;
 
 
         #region MONO
@@ -38,19 +40,25 @@ namespace Character.Slingshot
 
         #endregion
 
-
         private void Update()
+        {
+            TencioningSlingshot();
+        }
+
+        #region Private Methods
+
+        private void TencioningSlingshot()
         {
             Vector3 newPosition = new Vector3(_startBorder.position.x, _startBorder.position.y, _startBorder.position.z + _joysticForceTencion.Vertical / 20);
 
-            if(newPosition.z < _startPosition.z - _maxDistanceTencion)
+            if (newPosition.z < _startPosition.z - _maxDistanceTencion)
             {
                 return;
             }
 
             _startBorder.position = newPosition;
 
-            if(_isStartingGame == true)
+            if (_isStartingGame == true)
             {
                 _startBorder.position = _startPosition;
 
@@ -67,5 +75,7 @@ namespace Character.Slingshot
         {
             _isStartingGame = true;
         }
+
+        #endregion
     }
 }
