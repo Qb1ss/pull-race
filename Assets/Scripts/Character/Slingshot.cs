@@ -43,7 +43,7 @@ namespace Character.Slingshot
         {
             Vector3 newPosition = new Vector3(_startBorder.position.x, _startBorder.position.y, _startBorder.position.z + _joysticForceTencion.Vertical / 20);
 
-            if(newPosition.z > _startPosition.z + _maxDistanceTencion)
+            if(newPosition.z < _startPosition.z - _maxDistanceTencion)
             {
                 return;
             }
