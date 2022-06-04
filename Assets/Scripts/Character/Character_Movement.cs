@@ -8,6 +8,7 @@ namespace Character
     public class Character_Movement : MonoBehaviour
     {
         [SerializeField] private CharacterParametersConfig _parameters;
+        [SerializeField] private Joystick _joystick;
 
         #region EVENTS
 
@@ -29,7 +30,7 @@ namespace Character
         private bool _isActiveGame = false;
 
         private Transform _transform;
-        private Joystick _joystick;
+        private Rigidbody _rigidbody;
 
         #region Private Fields
 
@@ -46,8 +47,7 @@ namespace Character
         private void Awake()
         {
             _transform = GetComponent<Transform>();
-
-            _joystick = FindObjectOfType<Joystick>();
+            _rigidbody = GetComponent<Rigidbody>();
         }
 
 
@@ -62,19 +62,18 @@ namespace Character
 
         private void OnEnable()
         {
-            //пуск рогатки
-            Test.OnStartGame.AddListener(() => _isActiveGame = true);
+            DynamicJoystick.OnStartGame.AddListener(OnStartGame);
         }
 
 
         private void OnDisable()
         {
-            //пуск рогатки
+            DynamicJoystick.OnStartGame.AddListener(OnStartGame);
         }
 
         #endregion
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (_isActiveGame == false)
             {
@@ -88,22 +87,32 @@ namespace Character
 
         #region Private Methods
 
+        private void OnStartGame(float forceTension)
+        {
+            _isActiveGame = true;
+
+            _rigidbody.isKinematic = false;
+
+            _movingSpeed = _movingSpeed * forceTension;
+        }
+
+
         private void Movement(float direction)
         {
             if(_constMovingTime <= 0)
             {
                 _movingSpeed -= Time.deltaTime / _subtractinSpeedFromTime;
-            }
-            else if (_constMovingTime > 0)
-            {
-                _constMovingTime -= Time.deltaTime;
 
                 if (_slowerMovingTime < 0)
                 {
                     return;
                 }
 
-                _slowerMovingTime -= Time.deltaTime;
+                _slowerMovingTime -= Time.deltaTime;            
+            }
+            else if (_constMovingTime > 0)
+            {
+                _constMovingTime -= Time.deltaTime;
             }
 
             if (_movingSpeed < 0)
