@@ -13,6 +13,7 @@ namespace Character
         #region EVENTS
 
         public static UnityEvent OnRunOutTime = new UnityEvent();
+        public static UnityEvent OnLoseLevel = new UnityEvent();
 
         #endregion
 
@@ -35,7 +36,6 @@ namespace Character
         #region Private Fields
 
         private float _movementSpeed => _parameters.MovementSpeed;
-
         private float _constMovementTime => _parameters.ConstMovementTimer;
         private float _slowerMovementTime => _parameters.SlowerMovementTimer;
 
@@ -53,8 +53,8 @@ namespace Character
 
         private void Start()
         {
-            _movingSpeed = _movementSpeed;
             _constMovingTime = _constMovementTime;
+            _movingSpeed = _movementSpeed;
             _slowerMovingTime = _slowerMovementTime;
             _subtractinSpeedFromTime = _slowerMovingTime / _movingSpeed;
         }
@@ -80,9 +80,7 @@ namespace Character
                 return;
             }
 
-            float direction = _joystick.Horizontal;
-
-            Movement(direction);
+            Movement();
         }
 
         #region Private Methods
@@ -97,9 +95,11 @@ namespace Character
         }
 
 
-        private void Movement(float direction)
+        private void Movement()
         {
-            if(_constMovingTime <= 0)
+            float direction = _joystick.Horizontal;
+
+            if (_constMovingTime <= 0)
             {
                 _movingSpeed -= Time.deltaTime / _subtractinSpeedFromTime;
 
@@ -120,6 +120,7 @@ namespace Character
                 _isActiveGame = false;
     
                 OnRunOutTime?.Invoke();
+                OnLoseLevel?.Invoke();
 
                 return;
             }
