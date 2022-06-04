@@ -12,7 +12,7 @@ namespace Character
 
         #region EVENTS
 
-        public static UnityEvent OnRunOutTime = new UnityEvent();
+        public static UnityEvent<int , int> OnRunOutTime = new UnityEvent<int, int>();
         public static UnityEvent OnLoseLevel = new UnityEvent();
 
         #endregion
@@ -27,6 +27,8 @@ namespace Character
         private float _constMovingTime;
         private float _slowerMovingTime;
         private float _subtractinSpeedFromTime;
+
+        private int _startZPosition;
 
         private bool _isActiveGame = false;
 
@@ -57,6 +59,8 @@ namespace Character
             _movingSpeed = _movementSpeed;
             _slowerMovingTime = _slowerMovementTime;
             _subtractinSpeedFromTime = _slowerMovingTime / _movingSpeed;
+
+            _startZPosition = (int)_transform.position.z;
         }
 
 
@@ -118,8 +122,8 @@ namespace Character
             if (_movingSpeed < 0)
             {
                 _isActiveGame = false;
-    
-                OnRunOutTime?.Invoke();
+
+                OnRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
                 OnLoseLevel?.Invoke();
 
                 return;

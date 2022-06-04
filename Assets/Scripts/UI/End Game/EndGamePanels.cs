@@ -1,4 +1,5 @@
 using UnityEngine;
+using Character;
 
 namespace Interface.EndGame
 {
@@ -20,7 +21,7 @@ namespace Interface.EndGame
 
         private void OnEnable()
         {
-            Character.Character_Movement.OnLoseLevel.AddListener(() => _loseGamePanel.gameObject.SetActive(true));
+            Character_Movement.OnLoseLevel.AddListener(() => _loseGamePanel.gameObject.SetActive(true));
         }
 
         #endregion
