@@ -4,33 +4,78 @@ namespace Character.Slingshot
 {
     public class Slingshot : MonoBehaviour
     {
-        [SerializeField] private LineRenderer _line;
+        [Header("Parameters")]
+        [SerializeField] private Transform _startBorder;
+        [SerializeField] private Transform _character;
+        [Space(height: 5f)]
 
-        [SerializeField] private Transform _slingshot;
-        [SerializeField] private Transform _border;
+        [SerializeField] private float _maxDistanceTencion = 4f;
+        [Space(height: 5f)]
 
+        [SerializeField] private Joystick _joysticForceTencion;
+
+        private bool _isStartingGame = false;
+
+        private Vector3 _startPosition;
+
+
+        #region MONO
 
         private void Start()
         {
-            _line.positionCount = 0;
+            _startPosition = _startBorder.position;
         }
 
+
+        private void OnEnable()
+        {
+            DynamicJoystick.OnStartGame.AddListener(OnStartGame);
+        }
+
+
+        private void OnDisable()
+        {
+            DynamicJoystick.OnStartGame.AddListener(OnStartGame);
+        }
+
+        #endregion
 
         private void Update()
         {
-            RenderLine();
+            TencioningSlingshot();
         }
 
-        private void RenderLine()
+        #region Private Methods
+
+        private void TencioningSlingshot()
         {
-            _line.positionCount = 2;
+            Vector3 newPosition = new Vector3(_startBorder.position.x, _startBorder.position.y, _startBorder.position.z + _joysticForceTencion.Vertical / 20);
 
-            Vector3[] point = new Vector3[2];
+            if (newPosition.z < _startPosition.z - _maxDistanceTencion)
+            {
+                return;
+            }
 
-            point[0] = _slingshot.position;
-            point[1] = _border.position;
+            _startBorder.position = newPosition;
 
-            _line.SetPositions(point);
+            if (_isStartingGame == true)
+            {
+                _startBorder.position = _startPosition;
+
+                return;
+            }
+
+            newPosition = new Vector3(_character.position.x, _character.position.y, _character.position.y / 2 + newPosition.z);
+
+            _character.position = newPosition;
         }
+
+
+        private void OnStartGame(float force)
+        {
+            _isStartingGame = true;
+        }
+
+        #endregion
     }
 }

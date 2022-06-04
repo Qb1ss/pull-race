@@ -12,7 +12,8 @@ namespace Character
 
         #region EVENTS
 
-        public static UnityEvent OnRunOutTime = new UnityEvent();
+        public static UnityEvent<int , int> OnRunOutTime = new UnityEvent<int, int>();
+        public static UnityEvent OnLoseLevel = new UnityEvent();
 
         #endregion
 
@@ -27,6 +28,8 @@ namespace Character
         private float _slowerMovingTime;
         private float _subtractinSpeedFromTime;
 
+        private int _startZPosition;
+
         private bool _isActiveGame = false;
 
         private Transform _transform;
@@ -35,7 +38,6 @@ namespace Character
         #region Private Fields
 
         private float _movementSpeed => _parameters.MovementSpeed;
-
         private float _constMovementTime => _parameters.ConstMovementTimer;
         private float _slowerMovementTime => _parameters.SlowerMovementTimer;
 
@@ -53,10 +55,12 @@ namespace Character
 
         private void Start()
         {
-            _movingSpeed = _movementSpeed;
             _constMovingTime = _constMovementTime;
+            _movingSpeed = _movementSpeed;
             _slowerMovingTime = _slowerMovementTime;
             _subtractinSpeedFromTime = _slowerMovingTime / _movingSpeed;
+
+            _startZPosition = (int)_transform.position.z;
         }
 
 
@@ -80,9 +84,7 @@ namespace Character
                 return;
             }
 
-            float direction = _joystick.Horizontal;
-
-            Movement(direction);
+            Movement();
         }
 
         #region Private Methods
@@ -97,9 +99,11 @@ namespace Character
         }
 
 
-        private void Movement(float direction)
+        private void Movement()
         {
-            if(_constMovingTime <= 0)
+            float direction = _joystick.Horizontal;
+
+            if (_constMovingTime <= 0)
             {
                 _movingSpeed -= Time.deltaTime / _subtractinSpeedFromTime;
 
@@ -118,8 +122,9 @@ namespace Character
             if (_movingSpeed < 0)
             {
                 _isActiveGame = false;
-    
-                OnRunOutTime?.Invoke();
+
+                OnRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
+                OnLoseLevel?.Invoke();
 
                 return;
             }
