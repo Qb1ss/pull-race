@@ -2376,8 +2376,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3844176986168442297}
   - component: {fileID: 1507168426578979189}
-  - component: {fileID: 40045960714818569}
   - component: {fileID: 323613617345942237}
+  - component: {fileID: 40045960714818569}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -2434,6 +2434,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &323613617345942237
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3842565532281289351}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 1, z: 4.5}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &40045960714818569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2448,19 +2461,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _parameters: {fileID: 11400000, guid: 0154b1a375bef2b459eee6759c2ba7ca, type: 2}
   _joystick: {fileID: 0}
---- !u!65 &323613617345942237
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3842565532281289351}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 1, z: 4.5}
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &3842603712029434551
 GameObject:
   m_ObjectHideFlags: 0
