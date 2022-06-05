@@ -40,6 +40,7 @@ namespace Character
         private float _movementSpeed => _parameters.MovementSpeed;
         private float _constMovementTime => _parameters.ConstMovementTimer;
         private float _slowerMovementTime => _parameters.SlowerMovementTimer;
+        private float _forceTensionSlingshot => _parameters.ForceTensionSlingshot;
 
         #endregion
 
@@ -95,7 +96,7 @@ namespace Character
 
             _rigidbody.isKinematic = false;
 
-            _movingSpeed = _movingSpeed * forceTension;
+            _movingSpeed = _movingSpeed * forceTension * _forceTensionSlingshot;
         }
 
 

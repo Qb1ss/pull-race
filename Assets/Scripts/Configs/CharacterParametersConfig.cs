@@ -1,4 +1,5 @@
 using UnityEngine;
+using Character.Upgrades;
 
 namespace Configs
 {
@@ -11,14 +12,29 @@ namespace Configs
 
         [SerializeField] private float _constMovementTimer;
         [SerializeField] private float _slowerMovementTimer;
+        [Space(height: 5f)]
 
+        [SerializeField] [Min(1)] private float _forceTensionSlingshot = 1;
 
         #region Public Fields
 
         public float MovementSpeed => _movementSpeed;
         public float ConstMovementTimer => _constMovementTimer;
         public float SlowerMovementTimer => _slowerMovementTimer;
+        public float ForceTensionSlingshot => _forceTensionSlingshot;
 
         #endregion
+
+
+        private void OnEnable()
+        {
+            
+        }
+
+
+        private void OnDisable()
+        {
+
+        }
     }
 }

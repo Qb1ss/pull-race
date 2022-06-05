@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dba28b4cca9e4147a63b32050fc2e03, type: 3}
-  m_Name: Character Level 1
+  m_Script: {fileID: 11500000, guid: 86820876fd709b2479663c818761daba, type: 3}
+  m_Name: Upgrades
   m_EditorClassIdentifier: 
-  _movementSpeed: 50
-  _constMovementTimer: 5
-  _slowerMovementTimer: 3
+  _timePlayingAnimations: 1
+  _yPosition: 200
