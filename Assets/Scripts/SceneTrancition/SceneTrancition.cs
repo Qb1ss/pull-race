@@ -25,10 +25,10 @@ namespace Scenes
         {
             Level = SceneManager.GetActiveScene().buildIndex;
 
+            SceneManager.LoadScene(Level);
+
             Analytics_Facebook.OnTrancitionCurrentLevel(Level);
             Analytics_GameAnalytics.TransitionOnCurrentLevel(Level);
-
-            SceneManager.LoadScene(Level);
         }
 
 
@@ -43,12 +43,13 @@ namespace Scenes
             else
             {
                 Level++;
+
             }
+
+            SceneManager.LoadScene(Level);
 
             Analytics_Facebook.OnTrancitionNextLevel(Level);
             Analytics_GameAnalytics.TransitionOnNextLevel(Level);
-
-            SceneManager.LoadScene(Level);
         }
 
         public void OnTrancitionToLastScene()
@@ -64,10 +65,10 @@ namespace Scenes
                 Level--;
             }
 
+            SceneManager.LoadScene(Level);
+
             Analytics_Facebook.OnTrancitionLastLevel(Level);
             Analytics_GameAnalytics.TransitionOnLastLevel(Level);
-
-            SceneManager.LoadScene(Level);
         }
 
         #endregion
