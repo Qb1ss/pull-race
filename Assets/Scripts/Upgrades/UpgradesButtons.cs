@@ -4,7 +4,7 @@ using System.Collections;
 using DG.Tweening;
 using Configs;
 
-namespace Character.Upgrades
+namespace Interface.Upgrades
 {
     public class UpgradesButtons : MonoBehaviour
     {

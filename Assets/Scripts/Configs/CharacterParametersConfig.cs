@@ -1,5 +1,5 @@
 using UnityEngine;
-using Character.Upgrades;
+using Interface.Upgrades;
 
 namespace Configs
 {

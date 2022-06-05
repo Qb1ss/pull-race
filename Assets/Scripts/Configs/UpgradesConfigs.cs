@@ -8,11 +8,17 @@ namespace Configs
         [Header("Upgrades Parameters")]
         [SerializeField] private float _timePlayingAnimations;
         [SerializeField] private float _yPosition;
+        [Space(height: 5f)]
 
-        #region Public Methods
+        [SerializeField] private float _multiplicationFactorPrice;
+        [Space(height: 5f)]
+
+        #region Public Fields
+        public string[] NameButton;
 
         public float TimePlayingAnimations => _timePlayingAnimations;
         public float YPosition => _yPosition;
+        public float MultiplicationFactorPrice => _multiplicationFactorPrice;
 
         #endregion
     }
