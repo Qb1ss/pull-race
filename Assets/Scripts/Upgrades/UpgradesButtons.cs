@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using System.Collections;
 using DG.Tweening;
 using Configs;
@@ -8,6 +9,12 @@ namespace Interface.Upgrades
 {
     public class UpgradesButtons : MonoBehaviour
     {
+        #region EVENTS
+
+        public static UnityEvent OnStartGame = new UnityEvent();
+
+        #endregion
+
         [SerializeField] private UpgradesConfigs _parameters;
 
         [Header("Panels")]
@@ -66,6 +73,8 @@ namespace Interface.Upgrades
 
             yield return new WaitForSeconds(_timePlayingAnimations);
 
+            OnStartGame?.Invoke();
+            
             gameObject.SetActive(false);
 
             yield break;

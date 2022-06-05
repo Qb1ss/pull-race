@@ -17,9 +17,7 @@ namespace Interface.Upgrades
     {
         #region EVENTS
 
-        public static UnityEvent<int> OnUpgradeSlingshot = new UnityEvent<int>();
-        public static UnityEvent<int> OnUpgradeForceCar = new UnityEvent<int>();
-        public static UnityEvent<int> OnUpgradeTimeMovingCar = new UnityEvent<int>();
+        public static UnityEvent<TypeUpgrades> OnUpgradeParameter = new UnityEvent<TypeUpgrades>();
 
         #endregion
 
@@ -96,6 +94,10 @@ namespace Interface.Upgrades
             PlayerPrefs.SetInt($"{PRICE_PLAYER_PREFS}{_typeUpgradeIndex}", _upgradePrice);
 
             _priceText.text = _upgradePrice.ToString();
+
+            OnUpgradeParameter?.Invoke(_typeUpgrades);
+
+            //аналитика на частоту прокачки
         }
 
         #endregion

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86820876fd709b2479663c818761daba, type: 3}
   m_Name: Upgrades
   m_EditorClassIdentifier: 
+  _forceTensionSlingshot: 0.5
   _timePlayingAnimations: 0.5
   _yPosition: 200
   _multiplicationFactorPrice: 1.2

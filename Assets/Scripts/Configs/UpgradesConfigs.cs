@@ -5,7 +5,7 @@ namespace Configs
     [CreateAssetMenu(fileName = "Upgrades", menuName = "Configs/Upgrades")]
     public class UpgradesConfigs : ScriptableObject
     {
-        [Header("Upgrades Parameters")]
+        [Header("Panels Parameters")]
         [SerializeField] private float _timePlayingAnimations;
         [SerializeField] private float _yPosition;
         [Space(height: 5f)]

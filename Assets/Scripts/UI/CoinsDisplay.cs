@@ -9,6 +9,12 @@ namespace Interface
 
         private int _coins = 0;
 
+        #region Private Fields
+
+        private int _coinDivision = 10; // config
+
+        #endregion
+
 
         #region MONO
 
@@ -43,7 +49,7 @@ namespace Interface
         {
             Debug.Log($"Start Value: {startValue} | End Value: {endValue}");
 
-            int value = endValue - startValue;
+            int value = (int)(endValue - startValue) / _coinDivision;
 
             UpdateCoinsDisplay(value);
         }
