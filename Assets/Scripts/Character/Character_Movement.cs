@@ -1,18 +1,17 @@
 using UnityEngine;
 using UnityEngine.Events;
 using Configs;
+using Interface.Upgrades;
 
 namespace Character
 {
     [RequireComponent(typeof(Rigidbody), typeof(Transform))]
     public class Character_Movement : MonoBehaviour
     {
-        [SerializeField] private CharacterParametersConfig _parameters;
-        [SerializeField] private Joystick _joystick;
-
         #region EVENTS
 
-        public static UnityEvent OnRunOutTime = new UnityEvent();
+        public static UnityEvent<int , int> OnRunOutTime = new UnityEvent<int, int>();
+        public static UnityEvent OnLoseLevel = new UnityEvent();
 
         #endregion
 
@@ -22,10 +21,17 @@ namespace Character
 
         #endregion
 
+        [SerializeField] private CharacterParametersConfig _parameters;
+        [SerializeField] private Joystick _joystick;
+
         private float _movingSpeed;
         private float _constMovingTime;
+        private float _constMovementTime;
+        private float _forceTensionSlingshot;
         private float _slowerMovingTime;
         private float _subtractinSpeedFromTime;
+
+        private int _startZPosition;
 
         private bool _isActiveGame = false;
 
@@ -35,8 +41,6 @@ namespace Character
         #region Private Fields
 
         private float _movementSpeed => _parameters.MovementSpeed;
-
-        private float _constMovementTime => _parameters.ConstMovementTimer;
         private float _slowerMovementTime => _parameters.SlowerMovementTimer;
 
         #endregion
@@ -53,16 +57,16 @@ namespace Character
 
         private void Start()
         {
-            _movingSpeed = _movementSpeed;
-            _constMovingTime = _constMovementTime;
-            _slowerMovingTime = _slowerMovementTime;
-            _subtractinSpeedFromTime = _slowerMovingTime / _movingSpeed;
+            _startZPosition = (int)_transform.position.z;
+
+            UpdateParameters();
         }
 
 
         private void OnEnable()
         {
             DynamicJoystick.OnStartGame.AddListener(OnStartGame);
+            UpgradesButtons.OnStartGame.AddListener(UpdateParameters);
         }
 
 
@@ -80,12 +84,21 @@ namespace Character
                 return;
             }
 
-            float direction = _joystick.Horizontal;
-
-            Movement(direction);
+            Movement();
         }
 
         #region Private Methods
+
+        private void UpdateParameters()
+        {
+            _constMovementTime = _parameters.ConstMovementTimer;
+            _constMovingTime = _constMovementTime;
+            _forceTensionSlingshot = _parameters.ForceTensionSlingshot;
+
+            _constMovingTime = _constMovementTime;
+            _slowerMovingTime = _slowerMovementTime + _forceTensionSlingshot;
+        }
+
 
         private void OnStartGame(float forceTension)
         {
@@ -93,13 +106,18 @@ namespace Character
 
             _rigidbody.isKinematic = false;
 
-            _movingSpeed = _movingSpeed * forceTension;
+            _movingSpeed = _movementSpeed * forceTension;
+            _subtractinSpeedFromTime = _slowerMovingTime / _movingSpeed;
+
+            UpdateParameters();
         }
 
 
-        private void Movement(float direction)
+        private void Movement()
         {
-            if(_constMovingTime <= 0)
+            float direction = _joystick.Horizontal;
+
+            if (_constMovingTime <= 0)
             {
                 _movingSpeed -= Time.deltaTime / _subtractinSpeedFromTime;
 
@@ -118,8 +136,9 @@ namespace Character
             if (_movingSpeed < 0)
             {
                 _isActiveGame = false;
-    
-                OnRunOutTime?.Invoke();
+
+                OnRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
+                OnLoseLevel?.Invoke();
 
                 return;
             }
