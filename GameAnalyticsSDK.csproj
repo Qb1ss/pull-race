@@ -53,44 +53,44 @@
     <UnityVersion>2020.2.7f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Events\GA_Error.cs" />
     <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Playmaker\SendErrorEvent.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Playmaker\SendBusinessEvent.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Playmaker\SendDesignEvent.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Events\GA_Design.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Events\GA_Business.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Setup\Settings.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Wrapper\GA_Wrapper.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Wrapper\GA_AndroidWrapper.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Wrapper\GA_TizenWrapper.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Playmaker\SendProgressionEvent.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Playmaker\GetRemoteConfigsValueAsString.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Events\GA_Debug.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Wrapper\GA_UWPWrapper.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Wrapper\GA_WebGLWrapper.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Playmaker\IsRemoteConfigsReady.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Events\GA_Progression.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Events\GA_SpecialEvents.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Playmaker\SetCustomDimension.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\IGameAnalyticsATTListener.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Wrapper\GA_MonoWrapper.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Playmaker\SendAdEvent.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Utilities\GA_MiniJson.cs" />
     <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Events\GA_Setup.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\ATT\GameAnalyticsATTObjCBridge.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Events\GAValidator.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\ATT\GameAnalyticsATTClient.cs" />
     <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\GameAnalytics.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\State\GAState.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Events\GA_Resource.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Playmaker\SendResourceEvent.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Wrapper\GA_iOSWrapper.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Events\GA_Ads.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Playmaker\GAInitialize.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Playmaker\GetABTestingId.cs" />
-    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Playmaker\GetABTestingVariantId.cs" />
     <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Enums.cs" />
     <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Wrapper\GA_tvOSWrapper.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Wrapper\GA_WebGLWrapper.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Utilities\GA_MiniJson.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Events\GA_Ads.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Wrapper\GA_AndroidWrapper.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Events\GA_Debug.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Playmaker\SendAdEvent.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Events\GAValidator.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Playmaker\GetABTestingVariantId.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Events\GA_Resource.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Wrapper\GA_UWPWrapper.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Playmaker\IsRemoteConfigsReady.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Playmaker\SendProgressionEvent.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\IGameAnalyticsATTListener.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Wrapper\GA_MonoWrapper.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Wrapper\GA_iOSWrapper.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Playmaker\SendDesignEvent.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Events\GA_Design.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Setup\Settings.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Playmaker\GetRemoteConfigsValueAsString.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Events\GA_Business.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Playmaker\GetABTestingId.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Events\GA_Error.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Events\GA_SpecialEvents.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Playmaker\SendResourceEvent.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Events\GA_Progression.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Playmaker\SetCustomDimension.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\ATT\GameAnalyticsATTClient.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Playmaker\GAInitialize.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Wrapper\GA_Wrapper.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\Wrapper\GA_TizenWrapper.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\ATT\GameAnalyticsATTObjCBridge.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Scripts\State\GAState.cs" />
+    <Compile Include="Assets\GA-SDK-UNITY-master\Runtime\Playmaker\SendBusinessEvent.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\GA-SDK-UNITY-master\Runtime\SamsungTV\Mono.Data.Sqlite.dll" />
@@ -327,23 +327,14 @@
     <Reference Include="Facebook.Unity.Editor">
       <HintPath>Assets\FacebookSDK\Plugins\Editor\Facebook.Unity.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Facebook.Unity.Settings">
-      <HintPath>Assets\FacebookSDK\Plugins\Settings\Facebook.Unity.Settings.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTweenEditor">
-      <HintPath>Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
-    </Reference>
     <Reference Include="Facebook.Unity.Gameroom">
       <HintPath>Assets\FacebookSDK\Plugins\Gameroom\Facebook.Unity.Gameroom.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.VersionHandler">
-      <HintPath>Assets\PlayServicesResolver\Editor\Google.VersionHandler.dll</HintPath>
     </Reference>
     <Reference Include="Google.VersionHandlerImpl_v1.2.135.0">
       <HintPath>Assets\PlayServicesResolver\Editor\Google.VersionHandlerImpl_v1.2.135.0.dll</HintPath>
     </Reference>
-    <Reference Include="Google.JarResolver_v1.2.135.0">
-      <HintPath>Assets\PlayServicesResolver\Editor\Google.JarResolver_v1.2.135.0.dll</HintPath>
+    <Reference Include="Google.VersionHandler">
+      <HintPath>Assets\PlayServicesResolver\Editor\Google.VersionHandler.dll</HintPath>
     </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
@@ -351,11 +342,20 @@
     <Reference Include="Google.IOSResolver_v1.2.135.0">
       <HintPath>Assets\PlayServicesResolver\Editor\Google.IOSResolver_v1.2.135.0.dll</HintPath>
     </Reference>
-    <Reference Include="Facebook.Unity">
-      <HintPath>Assets\FacebookSDK\Plugins\Facebook.Unity.dll</HintPath>
-    </Reference>
     <Reference Include="FacebookNamedPipeClient">
       <HintPath>Assets\FacebookSDK\Plugins\Gameroom\FacebookNamedPipeClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook.Unity.Settings">
+      <HintPath>Assets\FacebookSDK\Plugins\Settings\Facebook.Unity.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenEditor">
+      <HintPath>Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.JarResolver_v1.2.135.0">
+      <HintPath>Assets\PlayServicesResolver\Editor\Google.JarResolver_v1.2.135.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook.Unity">
+      <HintPath>Assets\FacebookSDK\Plugins\Facebook.Unity.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files (x86)\Unity\2020.2.7f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>

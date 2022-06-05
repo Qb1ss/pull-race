@@ -14,8 +14,6 @@ namespace Analytics
         {
             Instance = this;
 
-            DontDestroyOnLoad(this);
-
             GameAnalytics.Initialize();
         }
 
