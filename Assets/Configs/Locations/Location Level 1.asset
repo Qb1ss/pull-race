@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b411044e0db9ab49bf2814d78997c47, type: 3}
   m_Name: Location Level 1
   m_EditorClassIdentifier: 
-  _heightMainParameters: {x: 10, y: 1, z: 80}
+  _heightMainParameters: {x: 10, y: 1, z: 800}
   _heightStartZone: 10
   _heightFinishZone: 10

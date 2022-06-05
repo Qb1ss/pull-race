@@ -15,3 +15,4 @@ MonoBehaviour:
   _movementSpeed: 50
   _constMovementTimer: 5
   _slowerMovementTimer: 3
+  _multiplicationFactorForceTensionSlingshot: 0.1
