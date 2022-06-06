@@ -1,9 +1,20 @@
 using UnityEngine;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Character.Slingshot
 {
     public class Slingshot : MonoBehaviour
     {
+        [Header("Anchors")]
+        [SerializeField] private Transform[] _leftAnchors;
+        [SerializeField] private Transform[] _rightAnchors;
+        [Space(height: 5f)]
+
+        [SerializeField] private LineRenderer _line;
+        private LineRenderer[] _lines;
+
         [Header("Parameters")]
         [SerializeField] private Transform _startBorder;
         [SerializeField] private Transform _character;
@@ -24,6 +35,13 @@ namespace Character.Slingshot
         private void Start()
         {
             _startPosition = _startBorder.position;
+
+            _lines = new LineRenderer[2];
+
+            for (int i = 0; i < _lines.Length; i++)
+            {
+                _lines[i] = Instantiate(_line);
+            }
         }
 
 
@@ -55,11 +73,17 @@ namespace Character.Slingshot
             {
                 return;
             }
+            else if (newPosition.z > _startPosition.z)
+            {
+                return;
+            }
 
             _startBorder.position = newPosition;
 
             if (_isStartingGame == true)
             {
+                RenderLines();
+
                 _startBorder.position = _startPosition;
 
                 return;
@@ -68,12 +92,29 @@ namespace Character.Slingshot
             newPosition = new Vector3(_character.position.x, _character.position.y, _character.position.y / 2 + newPosition.z);
 
             _character.position = newPosition;
+
+            RenderLines();
         }
 
 
         private void OnStartGame(float force)
         {
             _isStartingGame = true;
+        }
+
+
+        private void RenderLines()
+        {
+            Vector3[] leftPosition = new Vector3[2];
+            leftPosition[0] = _leftAnchors[0].position;
+            leftPosition[1] = _leftAnchors[1].position;
+
+            Vector3[] rightPosition = new Vector3[2];
+            rightPosition[0] = _rightAnchors[0].position;
+            rightPosition[1] = _rightAnchors[1].position;
+
+            _lines[0].SetPositions(leftPosition);
+            _lines[1].SetPositions(rightPosition);
         }
 
         #endregion

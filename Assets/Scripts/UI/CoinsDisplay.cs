@@ -1,10 +1,13 @@
 using UnityEngine;
 using TMPro;
+using WalletData;
 
 namespace Interface
 {
     public class CoinsDisplay : MonoBehaviour
     {
+        private Wallet _wallet;
+
         private TextMeshProUGUI _coinsDisplay;
 
         private int _coins = 0;
@@ -26,6 +29,8 @@ namespace Interface
 
         private void Start()
         {
+            _wallet = new Wallet();
+
             UpdateStartCoinsDisplay();
         }
 
@@ -33,6 +38,13 @@ namespace Interface
         private void OnEnable()
         {
             Character.Character_Movement.OnRunOutTime.AddListener(RunOutTime);
+            Wallet.OnUpdateDisplay.AddListener(UpdateCoinsDisplay);
+        }
+
+
+        private void OnDisable()
+        {
+            Wallet.OnUpdateDisplay.AddListener(UpdateCoinsDisplay);
         }
 
         #endregion
@@ -41,23 +53,24 @@ namespace Interface
 
         private void UpdateStartCoinsDisplay()
         {
+            _coins = _wallet.GetCount(Currency.Coin);
+
             _coinsDisplay.text = _coins.ToString();
         }
 
 
         private void RunOutTime(int startValue, int endValue)
         {
-            Debug.Log($"Start Value: {startValue} | End Value: {endValue}");
-
             int value = (int)(endValue - startValue) / _coinDivision;
 
-            UpdateCoinsDisplay(value);
+            _wallet.Increase(Currency.Coin, value);
+            UpdateCoinsDisplay(Currency.Coin, value);
         }
 
 
-        private void UpdateCoinsDisplay(int value)
+        private void UpdateCoinsDisplay(Currency currency, int value)
         {
-            _coins += value;
+            _coins = _wallet.GetCount(Currency.Coin);
 
             _coinsDisplay.text = _coins.ToString();
         }
