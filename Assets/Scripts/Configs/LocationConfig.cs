@@ -6,17 +6,11 @@ namespace Configs
     public class LocationConfig : ScriptableObject
     {
         [Header("Location Parameters")]
-        [SerializeField] private Vector3 _heightMainParameters;
-        [Space(height: 5f)]
-
-        [SerializeField] private float _heightStartZone = 10;
-        [SerializeField] private float _heightFinishZone = 10;
+        [SerializeField] private int _chunkNumber;
 
         #region Public Fields
 
-        public Vector3 HeightMainParameters => _heightMainParameters;
-        public float HeightStartZone => _heightStartZone;
-        public float HeightFinishZone => _heightFinishZone;
+        public int ChunkNumber => _chunkNumber;
 
         #endregion
     }

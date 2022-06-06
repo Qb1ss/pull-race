@@ -12,7 +12,8 @@ namespace Character.Slingshot
         [SerializeField] private Transform[] _rightAnchors;
         [Space(height: 5f)]
 
-        [SerializeField] private LineRenderer[] _lines;
+        [SerializeField] private LineRenderer _line;
+        private LineRenderer[] _lines;
 
         [Header("Parameters")]
         [SerializeField] private Transform _startBorder;
@@ -34,6 +35,13 @@ namespace Character.Slingshot
         private void Start()
         {
             _startPosition = _startBorder.position;
+
+            _lines = new LineRenderer[2];
+
+            for (int i = 0; i < _lines.Length; i++)
+            {
+                _lines[i] = Instantiate(_line);
+            }
         }
 
 

@@ -921,7 +921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08c5bf130243fb447a19f2d06045b272, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _parameters: {fileID: 11400000, guid: 9ffeeb47ea2407f4e8438a4f988221fb, type: 2}
+  _parameters: {fileID: 11400000, guid: 4744d57925f31a147943a74b10151dfb, type: 2}
   _groundChunkPrefab: {fileID: 8426717075529223074, guid: c78939dd28aa9fe448d7d03f2b0b4460, type: 3}
 --- !u!1001 &409336977
 PrefabInstance:
