@@ -7,6 +7,7 @@ namespace Configs
     public class LocationConfig : ScriptableObject
     {
         [Header("Location Parameters")]
+        [Tooltip("Default Value: 56")]
         [SerializeField] private int _chunkNumber;
         [Space(height: 5f)]
 
