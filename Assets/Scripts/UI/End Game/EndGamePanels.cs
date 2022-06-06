@@ -21,6 +21,7 @@ namespace Interface.EndGame
 
         private void OnEnable()
         {
+            Character_Movement.OnWinLevel.AddListener(() => _winGamePanel.gameObject.SetActive(true));
             Character_Movement.OnLoseLevel.AddListener(() => _loseGamePanel.gameObject.SetActive(true));
         }
 

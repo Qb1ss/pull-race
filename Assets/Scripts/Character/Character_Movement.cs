@@ -11,7 +11,9 @@ namespace Character
         #region EVENTS
 
         public static UnityEvent<int , int> OnRunOutTime = new UnityEvent<int, int>();
+
         public static UnityEvent OnLoseLevel = new UnityEvent();
+        public static UnityEvent OnWinLevel = new UnityEvent();
 
         #endregion
 
@@ -20,6 +22,7 @@ namespace Character
         private const float FORCE_ROTATE = 20f;
 
         private const string TAG_RESPAWN = "Respawn";
+        private const string TAG_FINISH = "Finish";
 
         #endregion
 
@@ -176,6 +179,15 @@ namespace Character
             OnLoseLevel?.Invoke();
         }
 
+
+        private void WinGame()
+        {
+            _isActiveGame = false;
+
+            OnRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
+            OnWinLevel?.Invoke();
+        }
+
         #endregion
 
         private void OnCollisionEnter(Collision collision)
@@ -184,6 +196,15 @@ namespace Character
             if (collision.gameObject.CompareTag(TAG_RESPAWN))
             {
                 CrashInObject();
+            }
+        }
+
+
+        private void OnTriggerExit(Collider collider)
+        {
+            if (collider.gameObject.CompareTag(TAG_FINISH))
+            {
+                WinGame();
             }
         }
     }
