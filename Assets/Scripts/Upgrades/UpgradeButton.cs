@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
 using Configs;
+using WalletData;
 
 namespace Interface.Upgrades
 {
@@ -40,6 +41,8 @@ namespace Interface.Upgrades
 
         private int _upgradePrice;
 
+        private Wallet _wallet;
+
         #region Public Fields
 
 
@@ -66,9 +69,11 @@ namespace Interface.Upgrades
 
         private void Start()
         {
+            _wallet = new Wallet();
+
             UpdateParameters();
 
-            _upgradeButton.onClick.AddListener(() => OnUpgrade());
+            _upgradeButton.onClick.AddListener(() => OnUpgrading());
         }
 
         #endregion
@@ -82,6 +87,17 @@ namespace Interface.Upgrades
             _upgradePrice = PlayerPrefs.GetInt($"{PRICE_PLAYER_PREFS}{_typeUpgradeIndex}", _startPrice);
 
             _priceText.text = _upgradePrice.ToString();
+        }
+
+
+        private void OnUpgrading()
+        {
+            if(_wallet.GetCount(Currency.Coin) >= _upgradePrice)
+            {
+                _wallet.Decrease(Currency.Coin, _upgradePrice);
+
+                OnUpgrade();
+            }
         }
 
 
