@@ -8,13 +8,15 @@ namespace Configs
         [Header("Panels Parameters")]
         [SerializeField] private float _timePlayingAnimations;
         [SerializeField] private float _yPosition;
-        [Space(height: 5f)]
 
+        [Header("Item Parameters")]
         [SerializeField] private float _multiplicationFactorPrice;
         [Space(height: 5f)]
 
         #region Public Fields
-        public string[] NameButton;
+        public string[] NamesButton;
+
+        public int[] StartPricesButton;
 
         public float TimePlayingAnimations => _timePlayingAnimations;
         public float YPosition => _yPosition;
