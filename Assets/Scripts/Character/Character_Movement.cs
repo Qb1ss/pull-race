@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using Configs;
+using Obstructions;
 using Interface.Upgrades;
 
 namespace Character
@@ -103,7 +104,7 @@ namespace Character
             _forceTensionSlingshot = _parameters.ForceTensionSlingshot;
 
             _constMovingTime = _constMovementTime;
-            _slowerMovingTime = _slowerMovementTime + _forceTensionSlingshot;
+            _slowerMovingTime = _constMovementTime / 10;
             _maxCarForce = _parameters.MaxCarForce;
             _carForce = _maxCarForce;
         }
@@ -192,8 +193,7 @@ namespace Character
 
         private void OnCollisionEnter(Collision collision)
         {
-            //поиск по скрипту
-            if (collision.gameObject.CompareTag(TAG_RESPAWN))
+            if (collision.gameObject.TryGetComponent<Obstruction>(out Obstruction obstruction))
             {
                 CrashInObject();
             }
