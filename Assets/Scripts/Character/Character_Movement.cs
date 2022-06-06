@@ -32,6 +32,8 @@ namespace Character
         private float _forceTensionSlingshot;
         private float _slowerMovingTime;
         private float _subtractinSpeedFromTime;
+        private float _maxCarForce;
+        private float _carForce;
 
         private int _startZPosition;
 
@@ -99,6 +101,8 @@ namespace Character
 
             _constMovingTime = _constMovementTime;
             _slowerMovingTime = _slowerMovementTime + _forceTensionSlingshot;
+            _maxCarForce = _parameters.MaxCarForce;
+            _carForce = _maxCarForce;
         }
 
 
@@ -146,6 +150,24 @@ namespace Character
             _transform.Translate(new Vector3(0f, 0f, _movingSpeed * Time.deltaTime));
         }
 
+
+        private void CrashInObject()
+        {
+            //нанесение урока
+            _carForce -= 1f;
+
+            if (_carForce <= 0)
+            {
+                EndGame();
+            }
+            else
+            {
+                //разрушение объекта
+                Debug.Log(_carForce);
+            }
+        }
+
+
         private void EndGame()
         {
             _isActiveGame = false;
@@ -158,9 +180,10 @@ namespace Character
 
         private void OnCollisionEnter(Collision collision)
         {
+            //поиск по скрипту
             if (collision.gameObject.CompareTag(TAG_RESPAWN))
             {
-                EndGame();
+                CrashInObject();
             }
         }
     }
