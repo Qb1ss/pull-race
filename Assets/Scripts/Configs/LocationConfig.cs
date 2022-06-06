@@ -1,4 +1,5 @@
 using UnityEngine;
+using Location;
 
 namespace Configs
 {
@@ -6,11 +7,18 @@ namespace Configs
     public class LocationConfig : ScriptableObject
     {
         [Header("Location Parameters")]
+        [Tooltip("Default Value: 56")]
         [SerializeField] private int _chunkNumber;
+        [Space(height: 5f)]
+
+        [SerializeField] private Chunk _chunkPrefab;
+        [SerializeField] private Chunk _finishChunkPrefab;
 
         #region Public Fields
 
         public int ChunkNumber => _chunkNumber;
+        public Chunk ChunkPrefab => _chunkPrefab;
+        public Chunk FinishChunkPrefab => _finishChunkPrefab;
 
         #endregion
     }
