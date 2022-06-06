@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
 using Configs;
+using WalletData;
 
 namespace Interface.Upgrades
 {
@@ -25,8 +26,6 @@ namespace Interface.Upgrades
 
         private const string PRICE_PLAYER_PREFS = "PricePlayerPrefs";
 
-        private const int DEFAULT_PRICE = 10;
-
         #endregion
 
         [SerializeField] private UpgradesConfigs _parameters;
@@ -42,6 +41,8 @@ namespace Interface.Upgrades
 
         private int _upgradePrice;
 
+        private Wallet _wallet;
+
         #region Public Fields
 
 
@@ -52,7 +53,8 @@ namespace Interface.Upgrades
 
         private int _typeUpgradeIndex => (int)_typeUpgrades;
 
-        private string _nameButton => _parameters.NameButton[_typeUpgradeIndex];
+        private string _nameButton => _parameters.NamesButton[_typeUpgradeIndex];
+        private int _startPrice => _parameters.StartPricesButton[_typeUpgradeIndex];
         private float _multiplicationFactorPrice => _parameters.MultiplicationFactorPrice;
 
         #endregion
@@ -67,9 +69,11 @@ namespace Interface.Upgrades
 
         private void Start()
         {
+            _wallet = new Wallet();
+
             UpdateParameters();
 
-            _upgradeButton.onClick.AddListener(() => OnUpgrade());
+            _upgradeButton.onClick.AddListener(() => OnUpgrading());
         }
 
         #endregion
@@ -80,9 +84,20 @@ namespace Interface.Upgrades
         {
             _nameText.text = _nameButton;
 
-            _upgradePrice = PlayerPrefs.GetInt($"{PRICE_PLAYER_PREFS}{_typeUpgradeIndex}", DEFAULT_PRICE);
+            _upgradePrice = PlayerPrefs.GetInt($"{PRICE_PLAYER_PREFS}{_typeUpgradeIndex}", _startPrice);
 
             _priceText.text = _upgradePrice.ToString();
+        }
+
+
+        private void OnUpgrading()
+        {
+            if(_wallet.GetCount(Currency.Coin) >= _upgradePrice)
+            {
+                _wallet.Decrease(Currency.Coin, _upgradePrice);
+
+                OnUpgrade();
+            }
         }
 
 

@@ -19,6 +19,8 @@ namespace Character
 
         private const float FORCE_ROTATE = 20f;
 
+        private const string TAG_RESPAWN = "Respawn";
+
         #endregion
 
         [SerializeField] private CharacterParametersConfig _parameters;
@@ -30,6 +32,8 @@ namespace Character
         private float _forceTensionSlingshot;
         private float _slowerMovingTime;
         private float _subtractinSpeedFromTime;
+        private float _maxCarForce;
+        private float _carForce;
 
         private int _startZPosition;
 
@@ -97,6 +101,8 @@ namespace Character
 
             _constMovingTime = _constMovementTime;
             _slowerMovingTime = _slowerMovementTime + _forceTensionSlingshot;
+            _maxCarForce = _parameters.MaxCarForce;
+            _carForce = _maxCarForce;
         }
 
 
@@ -135,10 +141,7 @@ namespace Character
 
             if (_movingSpeed < 0)
             {
-                _isActiveGame = false;
-
-                OnRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
-                OnLoseLevel?.Invoke();
+                EndGame();
 
                 return;
             }
@@ -147,6 +150,41 @@ namespace Character
             _transform.Translate(new Vector3(0f, 0f, _movingSpeed * Time.deltaTime));
         }
 
+
+        private void CrashInObject()
+        {
+            //нанесение урока
+            _carForce -= 1f;
+
+            if (_carForce <= 0)
+            {
+                EndGame();
+            }
+            else
+            {
+                //разрушение объекта
+                Debug.Log(_carForce);
+            }
+        }
+
+
+        private void EndGame()
+        {
+            _isActiveGame = false;
+
+            OnRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
+            OnLoseLevel?.Invoke();
+        }
+
         #endregion
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            //поиск по скрипту
+            if (collision.gameObject.CompareTag(TAG_RESPAWN))
+            {
+                CrashInObject();
+            }
+        }
     }
 }
