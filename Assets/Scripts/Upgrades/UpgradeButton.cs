@@ -25,8 +25,6 @@ namespace Interface.Upgrades
 
         private const string PRICE_PLAYER_PREFS = "PricePlayerPrefs";
 
-        private const int DEFAULT_PRICE = 10;
-
         #endregion
 
         [SerializeField] private UpgradesConfigs _parameters;
@@ -52,7 +50,8 @@ namespace Interface.Upgrades
 
         private int _typeUpgradeIndex => (int)_typeUpgrades;
 
-        private string _nameButton => _parameters.NameButton[_typeUpgradeIndex];
+        private string _nameButton => _parameters.NamesButton[_typeUpgradeIndex];
+        private int _startPrice => _parameters.StartPricesButton[_typeUpgradeIndex];
         private float _multiplicationFactorPrice => _parameters.MultiplicationFactorPrice;
 
         #endregion
@@ -80,7 +79,7 @@ namespace Interface.Upgrades
         {
             _nameText.text = _nameButton;
 
-            _upgradePrice = PlayerPrefs.GetInt($"{PRICE_PLAYER_PREFS}{_typeUpgradeIndex}", DEFAULT_PRICE);
+            _upgradePrice = PlayerPrefs.GetInt($"{PRICE_PLAYER_PREFS}{_typeUpgradeIndex}", _startPrice);
 
             _priceText.text = _upgradePrice.ToString();
         }

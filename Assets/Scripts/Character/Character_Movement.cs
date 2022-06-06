@@ -19,6 +19,8 @@ namespace Character
 
         private const float FORCE_ROTATE = 20f;
 
+        private const string TAG_RESPAWN = "Respawn";
+
         #endregion
 
         [SerializeField] private CharacterParametersConfig _parameters;
@@ -135,10 +137,7 @@ namespace Character
 
             if (_movingSpeed < 0)
             {
-                _isActiveGame = false;
-
-                OnRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
-                OnLoseLevel?.Invoke();
+                EndGame();
 
                 return;
             }
@@ -147,6 +146,22 @@ namespace Character
             _transform.Translate(new Vector3(0f, 0f, _movingSpeed * Time.deltaTime));
         }
 
+        private void EndGame()
+        {
+            _isActiveGame = false;
+
+            OnRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
+            OnLoseLevel?.Invoke();
+        }
+
         #endregion
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag(TAG_RESPAWN))
+            {
+                EndGame();
+            }
+        }
     }
 }
