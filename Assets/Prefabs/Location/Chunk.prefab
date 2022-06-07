@@ -142,6 +142,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Start: {fileID: 5320156820899615629}
   End: {fileID: 4834628936264463666}
+  NumberChunk: 0
+  _obstructions:
+  - {fileID: 6676670670825796279, guid: f2ad7e0abc0764f4193add4b45b2e9b7, type: 3}
+  - {fileID: 6168842816896014864, guid: d4ed40befd218ef46b39be054729e590, type: 3}
 --- !u!1 &2570349076287523658
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,6 +38,7 @@ namespace Location
                 if(i < _chunkNumber - 1)
                 {
                     Chunk newChunk = Instantiate(_chunkPrefab);
+                    newChunk.NumberChunk = i;
 
                     if (_spawnedChunks.Count != 0)
                     {
@@ -47,6 +48,8 @@ namespace Location
                     {
                         newChunk.transform.position = gameObject.transform.position;
                     }
+
+                    newChunk.Create();
 
                     _spawnedChunks.Add(newChunk);
                 }
