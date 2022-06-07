@@ -9,6 +9,7 @@ namespace Obstructions
         Car = 1
     }
 
+    [RequireComponent(typeof(BoxCollider))]
     public class Obstruction : MonoBehaviour
     {
         [SerializeField] private ObstructionConfig _parameters;
@@ -29,8 +30,11 @@ namespace Obstructions
 
         private bool _isGameActive = false;
 
+        private BoxCollider _boxCollider;
+
         #region Private Fields
 
+        private ParticleSystem _destroyEffect => _parameters.DestroyEffect;
         private float _movementSpeed => _parameters.MovementSpeed;
 
         #endregion
@@ -40,7 +44,16 @@ namespace Obstructions
 
         private void OnEnable()
         {
+            _boxCollider = GetComponent<BoxCollider>();
+
             DynamicJoystick.OnStartGame.AddListener(OnStartGame);
+        }
+
+
+        private void OnDestroy()
+        {
+            ParticleSystem effect = Instantiate(_destroyEffect, gameObject.transform.position, Quaternion.identity);
+            Destroy(effect.gameObject, 1f);
         }
 
         #endregion
@@ -54,6 +67,17 @@ namespace Obstructions
 
             Car_Movement();
         }
+
+        #region Public Methods
+
+        public void OnDestroing()
+        {
+            _boxCollider.enabled = false;
+
+            Destroy(gameObject);
+        }
+
+        #endregion
 
         #region Private Methods
 
@@ -70,8 +94,6 @@ namespace Obstructions
         }
 
         #endregion
-
-
 
         private void OnStartGame(float forceTension)
         {

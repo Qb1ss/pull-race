@@ -15,14 +15,15 @@ namespace Character
 
         public static UnityEvent OnLoseLevel = new UnityEvent();
         public static UnityEvent OnWinLevel = new UnityEvent();
+        public static UnityEvent OnCrash = new UnityEvent();
 
         #endregion
 
         #region CONSTS
 
         private const float FORCE_ROTATE = 20f;
+        private const float DAMAGE = 1f;
 
-        private const string TAG_RESPAWN = "Respawn";
         private const string TAG_FINISH = "Finish";
 
         #endregion
@@ -50,6 +51,8 @@ namespace Character
 
         private float _movementSpeed => _parameters.MovementSpeed;
         private float _slowerMovementTime => _parameters.SlowerMovementTimer;
+
+        private ParticleSystem _destroyEffect => _parameters.DestroyEffect;
 
         #endregion
 
@@ -155,19 +158,24 @@ namespace Character
         }
 
 
-        private void CrashInObject()
+        private void CrashInObject(Obstruction obstruction)
         {
-            //нанесение урока
-            _carForce -= 1f;
+            _carForce -= DAMAGE;
 
             if (_carForce <= 0)
             {
+                ParticleSystem effect = Instantiate(_destroyEffect, _transform.position, Quaternion.identity);
+                Destroy(effect, 1f);
+
+                Handheld.Vibrate();
+
                 EndGame();
             }
             else
             {
-                //разрушение объекта
-                Debug.Log(_carForce);
+                obstruction.OnDestroing();
+
+                OnCrash?.Invoke();
             }
         }
 
@@ -195,7 +203,7 @@ namespace Character
         {
             if (collision.gameObject.TryGetComponent<Obstruction>(out Obstruction obstruction))
             {
-                CrashInObject();
+                CrashInObject(obstruction);
             }
         }
 

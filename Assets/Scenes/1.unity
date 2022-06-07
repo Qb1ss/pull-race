@@ -1102,7 +1102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ecc435be1d11de4387c2e430ad7cf96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeAnimation: 2
+  _timeAnimation: 1
   _restartLevelButton: {fileID: 487434542}
   _headerText: {fileID: 863971046}
   _buttonRestartLevelText: {fileID: 1529201601}
@@ -5709,7 +5709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 064f8605adb963646bb0a1e838e668e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeAnimation: 2
+  _timeAnimation: 1
   _nextLevelButton: {fileID: 1748216001}
   _headerText: {fileID: 1187591670}
   _buttonNextLevelText: {fileID: 1106247395}

@@ -20,6 +20,12 @@ namespace GameCamera
             _character = FindObjectOfType<Character_Movement>();
         }
 
+
+        private void OnEnable()
+        {
+            Character_Movement.OnCrash.AddListener(OnShake);
+        }
+
         #endregion
 
         private void Update()
@@ -27,10 +33,19 @@ namespace GameCamera
             CharacterFollowing();
         }
 
+        #region Private Methods
 
         private void CharacterFollowing()
         {
             gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, _character.transform.position.z - _distanceFollow - _offset.z);
         }
+
+
+        private void OnShake()
+        {
+            Handheld.Vibrate();
+        }
+
+        #endregion
     }
 }

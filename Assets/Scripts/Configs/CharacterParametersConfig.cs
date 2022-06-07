@@ -21,7 +21,9 @@ namespace Configs
         [Header("Character Parameters")]
         [SerializeField] private float _movementSpeed;
         [Space(height: 5f)]
+        [SerializeField] private ParticleSystem _destroyEffect;
 
+        [Space(height: 5f)]
         [SerializeField] private float _multiplicationFactorSecMovementTimer = 2f;
         private float _constMovementTimer;
         [SerializeField] private float _slowerMovementTimer;
@@ -41,6 +43,8 @@ namespace Configs
         public float SlowerMovementTimer => _slowerMovementTimer;
         public float ForceTensionSlingshot => _forceTensionSlingshot;
         public float MaxCarForce => _maxCarForce;
+
+        public ParticleSystem DestroyEffect => _destroyEffect;
 
         #endregion
 
