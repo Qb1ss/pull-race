@@ -23,7 +23,7 @@ namespace Location
 
         [SerializeField] private Obstruction _obstructions = null;
 
-        private float _xSpawnerPosition = 8f;
+        private float _xSpawnerPosition = 7f;
         private float _xPosition = 0f;
 
 
@@ -50,7 +50,7 @@ namespace Location
 
             if(_typePosition == TypePosition.Non)
             {
-                obstruction.gameObject.SetActive(false);
+                Destroy(obstruction.gameObject);
             }
         }
 

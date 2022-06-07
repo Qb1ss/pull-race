@@ -1,4 +1,5 @@
 using UnityEngine;
+using Configs;
 
 namespace Obstructions
 {
@@ -10,20 +11,27 @@ namespace Obstructions
 
     public class Obstruction : MonoBehaviour
     {
+        [SerializeField] private ObstructionConfig _parameters;
+
         #region CONSTS
 
         private const string TAG_FINISH = "Finish";
+
+        private const float MIN_FACTOR_SPEED = 0.8f;
+        private const float MAX_FACTOR_SPEED = 2f;
 
         #endregion
 
         [Header("Main Parameters")]
         [SerializeField] private ObstructionTypes _obstructionTypes;
 
+        private float _movingSpeed;
+
         private bool _isGameActive = false;
 
         #region Private Fields
 
-        private float _movingSpeed = 10; //config
+        private float _movementSpeed => _parameters.MovementSpeed;
 
         #endregion
 
@@ -68,6 +76,8 @@ namespace Obstructions
         private void OnStartGame(float forceTension)
         {
             _isGameActive = true;
+
+            _movingSpeed = _movementSpeed * Random.Range(MIN_FACTOR_SPEED, MAX_FACTOR_SPEED);
         }
 
         #endregion
