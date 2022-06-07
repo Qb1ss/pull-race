@@ -1,14 +1,22 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using System.Collections;
 using TMPro;
 using DG.Tweening;
 using Scenes;
+using Character;
 
 namespace Interface.EndGame
 {
     public class WinGamePanel : MonoBehaviour
     {
+        #region EVENTS
+
+        public static UnityEvent<int> OnGetCoins = new UnityEvent<int>();
+
+        #endregion
+
         [Header("Parameters")]
         [SerializeField] private float _timeAnimation = 1f;
 
@@ -25,6 +33,9 @@ namespace Interface.EndGame
         [SerializeField] private Image _progressBarIconImage;
 
         private Image _winGamePanel;
+
+        private int _coinDivision = 10;
+        private int _coinsValue;
 
         private SceneTrancition _sceneTrancition;
 
@@ -89,6 +100,10 @@ namespace Interface.EndGame
             yield return new WaitForSeconds(_timeAnimation);
 
             _progressBarAmountImage.DOFillAmount(1f, _timeAnimation);
+
+            yield return new WaitForSeconds(_timeAnimation);
+
+            OnGetCoins?.Invoke(_coinsValue);
 
             yield break;
         }

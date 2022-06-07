@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
+using Character;
 using WalletData;
+using Interface.EndGame;
 
 namespace Interface
 {
@@ -10,13 +12,9 @@ namespace Interface
 
         private TextMeshProUGUI _coinsDisplay;
 
-        private int _coins = 0;
-
-        #region Private Fields
-
-        private int _coinDivision = 10; // config
-
-        #endregion
+        private int _coins = 0; 
+        private int _coinValue = 0; 
+        private int _coinDivision = 10;
 
 
         #region MONO
@@ -37,7 +35,8 @@ namespace Interface
 
         private void OnEnable()
         {
-            Character.Character_Movement.OnRunOutTime.AddListener(RunOutTime);
+            WinGamePanel.OnGetCoins.AddListener(UpdateCoins); 
+            Character_Movement.OnRunOutTime.AddListener(RunOutTime);
             Wallet.OnUpdateDisplay.AddListener(UpdateCoinsDisplay);
         }
 
@@ -61,7 +60,13 @@ namespace Interface
 
         private void RunOutTime(int startValue, int endValue)
         {
-            int value = (int)(endValue - startValue) / _coinDivision;
+            _coinValue = (int)(endValue - startValue) / _coinDivision;
+        }
+
+
+        private void UpdateCoins(int value)
+        {
+            value = _coinValue;
 
             _wallet.Increase(Currency.Coin, value);
             UpdateCoinsDisplay(Currency.Coin, value);
