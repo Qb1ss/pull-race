@@ -88,6 +88,20 @@ namespace Analytics
             );
         }
 
+
+        public static void OnUpgradeParameter(TypeUpgrades type)
+        {
+            var tutParams = new Dictionary<string, object>();
+            tutParams[AppEventParameterName.ContentID] = $"player_upgrade_to_{type}";
+            tutParams[AppEventParameterName.Description] = $"Player Upgrade To ({type})!";
+            tutParams[AppEventParameterName.Success] = $"{type}";
+
+            FB.LogAppEvent(
+                AppEventName.CompletedTutorial,
+                parameters: tutParams
+            );
+        }
+
         #endregion
 
         #region Private Methods

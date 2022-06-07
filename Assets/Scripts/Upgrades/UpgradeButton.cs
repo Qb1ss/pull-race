@@ -3,17 +3,18 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
 using Configs;
+using Analytics;
 using WalletData;
+
+public enum TypeUpgrades
+{
+    Slingshot = 0,
+    Force = 1,
+    MovingTime = 2
+}
 
 namespace Interface.Upgrades
 {
-    public enum TypeUpgrades
-    {
-        Slingshot = 0,
-        Force = 1,
-        MovingTime = 2
-    }
-
     public class UpgradeButton : MonoBehaviour
     {
         #region EVENTS
@@ -112,7 +113,8 @@ namespace Interface.Upgrades
 
             OnUpgradeParameter?.Invoke(_typeUpgrades);
 
-            //аналитика на частоту прокачки
+            Analytics_GameAnalytics.OnUpgradeParameter(_typeUpgrades);
+            Analytics_Facebook.OnUpgradeParameter(_typeUpgrades);
         }
 
         #endregion
