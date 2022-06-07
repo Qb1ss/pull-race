@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using TMPro;
 using DG.Tweening;
 using Scenes;
@@ -18,6 +19,10 @@ namespace Interface.EndGame
         [SerializeField] private TextMeshProUGUI _headerText;
         [SerializeField] private TextMeshProUGUI _buttonNextLevelText;
         [Space(height: 5f)]
+
+        [SerializeField] private Image _progressBarAmountImage;
+        [SerializeField] private Image _progressBarIconBackgroundImage;
+        [SerializeField] private Image _progressBarIconImage;
 
         private Image _winGamePanel;
 
@@ -44,9 +49,14 @@ namespace Interface.EndGame
             _winGamePanel = GetComponent<Image>();
 
             _nextLevelButton.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
-            _headerText.color = new Color(1f, 1f, 1f, 1f);
+            _headerText.color = new Color(1f, 1f, 1f, 0f);
             _buttonNextLevelText.color = new Color(0f, 0f, 0f, 0f);
             _winGamePanel.color = new Color(0f, 0f, 0f, 0f);
+
+            _progressBarAmountImage.fillAmount = 0f;
+            _progressBarAmountImage.color = new Color(0.3383785f, 0.7264151f, 0.09251513f, 0f);
+            _progressBarIconBackgroundImage.color = new Color(0.2971698f, 0.8590224f, 1f, 0f);
+            _progressBarIconImage.color = new Color(1f, 1f, 1f, 0f);
 
             StartingAnimation();
         }
@@ -58,6 +68,12 @@ namespace Interface.EndGame
             _headerText.DOColor(new Color(1f, 1f, 1f, 1f), _timeAnimation);
             _buttonNextLevelText.DOColor(new Color(0f, 0f, 0f, 1f), _timeAnimation);
             _winGamePanel.DOColor(new Color(0f, 0f, 0f, 1f), _timeAnimation);
+
+            _progressBarAmountImage.DOColor(new Color(0.3383785f, 0.7264151f, 0.09251513f, 1f), _timeAnimation);
+            _progressBarIconBackgroundImage.DOColor(new Color(0.2971698f, 0.8590224f, 1f, 1f), _timeAnimation);
+            _progressBarIconImage.DOColor(new Color(1f, 1f, 1f, 1f), _timeAnimation);
+
+            StartCoroutine(ProgressBarCoroutine());
         }
 
 
@@ -67,5 +83,14 @@ namespace Interface.EndGame
         }
 
         #endregion
+
+        private IEnumerator ProgressBarCoroutine()
+        {
+            yield return new WaitForSeconds(_timeAnimation);
+
+            _progressBarAmountImage.DOFillAmount(1f, _timeAnimation);
+
+            yield break;
+        }
     }
 }
