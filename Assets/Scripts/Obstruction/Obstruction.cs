@@ -55,6 +55,17 @@ namespace Obstructions
             Car_Movement();
         }
 
+        #region Public Methods
+
+        public void OnDestroing()
+        {
+            gameObject.GetComponent<BoxCollider>().enabled = false;
+
+            Destroy(gameObject);
+        }
+
+        #endregion
+
         #region Private Methods
 
         #region Car
@@ -70,8 +81,6 @@ namespace Obstructions
         }
 
         #endregion
-
-
 
         private void OnStartGame(float forceTension)
         {

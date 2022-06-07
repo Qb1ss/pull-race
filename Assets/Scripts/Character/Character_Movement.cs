@@ -21,8 +21,8 @@ namespace Character
         #region CONSTS
 
         private const float FORCE_ROTATE = 20f;
+        private const float DAMAGE = 1f;
 
-        private const string TAG_RESPAWN = "Respawn";
         private const string TAG_FINISH = "Finish";
 
         #endregion
@@ -155,10 +155,9 @@ namespace Character
         }
 
 
-        private void CrashInObject()
+        private void CrashInObject(Obstruction obstruction)
         {
-            //нанесение урока
-            _carForce -= 1f;
+            _carForce -= DAMAGE;
 
             if (_carForce <= 0)
             {
@@ -166,8 +165,7 @@ namespace Character
             }
             else
             {
-                //разрушение объекта
-                Debug.Log(_carForce);
+                obstruction.OnDestroing();
             }
         }
 
@@ -195,7 +193,7 @@ namespace Character
         {
             if (collision.gameObject.TryGetComponent<Obstruction>(out Obstruction obstruction))
             {
-                CrashInObject();
+                CrashInObject(obstruction);
             }
         }
 
