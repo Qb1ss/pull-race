@@ -75,7 +75,7 @@ namespace Interface.EndGame
 
             _nextLevelButton.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
             _headerText.color = new Color(1f, 1f, 1f, 0f);
-            _buttonNextLevelText.color = new Color(0f, 0f, 0f, 0f);
+            _buttonNextLevelText.color = new Color(1f, 1f, 1f, 0f);
             _winGamePanel.color = new Color(0f, 0f, 0f, 0f);
 
             _progressBarAmountImage.fillAmount = 0f;
@@ -91,7 +91,7 @@ namespace Interface.EndGame
         {
             _nextLevelButton.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 1f), _timeAnimation);
             _headerText.DOColor(new Color(1f, 1f, 1f, 1f), _timeAnimation);
-            _buttonNextLevelText.DOColor(new Color(0f, 0f, 0f, 1f), _timeAnimation);
+            _buttonNextLevelText.DOColor(new Color(1f, 1f, 1f, 1f), _timeAnimation);
             _winGamePanel.DOColor(new Color(0f, 0f, 0f, 1f), _timeAnimation);
 
             _progressBarAmountImage.DOColor(new Color(0.3383785f, 0.7264151f, 0.09251513f, 1f), _timeAnimation);

@@ -39,6 +39,8 @@ namespace Interface.Upgrades
         [SerializeField] private TextMeshProUGUI _nameText;
         [SerializeField] private TextMeshProUGUI _priceText;
         private Button _upgradeButton;
+        
+        //private Image 
 
         private int _upgradePrice;
 
