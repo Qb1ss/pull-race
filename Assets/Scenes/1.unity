@@ -1255,6 +1255,10 @@ PrefabInstance:
       propertyPath: _locationParameters
       value: 
       objectReference: {fileID: 11400000, guid: 9ffeeb47ea2407f4e8438a4f988221fb, type: 2}
+    - target: {fileID: 1507168426578979189, guid: 7fb846953977ba94bb8036dc9f724bb7, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3842565532281289351, guid: 7fb846953977ba94bb8036dc9f724bb7, type: 3}
       propertyPath: m_Name
       value: Character

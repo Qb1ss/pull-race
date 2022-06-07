@@ -10,6 +10,12 @@ namespace Obstructions
 
     public class Obstruction : MonoBehaviour
     {
+        #region CONSTS
+
+        private const string TAG_FINISH = "Finish";
+
+        #endregion
+
         [Header("Main Parameters")]
         [SerializeField] private ObstructionTypes _obstructionTypes;
 
@@ -65,5 +71,13 @@ namespace Obstructions
         }
 
         #endregion
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag(TAG_FINISH))
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

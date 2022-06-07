@@ -12,6 +12,8 @@ namespace Location
 
         public int NumberChunk;
 
+        private float _xSpawnerPosition = 8f;
+
         [SerializeField] private List<Obstruction> _obstructions = new List<Obstruction>();
 
 
@@ -26,9 +28,8 @@ namespace Location
                     return;
                 }
 
-                Debug.Log($"Chunk: {NumberChunk}");
-
-                Instantiate(_obstructions[Random.Range(0, _obstructions.Count)], gameObject.transform.position, Quaternion.identity);
+                Obstruction obstruction = Instantiate(_obstructions[Random.Range(0, _obstructions.Count)]);
+                obstruction.gameObject.transform.position = new Vector3(Random.Range(-_xSpawnerPosition, _xSpawnerPosition), gameObject.transform.position.y + obstruction.gameObject.transform.position.y / 2, gameObject.transform.position.z);
             }
         }
 
