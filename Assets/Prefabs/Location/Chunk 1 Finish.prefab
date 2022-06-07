@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 8101641967974092887}
   - component: {fileID: 1281305852685078698}
   m_Layer: 0
-  m_Name: Finish Chunk
+  m_Name: Chunk 1 Finish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -268,3 +268,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Start: {fileID: 3237336177851287685}
   End: {fileID: 2747660926220054074}
+  _typePosition: 0
+  _obstructions: {fileID: 0}

@@ -14,7 +14,7 @@ namespace Location
 
         private int _chunkNumber => _parameters.ChunkNumber;
 
-        private Chunk _chunkPrefab => _parameters.ChunkPrefab;
+        private Chunk[] _chunkPrefab => _parameters.ChunkPrefab;
         private Chunk _finishChunkPrefab => _parameters.FinishChunkPrefab;
 
         #endregion
@@ -33,12 +33,11 @@ namespace Location
 
         private void GenerateLocation()
         {
-            for (int i = 0; i < _chunkNumber; i++)
+            for (int i = 0; i <= _chunkNumber; i++)
             {
-                if(i < _chunkNumber - 1)
+                if(i < _chunkNumber)
                 {
-                    Chunk newChunk = Instantiate(_chunkPrefab);
-                    newChunk.NumberChunk = i;
+                    Chunk newChunk = Instantiate(_chunkPrefab[i]);
 
                     if (_spawnedChunks.Count != 0)
                     {
@@ -53,7 +52,7 @@ namespace Location
 
                     _spawnedChunks.Add(newChunk);
                 }
-                else if (i == _chunkNumber - 1)
+                else if (i == _chunkNumber)
                 {
                     Chunk newChunk = Instantiate(_finishChunkPrefab);
                     newChunk.transform.position = _spawnedChunks[_spawnedChunks.Count - 1].End.position - newChunk.Start.localPosition * 2;
