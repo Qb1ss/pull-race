@@ -34,6 +34,7 @@ namespace Obstructions
 
         #region Private Fields
 
+        private ParticleSystem _destroyEffect => _parameters.DestroyEffect;
         private float _movementSpeed => _parameters.MovementSpeed;
 
         #endregion
@@ -46,6 +47,13 @@ namespace Obstructions
             _boxCollider = GetComponent<BoxCollider>();
 
             DynamicJoystick.OnStartGame.AddListener(OnStartGame);
+        }
+
+
+        private void OnDestroy()
+        {
+            ParticleSystem effect = Instantiate(_destroyEffect, gameObject.transform.position, Quaternion.identity);
+            Destroy(effect.gameObject, 1f);
         }
 
         #endregion
@@ -65,8 +73,6 @@ namespace Obstructions
         public void OnDestroing()
         {
             _boxCollider.enabled = false;
-
-            //ύττεκς
 
             Destroy(gameObject);
         }

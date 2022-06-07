@@ -110,3 +110,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _parameters: {fileID: 11400000, guid: e43e916b1d6d5214b8a6f57107cb9728, type: 2}
   _obstructionTypes: 0
+  _bombEffect: {fileID: 19817582, guid: 7469283484e0dcc4887fa575d1fd7ecc, type: 3}

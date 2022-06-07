@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41746a137c1964a4e8bda199ae603976, type: 3}
   m_Name: Obstructions Level 1
   m_EditorClassIdentifier: 
-  _movementSpeed: 10
+  _destroyEffect: {fileID: 19817582, guid: 7469283484e0dcc4887fa575d1fd7ecc, type: 3}
+  _movementSpeed: 15

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Character Level 1
   m_EditorClassIdentifier: 
   _movementSpeed: 50
-  _constMovementTimer: 5
+  _destroyEffect: {fileID: 19817582, guid: ce451fdc4bbd26b469c9c189bee0a37e, type: 3}
+  _multiplicationFactorSecMovementTimer: 2
   _slowerMovementTimer: 3
   _multiplicationFactorForceTensionSlingshot: 0.1
+  _multiplicationFactorMaxCarForce: 0.5

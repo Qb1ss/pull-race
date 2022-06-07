@@ -52,6 +52,8 @@ namespace Character
         private float _movementSpeed => _parameters.MovementSpeed;
         private float _slowerMovementTime => _parameters.SlowerMovementTimer;
 
+        private ParticleSystem _destroyEffect => _parameters.DestroyEffect;
+
         #endregion
 
 
@@ -162,6 +164,11 @@ namespace Character
 
             if (_carForce <= 0)
             {
+                ParticleSystem effect = Instantiate(_destroyEffect, _transform.position, Quaternion.identity);
+                Destroy(effect, 1f);
+
+                Handheld.Vibrate();
+
                 EndGame();
             }
             else
