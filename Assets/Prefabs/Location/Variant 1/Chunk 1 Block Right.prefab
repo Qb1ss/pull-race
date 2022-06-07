@@ -332,10 +332,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d6e2e4ff2f083a46aa44bbb6dc280e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _parameters: {fileID: 11400000, guid: 6aca2851e799c354491720321d8527d0, type: 2}
   Start: {fileID: 8425573408276774109}
   End: {fileID: 9088639291551750754}
+  _obstructionTypes: 0
   _typePosition: 2
-  _obstructions: {fileID: 6676670670825796279, guid: f2ad7e0abc0764f4193add4b45b2e9b7, type: 3}
 --- !u!1 &3516702467617652371
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using UnityEngine;
 using Obstructions;
+using Configs;
 
 namespace Location
 {
@@ -7,31 +8,39 @@ namespace Location
     {
         Left,
         Center,
-        Right,
+        Right ,
         Non
     }
 
     public class Chunk : MonoBehaviour
     {
+        [SerializeField] private ChunkConfig _parameters;
+
         [Header("Parameters")]
         public Transform Start;
         public Transform End;
         [Space(height: 5f)]
 
+        [SerializeField] private ObstructionTypes _obstructionTypes;
         [SerializeField] private TypePosition _typePosition;
         [Space(height: 5f)]
-
-        [SerializeField] private Obstruction _obstructions = null;
+ 
 
         private float _xSpawnerPosition = 7f;
         private float _xPosition = 0f;
+
+        #region Private Methods
+
+        private Obstruction[] _obstructions => _parameters.ObstructionsPrefabs;
+
+        #endregion
 
 
         #region Public Methods
 
         public void Create()
         {
-            Obstruction obstruction = Instantiate(_obstructions);
+            Obstruction obstruction = Instantiate(_obstructions[(int)_obstructionTypes]);
 
             if (_typePosition == TypePosition.Left)
             {

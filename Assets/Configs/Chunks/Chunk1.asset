@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8a5e8596bfc0764ea52369a1ea9d9b4, type: 3}
+  m_Name: Chunk1
+  m_EditorClassIdentifier: 
+  _obstructionsPrefabs:
+  - {fileID: 6676670670825796279, guid: f2ad7e0abc0764f4193add4b45b2e9b7, type: 3}
+  - {fileID: 6168842816896014864, guid: d4ed40befd218ef46b39be054729e590, type: 3}
