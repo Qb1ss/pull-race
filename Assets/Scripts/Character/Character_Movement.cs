@@ -15,6 +15,7 @@ namespace Character
 
         public static UnityEvent OnLoseLevel = new UnityEvent();
         public static UnityEvent OnWinLevel = new UnityEvent();
+        public static UnityEvent OnCrash = new UnityEvent();
 
         #endregion
 
@@ -166,6 +167,8 @@ namespace Character
             else
             {
                 obstruction.OnDestroing();
+
+                OnCrash?.Invoke();
             }
         }
 

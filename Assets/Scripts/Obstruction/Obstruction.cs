@@ -9,6 +9,7 @@ namespace Obstructions
         Car = 1
     }
 
+    [RequireComponent(typeof(BoxCollider))]
     public class Obstruction : MonoBehaviour
     {
         [SerializeField] private ObstructionConfig _parameters;
@@ -29,6 +30,8 @@ namespace Obstructions
 
         private bool _isGameActive = false;
 
+        private BoxCollider _boxCollider;
+
         #region Private Fields
 
         private float _movementSpeed => _parameters.MovementSpeed;
@@ -40,6 +43,8 @@ namespace Obstructions
 
         private void OnEnable()
         {
+            _boxCollider = GetComponent<BoxCollider>();
+
             DynamicJoystick.OnStartGame.AddListener(OnStartGame);
         }
 
@@ -59,7 +64,9 @@ namespace Obstructions
 
         public void OnDestroing()
         {
-            gameObject.GetComponent<BoxCollider>().enabled = false;
+            _boxCollider.enabled = false;
+
+            //ύττεκς
 
             Destroy(gameObject);
         }
