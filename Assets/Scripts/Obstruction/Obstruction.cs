@@ -6,10 +6,11 @@ namespace Obstructions
     public enum ObstructionTypes
     {
         Block = 0,
-        Car = 1
+        Car = 1,
+        Non = 2
     }
 
-    [RequireComponent(typeof(BoxCollider))]
+    [RequireComponent(typeof(BoxCollider), typeof(Rigidbody))]
     public class Obstruction : MonoBehaviour
     {
         [SerializeField] private ObstructionConfig _parameters;
@@ -104,7 +105,10 @@ namespace Obstructions
         {
             if(collision.gameObject.TryGetComponent<Obstruction>(out Obstruction obstruction))
             { 
-                obstruction.OnDestroing();
+                if(_obstructionTypes == ObstructionTypes.Block)
+                {
+                    OnDestroing();
+                }
             }
         }
 
