@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 using Configs;
 using Obstructions;
 using Interface.Upgrades;
@@ -11,8 +12,8 @@ namespace Character
     {
         #region EVENTS
 
-        public static UnityEvent<int , int> OnRunOutTime = new UnityEvent<int, int>();
-        public static UnityEvent<int , int> OnLoseRunOutTime = new UnityEvent<int, int>();
+        public static UnityEvent<int, int> OnRunOutTime = new UnityEvent<int, int>();
+        public static UnityEvent<int, int> OnLoseRunOutTime = new UnityEvent<int, int>();
         public static UnityEvent<float> OnStartedGame = new UnityEvent<float>();
 
         public static UnityEvent OnLoseLevel = new UnityEvent();
@@ -30,8 +31,12 @@ namespace Character
 
         #endregion
 
+        [Header("Parameters")]
         [SerializeField] private CharacterParametersConfig _parameters;
         [SerializeField] private Joystick _joystick;
+
+        [Header("Effects")]
+        [SerializeField] private ParticleSystem[] _wheelsEffect;
 
         [HideInInspector] public float MovingSpeed;
 
@@ -128,6 +133,8 @@ namespace Character
             UpdateParameters();
 
             OnStartedGame?.Invoke(_constMovementTime);
+
+            StartCoroutine(WheelsCoroutine());
         }
 
 
@@ -219,6 +226,21 @@ namespace Character
             {
                 WinGame();
             }
+        }
+
+
+        private IEnumerator WheelsCoroutine()
+        {
+            float time = 1.25f;
+
+            yield return new WaitForSeconds(time);
+
+            foreach(ParticleSystem particle in _wheelsEffect)
+            {
+                particle.gameObject.SetActive(true);
+            }
+
+            yield break;
         }
     }
 }
