@@ -103,8 +103,7 @@ namespace Obstructions
         private void OnCollisionEnter(Collision collision)
         {
             if(collision.gameObject.TryGetComponent<Obstruction>(out Obstruction obstruction))
-            {
-                Debug.Log("Work");
+            { 
                 obstruction.OnDestroing();
             }
         }

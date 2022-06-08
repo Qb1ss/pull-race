@@ -13,6 +13,7 @@ namespace Character
 
         public static UnityEvent<int , int> OnRunOutTime = new UnityEvent<int, int>();
         public static UnityEvent<int , int> OnLoseRunOutTime = new UnityEvent<int, int>();
+        public static UnityEvent<float> OnStartedGame = new UnityEvent<float>();
 
         public static UnityEvent OnLoseLevel = new UnityEvent();
         public static UnityEvent OnWinLevel = new UnityEvent();
@@ -124,6 +125,8 @@ namespace Character
             _subtractinSpeedFromTime = _slowerMovingTime / _movingSpeed;
 
             UpdateParameters();
+
+            OnStartedGame?.Invoke(_constMovementTime);
         }
 
 
