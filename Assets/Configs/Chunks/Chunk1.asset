@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _obstructionsPrefabs:
   - {fileID: 6676670670825796279, guid: f2ad7e0abc0764f4193add4b45b2e9b7, type: 3}
-  - {fileID: 6168842816896014864, guid: d4ed40befd218ef46b39be054729e590, type: 3}
+  - {fileID: 2572042376130593814, guid: 802501a67101daf4fb0290a89e366d8b, type: 3}
+  - {fileID: 4853807086536006820, guid: ec885e4d4f3c52c4385d959e2172f12b, type: 3}
+  - {fileID: 6664177840045996993, guid: eae2b838ce8ab7941b5fdc7eb9c9c6a6, type: 3}
+  - {fileID: 541482465734075379, guid: b0dd73fa1d56404419f4d95376d1c213, type: 3}

@@ -8,7 +8,7 @@ namespace Location
     {
         Left,
         Center,
-        Right ,
+        Right,
         Non
     }
 
@@ -40,7 +40,16 @@ namespace Location
 
         public void Create()
         {
-            Obstruction obstruction = Instantiate(_obstructions[(int)_obstructionTypes]);
+            Obstruction obstruction = null;
+
+            if (_obstructionTypes == ObstructionTypes.Block)
+            {
+                obstruction = Instantiate(_obstructions[(int)_obstructionTypes]);
+            }
+            else if (_obstructionTypes == ObstructionTypes.Car)
+            {
+                obstruction = Instantiate(_obstructions[Random.Range(1, _obstructions.Length)]);
+            }
 
             if (_typePosition == TypePosition.Left)
             {

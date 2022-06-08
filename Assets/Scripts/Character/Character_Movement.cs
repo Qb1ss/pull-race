@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 using Configs;
 using Obstructions;
 using Interface.Upgrades;
@@ -11,8 +12,8 @@ namespace Character
     {
         #region EVENTS
 
-        public static UnityEvent<int , int> OnRunOutTime = new UnityEvent<int, int>();
-        public static UnityEvent<int , int> OnLoseRunOutTime = new UnityEvent<int, int>();
+        public static UnityEvent<int, int> OnRunOutTime = new UnityEvent<int, int>();
+        public static UnityEvent<int, int> OnLoseRunOutTime = new UnityEvent<int, int>();
         public static UnityEvent<float> OnStartedGame = new UnityEvent<float>();
 
         public static UnityEvent OnLoseLevel = new UnityEvent();
@@ -30,10 +31,15 @@ namespace Character
 
         #endregion
 
+        [Header("Parameters")]
         [SerializeField] private CharacterParametersConfig _parameters;
         [SerializeField] private Joystick _joystick;
 
-        private float _movingSpeed;
+        [Header("Effects")]
+        [SerializeField] private ParticleSystem[] _wheelsEffect;
+
+        [HideInInspector] public float MovingSpeed;
+
         private float _constMovingTime;
         private float _constMovementTime;
         private float _forceTensionSlingshot;
@@ -121,12 +127,14 @@ namespace Character
 
             _rigidbody.isKinematic = false;
 
-            _movingSpeed = _movementSpeed * forceTension;
-            _subtractinSpeedFromTime = _slowerMovingTime / _movingSpeed;
+            MovingSpeed = _movementSpeed * forceTension;
+            _subtractinSpeedFromTime = _slowerMovingTime / MovingSpeed;
 
             UpdateParameters();
 
             OnStartedGame?.Invoke(_constMovementTime);
+
+            StartCoroutine(WheelsCoroutine());
         }
 
 
@@ -136,7 +144,7 @@ namespace Character
 
             if (_constMovingTime <= 0)
             {
-                _movingSpeed -= Time.deltaTime / _subtractinSpeedFromTime;
+                MovingSpeed -= Time.deltaTime / _subtractinSpeedFromTime;
 
                 if (_slowerMovingTime < 0)
                 {
@@ -150,7 +158,7 @@ namespace Character
                 _constMovingTime -= Time.deltaTime;
             }
 
-            if (_movingSpeed < 0)
+            if (MovingSpeed < 0)
             {
                 EndGame();
 
@@ -158,7 +166,7 @@ namespace Character
             }
 
             _transform.localRotation = Quaternion.Euler(0f, direction * FORCE_ROTATE, 0f);
-            _transform.Translate(new Vector3(0f, 0f, _movingSpeed * Time.deltaTime));
+            _transform.Translate(new Vector3(0f, 0f, MovingSpeed * Time.deltaTime));
         }
 
 
@@ -218,6 +226,21 @@ namespace Character
             {
                 WinGame();
             }
+        }
+
+
+        private IEnumerator WheelsCoroutine()
+        {
+            float time = 1.25f;
+
+            yield return new WaitForSeconds(time);
+
+            foreach(ParticleSystem particle in _wheelsEffect)
+            {
+                particle.gameObject.SetActive(true);
+            }
+
+            yield break;
         }
     }
 }
