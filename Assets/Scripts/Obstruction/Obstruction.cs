@@ -49,16 +49,9 @@ namespace Obstructions
             DynamicJoystick.OnStartGame.AddListener(OnStartGame);
         }
 
-
-        private void OnDestroy()
-        {
-            ParticleSystem effect = Instantiate(_destroyEffect, gameObject.transform.position, Quaternion.identity);
-            Destroy(effect.gameObject, 1f);
-        }
-
         #endregion
 
-        private void Update()
+        private void FixedUpdate()
         {
             if(_isGameActive == false)
             {
@@ -73,6 +66,9 @@ namespace Obstructions
         public void OnDestroing()
         {
             _boxCollider.enabled = false;
+
+            ParticleSystem effect = Instantiate(_destroyEffect, gameObject.transform.position, Quaternion.identity);
+            Destroy(effect.gameObject, 1f);
 
             Destroy(gameObject);
         }
@@ -104,11 +100,20 @@ namespace Obstructions
 
         #endregion
 
+        private void OnCollisionEnter(Collision collision)
+        {
+            if(collision.gameObject.TryGetComponent<Obstruction>(out Obstruction obstruction))
+            { 
+                obstruction.OnDestroing();
+            }
+        }
+
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag(TAG_FINISH))
             {
-                Destroy(gameObject);
+                OnDestroing();
             }
         }
     }

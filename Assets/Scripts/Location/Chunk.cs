@@ -59,7 +59,7 @@ namespace Location
 
             if(_typePosition == TypePosition.Non)
             {
-                obstruction.gameObject.SetActive(false);
+                Destroy(obstruction.gameObject);
             }
         }
 

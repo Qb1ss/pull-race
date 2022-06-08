@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6676670670825796279}
   m_Layer: 0
   m_Name: Block 1
-  m_TagString: Respawn
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,4 +110,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _parameters: {fileID: 11400000, guid: e43e916b1d6d5214b8a6f57107cb9728, type: 2}
   _obstructionTypes: 0
-  _bombEffect: {fileID: 19817582, guid: 7469283484e0dcc4887fa575d1fd7ecc, type: 3}
