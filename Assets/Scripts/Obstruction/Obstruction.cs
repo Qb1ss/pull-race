@@ -51,7 +51,7 @@ namespace Obstructions
 
         #endregion
 
-        private void Update()
+        private void FixedUpdate()
         {
             if(_isGameActive == false)
             {
@@ -99,6 +99,16 @@ namespace Obstructions
         }
 
         #endregion
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if(collision.gameObject.TryGetComponent<Obstruction>(out Obstruction obstruction))
+            {
+                Debug.Log("Work");
+                obstruction.OnDestroing();
+            }
+        }
+
 
         private void OnTriggerEnter(Collider other)
         {

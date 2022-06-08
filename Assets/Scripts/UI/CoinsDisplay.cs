@@ -37,12 +37,7 @@ namespace Interface
         {
             WinGamePanel.OnGetCoins.AddListener(UpdateCoins); 
             Character_Movement.OnRunOutTime.AddListener(RunOutTime);
-            Wallet.OnUpdateDisplay.AddListener(UpdateCoinsDisplay);
-        }
-
-
-        private void OnDisable()
-        {
+            Character_Movement.OnLoseRunOutTime.AddListener(LoseRunOutTime);
             Wallet.OnUpdateDisplay.AddListener(UpdateCoinsDisplay);
         }
 
@@ -61,6 +56,15 @@ namespace Interface
         private void RunOutTime(int startValue, int endValue)
         {
             _coinValue = (int)(endValue - startValue) / _coinDivision;
+        }
+
+
+        private void LoseRunOutTime(int startValue, int endValue)
+        {
+            int value = (int)(endValue - startValue) / _coinDivision;
+
+            _wallet.Increase(Currency.Coin, value);
+            UpdateCoinsDisplay(Currency.Coin, value);
         }
 
 

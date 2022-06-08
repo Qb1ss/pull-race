@@ -45,7 +45,7 @@ namespace Interface.EndGame
 
             _restartLevelButton.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
             _headerText.color = new Color(1f, 1f, 1f, 0f);
-            _buttonRestartLevelText.color = new Color(0f, 0f, 0f, 0f);
+            _buttonRestartLevelText.color = new Color(1f, 1f, 1f, 0f);
             _loseGamePanel.color = new Color(0f, 0f, 0f, 0f);
 
             StartingAnimation();
@@ -56,7 +56,7 @@ namespace Interface.EndGame
         {
             _restartLevelButton.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 1f), _timeAnimation);
             _headerText.DOColor(new Color(1f, 1f, 1f, 1f), _timeAnimation);
-            _buttonRestartLevelText.DOColor(new Color(0f, 0f, 0f, 1f), _timeAnimation);
+            _buttonRestartLevelText.DOColor(new Color(1f, 1f, 1f, 1f), _timeAnimation);
             _loseGamePanel.DOColor(new Color(0f, 0f, 0f, 1f), _timeAnimation);
         }
 
