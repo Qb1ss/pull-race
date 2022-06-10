@@ -14,6 +14,12 @@ namespace Location
 
     public class Chunk : MonoBehaviour
     {
+        #region CONST
+
+        private const int NUMBER_WALL = 2;
+
+        #endregion
+
         [SerializeField] private ChunkConfig _parameters;
 
         [Header("Parameters")]
@@ -26,12 +32,12 @@ namespace Location
         [Space(height: 5f)]
  
 
-        private float _xSpawnerPosition = 7f;
         private float _xPosition = 0f;
 
         #region Private Methods
 
         private Obstruction[] _obstructions => _parameters.ObstructionsPrefabs;
+        private float _xSpawnerPosition => _parameters.XSpawnerPosition;
 
         #endregion
 
@@ -44,11 +50,11 @@ namespace Location
 
             if (_obstructionTypes == ObstructionTypes.Block)
             {
-                obstruction = Instantiate(_obstructions[(int)_obstructionTypes]);
+                obstruction = Instantiate(_obstructions[Random.Range(0, NUMBER_WALL)]);
             }
             else if (_obstructionTypes == ObstructionTypes.Car)
             {
-                obstruction = Instantiate(_obstructions[Random.Range(1, _obstructions.Length)]);
+                obstruction = Instantiate(_obstructions[Random.Range(NUMBER_WALL, _obstructions.Length)]);
             }
 
             if (_typePosition == TypePosition.Left)

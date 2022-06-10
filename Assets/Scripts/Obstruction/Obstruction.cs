@@ -19,8 +19,8 @@ namespace Obstructions
 
         private const string TAG_FINISH = "Finish";
 
-        private const float MIN_FACTOR_SPEED = 0.8f;
-        private const float MAX_FACTOR_SPEED = 2f;
+        private const float MIN_FACTOR_SPEED = 0.9f;
+        private const float MAX_FACTOR_SPEED = 1.1f;
 
         #endregion
 
@@ -105,7 +105,7 @@ namespace Obstructions
         {
             if(collision.gameObject.TryGetComponent<Obstruction>(out Obstruction obstruction))
             { 
-                if(_obstructionTypes == ObstructionTypes.Block)
+                if(_obstructionTypes == ObstructionTypes.Car)
                 {
                     OnDestroing();
                 }
