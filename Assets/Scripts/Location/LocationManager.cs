@@ -6,7 +6,7 @@ namespace Location
 {
     public class LocationManager : MonoBehaviour
     {
-        [SerializeField] private LocationConfig _parameters;
+        [SerializeField] private LevelConfig _parameters;
 
         private List<Chunk> _spawnedChunks = new List<Chunk>();
 
