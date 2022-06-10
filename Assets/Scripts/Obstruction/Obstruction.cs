@@ -19,8 +19,8 @@ namespace Obstructions
 
         private const string TAG_FINISH = "Finish";
 
-        private const float MIN_FACTOR_SPEED = 1f;
-        private const float MAX_FACTOR_SPEED = 1.5f;
+        private const float MIN_FACTOR_SPEED = 0.9f;
+        private const float MAX_FACTOR_SPEED = 1.1f;
 
         #endregion
 

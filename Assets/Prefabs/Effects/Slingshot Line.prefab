@@ -50,7 +50,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 04f40a8c049edb345b0ae1d7ce9a2a30, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -76,36 +76,36 @@ LineRenderer:
   - {x: 1.5, y: 7.25, z: -1.15}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.75
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
+        time: 0.0054950714
+        value: 0.8888893
+        inSlope: -5.358057
+        outSlope: -5.358057
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0.22141366
       - serializedVersion: 3
-        time: 0.5223551
+        time: 0.4893961
         value: 0
-        inSlope: -0.000011916388
-        outSlope: -0.000011916388
+        inSlope: 0.07735514
+        outSlope: 0.07735514
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
+        inWeight: 0.48916635
         outWeight: 0.42777568
       - serializedVersion: 3
         time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
+        value: 0.9320962
+        inSlope: 6.4284887
+        outSlope: 6.4284887
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
+        inWeight: 0.44522092
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
