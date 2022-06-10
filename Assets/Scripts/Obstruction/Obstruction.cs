@@ -105,7 +105,7 @@ namespace Obstructions
         {
             if(collision.gameObject.TryGetComponent<Obstruction>(out Obstruction obstruction))
             { 
-                if(_obstructionTypes == ObstructionTypes.Block)
+                if(_obstructionTypes == ObstructionTypes.Car)
                 {
                     OnDestroing();
                 }
