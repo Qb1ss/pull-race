@@ -67,8 +67,6 @@ namespace Configs
             _forceTensionSlingshot = PlayerPrefs.GetFloat(TENSION_SLINGSHOT_PLAYER_PREFS, DEFAULT_TENSION_VALUE);
             _constMovementTimer = PlayerPrefs.GetFloat(MOVING_TIME_PLAYER_PREFS, DEFAULT_MOVING_TIME_VALUE);
             _maxCarForce = PlayerPrefs.GetFloat(FORCE_PLAYER_PREFS, DEFAULT_FORCE_VALUE);
-
-            Debug.Log($"force_tension_slingshot: {_forceTensionSlingshot} | force: {_maxCarForce} | moving_time: {_constMovementTimer}");
         }
 
 
