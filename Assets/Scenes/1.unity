@@ -4311,11 +4311,19 @@ PrefabInstance:
       value: Lose Game Panel
       objectReference: {fileID: 0}
     - target: {fileID: 577280226524153981, guid: bbb643049099d6446882da3dd6716d20, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 577280226524153981, guid: bbb643049099d6446882da3dd6716d20, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 536110411555245156, guid: 9bf8189bde8051b4fae1ba6300cb152a, type: 2}
     - target: {fileID: 577280226524153981, guid: bbb643049099d6446882da3dd6716d20, type: 3}
       propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 577280227190680922, guid: bbb643049099d6446882da3dd6716d20, type: 3}
+      propertyPath: m_fontStyle
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 577280227190680922, guid: bbb643049099d6446882da3dd6716d20, type: 3}
