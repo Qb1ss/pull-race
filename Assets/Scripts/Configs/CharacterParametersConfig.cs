@@ -14,13 +14,14 @@ namespace Configs
 
         private const float DEFAULT_TENSION_VALUE = 1f;
         private const float DEFAULT_FORCE_VALUE = 1f;
-        private const float DEFAULT_MOVING_TIME_VALUE = 20f;
 
         #endregion
 
         [Header("Character Parameters")]
         [SerializeField] private float _movementSpeed;
+        [SerializeField] private float _minMovementTimer = 10f;
         [Space(height: 5f)]
+
         [SerializeField] private ParticleSystem _destroyEffect;
 
         [Space(height: 5f)]
@@ -65,7 +66,7 @@ namespace Configs
         private void StartUpdateParameters()
         {
             _forceTensionSlingshot = PlayerPrefs.GetFloat(TENSION_SLINGSHOT_PLAYER_PREFS, DEFAULT_TENSION_VALUE);
-            _constMovementTimer = PlayerPrefs.GetFloat(MOVING_TIME_PLAYER_PREFS, DEFAULT_MOVING_TIME_VALUE);
+            _constMovementTimer = PlayerPrefs.GetFloat(MOVING_TIME_PLAYER_PREFS, _minMovementTimer);
             _maxCarForce = PlayerPrefs.GetFloat(FORCE_PLAYER_PREFS, DEFAULT_FORCE_VALUE);
         }
 
