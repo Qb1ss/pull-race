@@ -15,6 +15,7 @@ MonoBehaviour:
   _movementSpeed: 50
   _destroyEffect: {fileID: 19817582, guid: ce451fdc4bbd26b469c9c189bee0a37e, type: 3}
   _multiplicationFactorSecMovementTimer: 2
+  _constMovementTimer: 10
   _slowerMovementTimer: 3
   _multiplicationFactorForceTensionSlingshot: 0.1
   _multiplicationFactorMaxCarForce: 0.5

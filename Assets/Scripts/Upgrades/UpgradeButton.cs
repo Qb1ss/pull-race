@@ -29,9 +29,9 @@ namespace Interface.Upgrades
 
         private const string PRICE_PLAYER_PREFS = "PricePlayerPrefs";
 
-        private const float START_Y_POSITION = 100f;
-        private const float FIRST_Y_POSITION = 200f;
-        private const float SECOND_Y_POSITION = 300f;
+        private const float START_Y_POSITION = 64f;
+        private const float FIRST_Y_POSITION = 140f;
+        private const float SECOND_Y_POSITION = 210f;
 
         #endregion
 
