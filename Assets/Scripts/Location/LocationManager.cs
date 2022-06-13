@@ -12,7 +12,7 @@ namespace Location
 
         #region Private Fields
 
-        private int _chunkNumber => _parameters.ChunkNumber;
+        private int _chunkNumber => _parameters.ChunkPrefab.Length;
 
         private Chunk[] _chunkPrefab => _parameters.ChunkPrefab;
         private Chunk _finishChunkPrefab => _parameters.FinishChunkPrefab;
