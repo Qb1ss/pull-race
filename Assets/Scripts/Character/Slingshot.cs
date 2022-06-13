@@ -36,7 +36,7 @@ namespace Character.Slingshot
         {
             _startPosition = _startBorder.position;
 
-            _lines = new LineRenderer[2];
+            _lines = new LineRenderer[3];
 
             for (int i = 0; i < _lines.Length; i++)
             {
@@ -89,7 +89,7 @@ namespace Character.Slingshot
                 return;
             }
 
-            newPosition = new Vector3(_character.position.x, _character.position.y, _character.position.y / 2 + newPosition.z);
+            newPosition = new Vector3(_character.position.x, _character.position.y, newPosition.z + _character.position.y + 3.5f);
 
             _character.position = newPosition;
 
@@ -107,14 +107,19 @@ namespace Character.Slingshot
         {
             Vector3[] leftPosition = new Vector3[2];
             leftPosition[0] = _leftAnchors[0].position;
-            leftPosition[1] = _leftAnchors[1].position;
+            leftPosition[1] = new Vector3(_leftAnchors[1].position.x + 1f, _leftAnchors[1].position.y, _leftAnchors[1].position.z);
 
             Vector3[] rightPosition = new Vector3[2];
             rightPosition[0] = _rightAnchors[0].position;
-            rightPosition[1] = _rightAnchors[1].position;
+            rightPosition[1] = new Vector3(_rightAnchors[1].position.x - 1f, _rightAnchors[1].position.y, _rightAnchors[1].position.z);
+
+            Vector3[] centerPosition = new Vector3[2];
+            centerPosition[0] = new Vector3(_leftAnchors[1].position.x + 0.5f, _leftAnchors[1].position.y, _leftAnchors[1].position.z);
+            centerPosition[1] = new Vector3(_rightAnchors[1].position.x - 0.5f, _rightAnchors[1].position.y, _rightAnchors[1].position.z);
 
             _lines[0].SetPositions(leftPosition);
             _lines[1].SetPositions(rightPosition);
+            _lines[2].SetPositions(centerPosition);
         }
 
         #endregion

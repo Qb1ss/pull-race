@@ -129,8 +129,6 @@ namespace Character
         {
             _isActiveGame = true;
 
-            _rigidbody.isKinematic = false;
-
             MovingSpeed = _movementSpeed * forceTension;
             _subtractinSpeedFromTime = _slowerMovingTime / MovingSpeed;
 
