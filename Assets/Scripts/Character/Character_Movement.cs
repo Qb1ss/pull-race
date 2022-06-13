@@ -25,7 +25,7 @@ namespace Character
 
         #region CONSTS
 
-        private const float FORCE_ROTATE = 20f;
+        private const float FORCE_ROTATE = 30f;
         private const float DAMAGE = 1f;
 
         private const string TAG_FINISH = "Finish";
@@ -171,7 +171,6 @@ namespace Character
 
             if(_isKissTheWall == true)
             {
-                //direction = -direction;
                 direction = 0f;
             }
 
