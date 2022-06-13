@@ -93,7 +93,7 @@ BoxCollider:
   m_GameObject: {fileID: 1188388930828070882}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.9999999, y: 0.9999999, z: 0.9999999}
   m_Center: {x: 0, y: -0.00000011920928, z: -0.00000005960464}
@@ -264,7 +264,7 @@ MonoBehaviour:
   _line: {fileID: 7697612493073998048, guid: cece2487994642a419dfe9853c615a36, type: 3}
   _startBorder: {fileID: 449142945136781432}
   _character: {fileID: 0}
-  _maxDistanceTencion: 4
+  _maxDistanceTencion: 8
   _joysticForceTencion: {fileID: 0}
 --- !u!1 &6587652833680758977
 GameObject:

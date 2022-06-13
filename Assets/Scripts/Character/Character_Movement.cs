@@ -38,9 +38,6 @@ namespace Character
         [SerializeField] private CharacterParametersConfig _parameters;
         [SerializeField] private Joystick _joystick;
 
-        [Header("Effects")]
-        [SerializeField] private ParticleSystem[] _wheelsEffect;
-
         [HideInInspector] public float MovingSpeed;
 
         private float _constMovingTime;
@@ -135,14 +132,13 @@ namespace Character
             UpdateParameters();
 
             OnStartedGame?.Invoke(_constMovementTime);
-
-            StartCoroutine(WheelsCoroutine());
         }
 
 
         private void Movement()
         {
             float direction = _joystick.Horizontal;
+            float divTime = 1;
 
             if (_constMovingTime <= 0)
             {
@@ -153,7 +149,8 @@ namespace Character
                     return;
                 }
 
-                _slowerMovingTime -= Time.deltaTime;            
+                _slowerMovingTime -= Time.deltaTime;
+                divTime -= Time.deltaTime;
             }
             else if (_constMovingTime > 0)
             {
@@ -167,13 +164,14 @@ namespace Character
                 return;
             }
 
+            _transform.localRotation = Quaternion.Euler(0f, direction * FORCE_ROTATE, 0f);
+
             if(_isKissTheWall == true)
             {
                 direction = 0f;
             }
 
-            _transform.localRotation = Quaternion.Euler(0f, direction * FORCE_ROTATE, 0f);
-            _transform.Translate(new Vector3(0f, 0f, MovingSpeed * Time.deltaTime));
+            _transform.position += new Vector3(direction * divTime, 0f, MovingSpeed * Time.deltaTime);
         }
 
 
@@ -252,21 +250,6 @@ namespace Character
             {
                 WinGame();
             }
-        }
-
-
-        private IEnumerator WheelsCoroutine()
-        {
-            float time = 1.25f;
-
-            yield return new WaitForSeconds(time);
-
-            foreach(ParticleSystem particle in _wheelsEffect)
-            {
-                particle.gameObject.SetActive(true);
-            }
-
-            yield break;
         }
     }
 }

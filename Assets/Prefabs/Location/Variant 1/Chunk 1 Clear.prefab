@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 2632695231917586873}
   - component: {fileID: 4038015843333560327}
   - component: {fileID: 3135338688376108673}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
@@ -220,8 +220,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 6, z: 10}
-  m_Center: {x: 5.4, y: 3, z: 0}
+  m_Size: {x: 4, y: 6, z: 11}
+  m_Center: {x: 6.9, y: 3, z: 0}
 --- !u!65 &3135338688376108673
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -233,8 +233,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 6, z: 10}
-  m_Center: {x: -5.4, y: 3, z: 0}
+  m_Size: {x: 4, y: 6, z: 11}
+  m_Center: {x: -6.9, y: 3, z: 0}
 --- !u!1 &7219194374226198997
 GameObject:
   m_ObjectHideFlags: 0

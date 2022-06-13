@@ -7,6 +7,12 @@ namespace Character.Slingshot
 {
     public class Slingshot : MonoBehaviour
     {
+        #region CONSTS
+
+        private const float DIVISION_SLINGSHOT_FORCE = 5f;
+
+        #endregion
+
         [Header("Anchors")]
         [SerializeField] private Transform[] _leftAnchors;
         [SerializeField] private Transform[] _rightAnchors;
@@ -28,6 +34,7 @@ namespace Character.Slingshot
         private bool _isStartingGame = false;
 
         private Vector3 _startPosition;
+        private Vector3 _newPosition;
 
 
         #region MONO
@@ -67,31 +74,27 @@ namespace Character.Slingshot
 
         private void TencioningSlingshot()
         {
-            Vector3 newPosition = new Vector3(_startBorder.position.x, _startBorder.position.y, _startBorder.position.z + _joysticForceTencion.Vertical / 20);
+            _newPosition = new Vector3(_startBorder.position.x, _startBorder.position.y, _startBorder.position.z + _joysticForceTencion.Vertical / DIVISION_SLINGSHOT_FORCE);
 
-            if (newPosition.z < _startPosition.z - _maxDistanceTencion)
+            if (_newPosition.z < _startPosition.z - _maxDistanceTencion)
             {
                 return;
             }
-            else if (newPosition.z > _startPosition.z)
+            else if (_newPosition.z > _startPosition.z)
             {
                 return;
             }
 
-            _startBorder.position = newPosition;
+            _startBorder.position = _newPosition;
 
             if (_isStartingGame == true)
             {
-                RenderLines();
-
-                _startBorder.position = _startPosition;
-
-                return;
+                StartCoroutine(StartingCoroutine());
             }
 
-            newPosition = new Vector3(_character.position.x, _character.position.y, newPosition.z + _character.position.y + 3.5f);
+            _newPosition = new Vector3(_character.position.x, _character.position.y, _newPosition.z + _character.position.y + 3.5f);
 
-            _character.position = newPosition;
+            _character.position = _newPosition;
 
             RenderLines();
         }
@@ -114,8 +117,8 @@ namespace Character.Slingshot
             rightPosition[1] = new Vector3(_rightAnchors[1].position.x - 1f, _rightAnchors[1].position.y, _rightAnchors[1].position.z);
 
             Vector3[] centerPosition = new Vector3[2];
-            centerPosition[0] = new Vector3(_leftAnchors[1].position.x + 0.5f, _leftAnchors[1].position.y, _leftAnchors[1].position.z);
-            centerPosition[1] = new Vector3(_rightAnchors[1].position.x - 0.5f, _rightAnchors[1].position.y, _rightAnchors[1].position.z);
+            centerPosition[0] = new Vector3(_leftAnchors[1].position.x + 0.75f, _leftAnchors[1].position.y, _leftAnchors[1].position.z);
+            centerPosition[1] = new Vector3(_rightAnchors[1].position.x - 0.75f, _rightAnchors[1].position.y, _rightAnchors[1].position.z);
 
             _lines[0].SetPositions(leftPosition);
             _lines[1].SetPositions(rightPosition);
@@ -123,5 +126,35 @@ namespace Character.Slingshot
         }
 
         #endregion
+
+        private IEnumerator StartingCoroutine()
+        {
+            float time = 0.1f;
+
+            yield return new WaitForSeconds(time);
+
+            _startBorder.position = _newPosition;
+
+            RenderLines();
+
+            yield break;
+
+            /*
+            float s = 1f;
+
+            if (_newPosition.z < _startPosition.z)
+            {
+                _newPosition = new Vector3(_startBorder.position.x, _startBorder.position.y, _startBorder.position.z - s);
+
+                _character.transform.position = _newPosition;
+
+                RenderLines();
+            }
+            else if (_newPosition.z >= _startPosition.z)
+            {
+                yield break;
+            }
+            */
+        }
     }
 }
