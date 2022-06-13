@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
 using Configs;
+using Location;
 using Obstructions;
 using Interface.Upgrades;
 
@@ -28,6 +29,8 @@ namespace Character
         private const float DAMAGE = 1f;
 
         private const string TAG_FINISH = "Finish";
+        private const string TAG_RESPAWN = "Respawn";
+        private const string TAG_EDITOR_ONLY = "EditorOnly";
 
         #endregion
 
@@ -51,6 +54,7 @@ namespace Character
         private int _startZPosition;
 
         private bool _isActiveGame = false;
+        private bool _isKissTheWall = false;
 
         private Transform _transform;
         private Rigidbody _rigidbody;
@@ -165,6 +169,12 @@ namespace Character
                 return;
             }
 
+            if(_isKissTheWall == true)
+            {
+                //direction = -direction;
+                direction = 0f;
+            }
+
             _transform.localRotation = Quaternion.Euler(0f, direction * FORCE_ROTATE, 0f);
             _transform.Translate(new Vector3(0f, 0f, MovingSpeed * Time.deltaTime));
         }
@@ -216,6 +226,25 @@ namespace Character
             if (collision.gameObject.TryGetComponent<Obstruction>(out Obstruction obstruction))
             {
                 CrashInObject(obstruction);
+            }
+
+            if (collision.gameObject.CompareTag(TAG_RESPAWN))
+            {
+                EndGame();
+            }
+
+            if (collision.gameObject.CompareTag(TAG_EDITOR_ONLY))
+            {
+                _isKissTheWall = true;
+            }
+        }
+
+
+        private void OnCollisionExit(Collision collision)
+        {
+            if (collision.gameObject.CompareTag(TAG_EDITOR_ONLY))
+            {
+                _isKissTheWall = false;
             }
         }
 
