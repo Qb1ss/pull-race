@@ -42,6 +42,15 @@ namespace Location
         #endregion
 
 
+        #region MONO
+
+        private void OnEnable()
+        {
+            Create();
+        }
+
+        #endregion
+
         #region Public Methods
 
         public void Create()
