@@ -948,7 +948,7 @@ MonoBehaviour:
   _parameters: {fileID: 11400000, guid: 6aca2851e799c354491720321d8527d0, type: 2}
   Start: {fileID: 3237336177851287685}
   End: {fileID: 2747660926220054074}
-  _obstructionTypes: 0
+  _obstructionTypes: 2
   _typePosition: 0
 --- !u!1001 &869909282852625232
 PrefabInstance:
@@ -2069,6 +2069,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1961564567685238223, guid: 54c86e934c1824f46a2a8955ea57091b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c86e934c1824f46a2a8955ea57091b, type: 3}
 --- !u!4 &6196576539449471797 stripped
@@ -2394,6 +2398,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 64461877365336196, guid: 82f734b8de4c88b4fbdc5232659df70f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055132262775593387, guid: 82f734b8de4c88b4fbdc5232659df70f, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
