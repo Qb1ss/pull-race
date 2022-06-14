@@ -57,12 +57,6 @@ namespace Character.Slingshot
             DynamicJoystick.OnStartGame.AddListener(OnStartGame);
         }
 
-
-        private void OnDisable()
-        {
-            DynamicJoystick.OnStartGame.AddListener(OnStartGame);
-        }
-
         #endregion
 
         private void Update()
@@ -138,23 +132,6 @@ namespace Character.Slingshot
             RenderLines();
 
             yield break;
-
-            /*
-            float s = 1f;
-
-            if (_newPosition.z < _startPosition.z)
-            {
-                _newPosition = new Vector3(_startBorder.position.x, _startBorder.position.y, _startBorder.position.z - s);
-
-                _character.transform.position = _newPosition;
-
-                RenderLines();
-            }
-            else if (_newPosition.z >= _startPosition.z)
-            {
-                yield break;
-            }
-            */
         }
     }
 }

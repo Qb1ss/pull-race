@@ -89,12 +89,6 @@ namespace Character
             UpgradesButtons.OnStartGame.AddListener(UpdateParameters);
         }
 
-
-        private void OnDisable()
-        {
-            DynamicJoystick.OnStartGame.AddListener(OnStartGame);
-        }
-
         #endregion
 
         private void FixedUpdate()
