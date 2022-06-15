@@ -63,7 +63,7 @@ namespace Interface.EndGame
 
         private void TrancitionToNextLevel()
         {
-            _sceneTrancition.OnTrancitionToNextScene();
+            _sceneTrancition.OnTrancitionToCurrentScene();
         }
 
         #endregion

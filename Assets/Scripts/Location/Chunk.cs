@@ -65,6 +65,12 @@ namespace Location
             {
                 obstruction = Instantiate(_obstructions[Random.Range(NUMBER_WALL, _obstructions.Length)]);
             }
+            else if (_obstructionTypes == ObstructionTypes.Non)
+            {
+                obstruction = null;
+
+                return;
+            }
 
             if (_typePosition == TypePosition.Left)
             {

@@ -6,7 +6,12 @@ using UnityEngine.EventSystems;
 
 public class DynamicJoystick : Joystick
 {
+    #region EVENTS
+
     public static UnityEvent<float> OnStartGame = new UnityEvent<float>();
+    public static UnityEvent OnStarting = new UnityEvent();
+
+    #endregion
 
     public float MoveThreshold { get { return moveThreshold; } set { moveThreshold = Mathf.Abs(value); } }
 
@@ -24,9 +29,15 @@ public class DynamicJoystick : Joystick
 
     public override void OnPointerDown(PointerEventData eventData)
     {
+        if (_isCharacterController == false)
+        {
+            OnStarting?.Invoke();
+        }
+
         background.anchoredPosition = ScreenPointToAnchoredPosition(eventData.position);
         background.gameObject.SetActive(true);
         base.OnPointerDown(eventData);
+
     }
 
     public override void OnPointerUp(PointerEventData eventData)
