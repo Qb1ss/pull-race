@@ -42,7 +42,17 @@ namespace Interface.Upgrades
             _startGameButton.onClick.AddListener(() => ClosingPanels());
         }
 
+        private void OnEnable()
+        {
+            DynamicJoystick.OnStarting.AddListener(ClosingPanels);
+        }
+
         #endregion
+
+        public void ClosingPanels()
+        {
+            StartCoroutine(StartGameCoroutine());
+        }
 
         #region Private Methods
 
@@ -57,12 +67,6 @@ namespace Interface.Upgrades
             _upgradeTimeMovingCarPanel.transform.DOMoveY(_yPosition, _timePlayingAnimations);
         }
 
-
-        private void ClosingPanels()
-        {
-            StartCoroutine(StartGameCoroutine());
-        }
-
         #endregion
 
         private IEnumerator StartGameCoroutine()
@@ -70,8 +74,6 @@ namespace Interface.Upgrades
             _upgradeSlingshotPanel.transform.DOMoveY(-_yPosition, _timePlayingAnimations);
             _upgradeForceCarPanel.transform.DOMoveY(-_yPosition, _timePlayingAnimations);
             _upgradeTimeMovingCarPanel.transform.DOMoveY(-_yPosition, _timePlayingAnimations);
-
-            yield return new WaitForSeconds(_timePlayingAnimations);
 
             OnStartGame?.Invoke();
             
