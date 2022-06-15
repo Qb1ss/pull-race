@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 1e9fdcbe4f233ea41b18851548cfc4ca, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 52e03024467dd7a4eaa0ce8b0caa27a8, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: b92d507949ddb1c4cbd3d8d548d15bdf, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -248,7 +248,7 @@ Light:
       e32: 0
       e33: 1
     m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 2800000, guid: 2ede7a555b082754bb9a4104b019e9f8, type: 3}
+  m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
   m_RenderMode: 0
