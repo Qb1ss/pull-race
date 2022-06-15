@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 using Configs;
+using Location;
+using Obstructions;
 using Interface.Upgrades;
 
 namespace Character
@@ -10,23 +13,33 @@ namespace Character
     {
         #region EVENTS
 
-        public static UnityEvent<int , int> OnRunOutTime = new UnityEvent<int, int>();
+        public static UnityEvent<int, int> OnRunOutTime = new UnityEvent<int, int>();
+        public static UnityEvent<int, int> OnLoseRunOutTime = new UnityEvent<int, int>();
+        public static UnityEvent<float> OnStartedGame = new UnityEvent<float>();
+
         public static UnityEvent OnLoseLevel = new UnityEvent();
+        public static UnityEvent OnWinLevel = new UnityEvent();
+        public static UnityEvent OnCrash = new UnityEvent();
 
         #endregion
 
         #region CONSTS
 
-        private const float FORCE_ROTATE = 20f;
+        private const float FORCE_ROTATE = 30f;
+        private const float DAMAGE = 1f;
 
+        private const string TAG_FINISH = "Finish";
         private const string TAG_RESPAWN = "Respawn";
+        private const string TAG_EDITOR_ONLY = "EditorOnly";
 
         #endregion
 
+        [Header("Parameters")]
         [SerializeField] private CharacterParametersConfig _parameters;
         [SerializeField] private Joystick _joystick;
 
-        private float _movingSpeed;
+        [HideInInspector] public float MovingSpeed;
+
         private float _constMovingTime;
         private float _constMovementTime;
         private float _forceTensionSlingshot;
@@ -38,6 +51,7 @@ namespace Character
         private int _startZPosition;
 
         private bool _isActiveGame = false;
+        private bool _isKissTheWall = false;
 
         private Transform _transform;
         private Rigidbody _rigidbody;
@@ -46,6 +60,8 @@ namespace Character
 
         private float _movementSpeed => _parameters.MovementSpeed;
         private float _slowerMovementTime => _parameters.SlowerMovementTimer;
+
+        private ParticleSystem _destroyEffect => _parameters.DestroyEffect;
 
         #endregion
 
@@ -73,12 +89,6 @@ namespace Character
             UpgradesButtons.OnStartGame.AddListener(UpdateParameters);
         }
 
-
-        private void OnDisable()
-        {
-            DynamicJoystick.OnStartGame.AddListener(OnStartGame);
-        }
-
         #endregion
 
         private void FixedUpdate()
@@ -100,7 +110,7 @@ namespace Character
             _forceTensionSlingshot = _parameters.ForceTensionSlingshot;
 
             _constMovingTime = _constMovementTime;
-            _slowerMovingTime = _slowerMovementTime + _forceTensionSlingshot;
+            _slowerMovingTime = _constMovementTime / 10;
             _maxCarForce = _parameters.MaxCarForce;
             _carForce = _maxCarForce;
         }
@@ -110,36 +120,38 @@ namespace Character
         {
             _isActiveGame = true;
 
-            _rigidbody.isKinematic = false;
-
-            _movingSpeed = _movementSpeed * forceTension;
-            _subtractinSpeedFromTime = _slowerMovingTime / _movingSpeed;
+            MovingSpeed = _movementSpeed * forceTension;
+            _subtractinSpeedFromTime = _slowerMovingTime / MovingSpeed;
 
             UpdateParameters();
+
+            OnStartedGame?.Invoke(_constMovementTime);
         }
 
 
         private void Movement()
         {
             float direction = _joystick.Horizontal;
+            float divTime = 1;
 
             if (_constMovingTime <= 0)
             {
-                _movingSpeed -= Time.deltaTime / _subtractinSpeedFromTime;
+                MovingSpeed -= Time.deltaTime / _subtractinSpeedFromTime;
 
                 if (_slowerMovingTime < 0)
                 {
                     return;
                 }
 
-                _slowerMovingTime -= Time.deltaTime;            
+                _slowerMovingTime -= Time.deltaTime;
+                divTime -= Time.deltaTime;
             }
             else if (_constMovingTime > 0)
             {
                 _constMovingTime -= Time.deltaTime;
             }
 
-            if (_movingSpeed < 0)
+            if (MovingSpeed < 0)
             {
                 EndGame();
 
@@ -147,23 +159,34 @@ namespace Character
             }
 
             _transform.localRotation = Quaternion.Euler(0f, direction * FORCE_ROTATE, 0f);
-            _transform.Translate(new Vector3(0f, 0f, _movingSpeed * Time.deltaTime));
+
+            if(_isKissTheWall == true)
+            {
+                direction = 0f;
+            }
+
+            _transform.position += new Vector3(direction * divTime, 0f, MovingSpeed * Time.deltaTime);
         }
 
 
-        private void CrashInObject()
+        private void CrashInObject(Obstruction obstruction)
         {
-            //нанесение урока
-            _carForce -= 1f;
+            _carForce -= DAMAGE;
 
             if (_carForce <= 0)
             {
+                ParticleSystem effect = Instantiate(_destroyEffect, _transform.position, Quaternion.identity);
+                Destroy(effect, 1f);
+
+                Handheld.Vibrate();
+
                 EndGame();
             }
             else
             {
-                //разрушение объекта
-                Debug.Log(_carForce);
+                obstruction.OnDestroing();
+
+                OnCrash?.Invoke();
             }
         }
 
@@ -172,18 +195,54 @@ namespace Character
         {
             _isActiveGame = false;
 
-            OnRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
+            OnLoseRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
             OnLoseLevel?.Invoke();
+        }
+
+
+        private void WinGame()
+        {
+            _isActiveGame = false;
+
+            OnRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
+            OnWinLevel?.Invoke();
         }
 
         #endregion
 
         private void OnCollisionEnter(Collision collision)
         {
-            //поиск по скрипту
+            if (collision.gameObject.TryGetComponent<Obstruction>(out Obstruction obstruction))
+            {
+                CrashInObject(obstruction);
+            }
+
             if (collision.gameObject.CompareTag(TAG_RESPAWN))
             {
-                CrashInObject();
+                EndGame();
+            }
+
+            if (collision.gameObject.CompareTag(TAG_EDITOR_ONLY))
+            {
+                _isKissTheWall = true;
+            }
+        }
+
+
+        private void OnCollisionExit(Collision collision)
+        {
+            if (collision.gameObject.CompareTag(TAG_EDITOR_ONLY))
+            {
+                _isKissTheWall = false;
+            }
+        }
+
+
+        private void OnTriggerExit(Collider collider)
+        {
+            if (collider.gameObject.CompareTag(TAG_FINISH))
+            {
+                WinGame();
             }
         }
     }

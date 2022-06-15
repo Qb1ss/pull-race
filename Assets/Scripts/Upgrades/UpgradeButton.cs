@@ -1,19 +1,22 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using System.Collections;
 using TMPro;
+using DG.Tweening;
 using Configs;
+using Analytics;
 using WalletData;
+
+public enum TypeUpgrades
+{
+    Slingshot = 0,
+    Force = 1,
+    MovingTime = 2
+}
 
 namespace Interface.Upgrades
 {
-    public enum TypeUpgrades
-    {
-        Slingshot = 0,
-        Force = 1,
-        MovingTime = 2
-    }
-
     public class UpgradeButton : MonoBehaviour
     {
         #region EVENTS
@@ -26,6 +29,10 @@ namespace Interface.Upgrades
 
         private const string PRICE_PLAYER_PREFS = "PricePlayerPrefs";
 
+        private const float START_Y_POSITION = 100f;
+        private const float FIRST_Y_POSITION = 200f;
+        private const float SECOND_Y_POSITION = 300f;
+
         #endregion
 
         [SerializeField] private UpgradesConfigs _parameters;
@@ -33,10 +40,18 @@ namespace Interface.Upgrades
         [Header("Parameters")]
         [SerializeField] private TypeUpgrades _typeUpgrades;
 
+        [Header("Effect")]
+        [SerializeField] private RectTransform _effect;
+        [SerializeField] private Color _colorEffect;
+        [Space(height: 5f)]
+
+        [SerializeField] private float _timeAnimation = 0.5f;
 
         [Header("Components")]
         [SerializeField] private TextMeshProUGUI _nameText;
         [SerializeField] private TextMeshProUGUI _priceText;
+        [Space(height: 5f)]
+
         private Button _upgradeButton;
 
         private int _upgradePrice;
@@ -87,6 +102,9 @@ namespace Interface.Upgrades
             _upgradePrice = PlayerPrefs.GetInt($"{PRICE_PLAYER_PREFS}{_typeUpgradeIndex}", _startPrice);
 
             _priceText.text = _upgradePrice.ToString();
+
+            _effect.anchoredPosition = new Vector2(_effect.anchoredPosition.x, START_Y_POSITION);
+            _effect.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
         }
 
 
@@ -110,11 +128,30 @@ namespace Interface.Upgrades
 
             _priceText.text = _upgradePrice.ToString();
 
+            StartCoroutine(AnimationCoroutine());
+
             OnUpgradeParameter?.Invoke(_typeUpgrades);
 
-            //аналитика на частоту прокачки
+            Analytics_GameAnalytics.OnUpgradeParameter(_typeUpgrades);
+            Analytics_Facebook.OnUpgradeParameter(_typeUpgrades);
         }
 
         #endregion
+
+        private IEnumerator AnimationCoroutine()
+        {
+            _effect.anchoredPosition = new Vector2(_effect.anchoredPosition.x, START_Y_POSITION);
+            _effect.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
+
+            _effect.DOLocalMoveY(FIRST_Y_POSITION, _timeAnimation);
+            _effect.GetComponent<Image>().DOColor(_colorEffect, _timeAnimation);
+
+            yield return new WaitForSeconds(_timeAnimation);
+
+            _effect.DOLocalMoveY(SECOND_Y_POSITION, _timeAnimation);
+            _effect.GetComponent<Image>().DOColor(new Color(0f, 0f, 0f, 0f), _timeAnimation);
+
+            yield break;
+        }
     }
 }

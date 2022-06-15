@@ -29,18 +29,24 @@ namespace Analytics
 
         public static void TransitionOnCurrentLevel(int level)
         {
-            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, $"Transition On Current Level { level}");
+            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, $"Transition On Current Level {level}");
         }
 
 
         public static void TransitionOnNextLevel(int level)
         {
-            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, $"Transition On Next Level { level}");
+            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, $"Transition On Next Level {level}");
         }
 
         public static void TransitionOnLastLevel(int level)
         {
-            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, $"Transition On Last Level { level}");
+            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, $"Transition On Last Level {level}");
+        }
+
+
+        public static void OnUpgradeParameter(TypeUpgrades type)
+        {
+            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, $"Upgrade {type}");
         }
 
         #endregion

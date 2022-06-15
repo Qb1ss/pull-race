@@ -26,21 +26,21 @@ MonoBehaviour:
   UserMessagesFailed: 0
   CustomArea: 
   gameKey:
-  - 
+  - 395946ec14c5851ccae764d6552cae04
   secretKey:
-  - 
+  - ac4128cb19b5424df819a1ba44de5c0a2df04cb4
   Build:
-  - 0.1
+  - 0.6.5
   SelectedPlatformOrganization:
-  - 
+  - 4TEAM
   SelectedPlatformStudio:
-  - 
+  - 4TEAM
   SelectedPlatformGame:
-  - 
-  SelectedPlatformGameID: ffffffff
-  SelectedOrganization: 00000000
-  SelectedStudio: 00000000
-  SelectedGame: 00000000
+  - Pull Race
+  SelectedPlatformGameID: a9230300
+  SelectedOrganization: 02000000
+  SelectedStudio: 01000000
+  SelectedGame: 02000000
   NewVersion: 
   Changes: 
   SignUpOpen: 0

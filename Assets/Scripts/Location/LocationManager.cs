@@ -1,26 +1,21 @@
 using UnityEngine;
+using System.Collections.Generic;
 using Configs;
 
 namespace Location
 {
     public class LocationManager : MonoBehaviour
     {
-        #region CONSTS
+        [SerializeField] private LevelConfig _parameters;
 
-        private const float MULTIPLY_TRACK_LENGTH = 4f;
-
-        #endregion
-
-        [SerializeField] private LocationConfig _parameters;
-
-        [SerializeField] private GameObject _groundChunkPrefab;
+        private List<Chunk> _spawnedChunks = new List<Chunk>();
 
         #region Private Fields
 
-        [SerializeField] private Vector3 _heightMainParameters => _parameters.HeightMainParameters;
+        private int _chunkNumber => _parameters.ChunkPrefab.Length;
 
-        [SerializeField] private float heightStartZone => _parameters.HeightStartZone;
-        [SerializeField] private float _heightFinishZone => _parameters.HeightFinishZone;
+        private Chunk[] _chunkPrefab => _parameters.ChunkPrefab;
+        private Chunk _finishChunkPrefab => _parameters.FinishChunkPrefab;
 
         #endregion
 
@@ -38,11 +33,32 @@ namespace Location
 
         private void GenerateLocation()
         {
-            Vector3 size = new Vector3(_heightMainParameters.x, _heightMainParameters.y, (_heightMainParameters.z + heightStartZone + _heightFinishZone));
-            Vector3 position = new Vector3(0f, 0f, (_heightMainParameters.z + heightStartZone + _heightFinishZone) * MULTIPLY_TRACK_LENGTH);
+            for (int i = 0; i <= _chunkNumber; i++)
+            {
+                if(i < _chunkNumber)
+                {
+                    Chunk newChunk = Instantiate(_chunkPrefab[i]);
 
-            _groundChunkPrefab.transform.localScale = size;
-            _groundChunkPrefab.transform.localPosition = position;
+                    if (_spawnedChunks.Count != 0)
+                    {
+                        newChunk.transform.position = _spawnedChunks[_spawnedChunks.Count - 1].End.position - newChunk.Start.localPosition * 2;
+                    }
+                    else
+                    {
+                        newChunk.transform.position = gameObject.transform.position;
+                    }
+
+                    newChunk.Create();
+
+                    _spawnedChunks.Add(newChunk);
+                }
+                else if (i == _chunkNumber)
+                {
+                    Chunk newChunk = Instantiate(_finishChunkPrefab);
+                    newChunk.transform.position = _spawnedChunks[_spawnedChunks.Count - 1].End.position - newChunk.Start.localPosition * 2;
+                    _spawnedChunks.Add(newChunk);
+                }
+            }
         }
 
         #endregion
