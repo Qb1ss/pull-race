@@ -27,6 +27,7 @@ namespace Character
 
         private const float FORCE_ROTATE = 30f;
         private const float DAMAGE = 1f;
+        private const float X_POSITION = 8.5f;
 
         private const string TAG_FINISH = "Finish";
         private const string TAG_RESPAWN = "Respawn";
@@ -133,6 +134,11 @@ namespace Character
         {
             float direction = _joystick.Horizontal;
             float divTime = 1;
+
+            if (_transform.position.x >= X_POSITION || _transform.position.x <= -X_POSITION)
+            {
+                direction = 0;               
+            }
 
             if (_constMovingTime <= 0)
             {
