@@ -174,7 +174,6 @@ GameObject:
   - component: {fileID: 5086395226780997199}
   - component: {fileID: 3783165155405456558}
   - component: {fileID: 6664177840045996993}
-  - component: {fileID: -1413283289125103064}
   m_Layer: 0
   m_Name: Enemy Car Ferrari Pink
   m_TagString: Untagged
@@ -241,30 +240,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _parameters: {fileID: 11400000, guid: e43e916b1d6d5214b8a6f57107cb9728, type: 2}
   _obstructionTypes: 1
---- !u!205 &-1413283289125103064
-LODGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3127728880030583801}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: 0.000000059604645, y: 0.66105986, z: 0.03955412}
-  m_Size: 4.8822336
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
-  m_LastLODIsBillboard: 0
-  m_LODs:
-  - screenRelativeHeight: 0.040205535
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 4646263197684989979}
-    - renderer: {fileID: 4646263197667108685}
-    - renderer: {fileID: 4275189695354678533}
-    - renderer: {fileID: 3402525098158285044}
-    - renderer: {fileID: 6270862570825020910}
-    - renderer: {fileID: 3920647861039955884}
-  m_Enabled: 1
 --- !u!1 &3642177392048650228
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,11 +541,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 588c8bf741ce880479e1552cc1f6fd69, type: 3}
   m_PrefabInstance: {fileID: 3127728879718985166}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &4646263197684989979 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -1504981713932161579, guid: 588c8bf741ce880479e1552cc1f6fd69, type: 3}
-  m_PrefabInstance: {fileID: 3127728879718985166}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3127728879737129624
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -644,8 +614,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1778ca5c41cb8e448a1e3b4fe6562407, type: 3}
---- !u!23 &4646263197667108685 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -1504981713932161579, guid: 1778ca5c41cb8e448a1e3b4fe6562407, type: 3}
-  m_PrefabInstance: {fileID: 3127728879737129624}
-  m_PrefabAsset: {fileID: 0}

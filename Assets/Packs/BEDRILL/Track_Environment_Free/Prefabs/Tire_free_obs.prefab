@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4033266117240964892}
   - component: {fileID: 24437467822901433}
   - component: {fileID: 2860391554405350515}
-  - component: {fileID: 9067602766420165729}
   m_Layer: 0
   m_Name: Tire_free_obs
   m_TagString: Untagged
@@ -82,22 +81,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!205 &9067602766420165729
-LODGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4373798459345739174}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: -0.008706152, y: 0.0012419224, z: -0.0002964139}
-  m_Size: 0.74328214
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
-  m_LastLODIsBillboard: 0
-  m_LODs:
-  - screenRelativeHeight: 0.019495472
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 2860391554405350515}
-  m_Enabled: 1
