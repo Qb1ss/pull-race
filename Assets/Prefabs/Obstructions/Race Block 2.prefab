@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8128763278686409329}
   - component: {fileID: -5502402781624847626}
   - component: {fileID: 1651213424211147182}
+  - component: {fileID: 7181859127870223312}
   m_Layer: 0
   m_Name: Race Block 2
   m_TagString: Untagged
@@ -127,3 +128,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _parameters: {fileID: 11400000, guid: e43e916b1d6d5214b8a6f57107cb9728, type: 2}
   _obstructionTypes: 0
+--- !u!205 &7181859127870223312
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4929354690671678404}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0.7, z: 0}
+  m_Size: 3.0000017
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.02537154
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 6874860869852574225}
+  m_Enabled: 1

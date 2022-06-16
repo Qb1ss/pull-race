@@ -22,9 +22,6 @@ namespace Interface.Upgrades
         [SerializeField] private RectTransform _upgradeForceCarPanel;
         [SerializeField] private RectTransform _upgradeTimeMovingCarPanel;
 
-        [Header("Start Game")]
-        [SerializeField] private Button _startGameButton;
-
         #region Private Fields
 
         private float _timePlayingAnimations => _parameters.TimePlayingAnimations;
@@ -38,8 +35,6 @@ namespace Interface.Upgrades
         private void Start()
         {
             OneningPanels();
-
-            _startGameButton.onClick.AddListener(() => ClosingPanels());
         }
 
         private void OnEnable()
