@@ -109,7 +109,7 @@ namespace Interface.Upgrades
             _upgradeLevel = PlayerPrefs.GetInt($"{LEVEL_PLAYER_PREFS}{_typeUpgradeIndex}", _upgradeLevel);
 
             _priceText.text = _upgradePrice.ToString();
-            _levelText.text = $"Level{_upgradeLevel}";
+            _levelText.text = $"Level {_upgradeLevel}";
 
             _effect.anchoredPosition = new Vector2(_effect.anchoredPosition.x, START_Y_POSITION);
             _effect.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
@@ -138,7 +138,7 @@ namespace Interface.Upgrades
             PlayerPrefs.SetInt($"{LEVEL_PLAYER_PREFS}{_typeUpgradeIndex}", _upgradeLevel);
 
             _priceText.text = _upgradePrice.ToString();
-            _levelText.text = $"Level{_upgradeLevel}";
+            _levelText.text = $"Level {_upgradeLevel}";
 
             StartCoroutine(AnimationCoroutine());
 
