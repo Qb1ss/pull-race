@@ -7,9 +7,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameAnalyticsSDK", "GameAna
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{91E580B5-0C8E-37F6-25BD-D50BC5D45E71}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreMountains.NiceVibrations.Haptics", "MoreMountains.NiceVibrations.Haptics.csproj", "{6B6C0996-B391-C763-41AA-10141D0EF6AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreMountains.NiceVibrations", "MoreMountains.NiceVibrations.csproj", "{A3BFAAEB-1FC1-0BCD-BBC5-A551A07ABFC2}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{0D6C7310-A1DB-F8A5-60D8-CDDBCCCA2EF2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameAnalyticsSDK.Editor", "GameAnalyticsSDK.Editor.csproj", "{44087578-488D-ACDF-627F-7B6EEFBF3BFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreMountains.NiceVibrations.Editor", "MoreMountains.NiceVibrations.Editor.csproj", "{B1FE8CAA-141B-1FBD-4FE2-AB8B916E1CBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +35,14 @@ Global
 		{91E580B5-0C8E-37F6-25BD-D50BC5D45E71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91E580B5-0C8E-37F6-25BD-D50BC5D45E71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91E580B5-0C8E-37F6-25BD-D50BC5D45E71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B6C0996-B391-C763-41AA-10141D0EF6AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B6C0996-B391-C763-41AA-10141D0EF6AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B6C0996-B391-C763-41AA-10141D0EF6AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B6C0996-B391-C763-41AA-10141D0EF6AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3BFAAEB-1FC1-0BCD-BBC5-A551A07ABFC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3BFAAEB-1FC1-0BCD-BBC5-A551A07ABFC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3BFAAEB-1FC1-0BCD-BBC5-A551A07ABFC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3BFAAEB-1FC1-0BCD-BBC5-A551A07ABFC2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0D6C7310-A1DB-F8A5-60D8-CDDBCCCA2EF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0D6C7310-A1DB-F8A5-60D8-CDDBCCCA2EF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D6C7310-A1DB-F8A5-60D8-CDDBCCCA2EF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,6 +51,10 @@ Global
 		{44087578-488D-ACDF-627F-7B6EEFBF3BFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44087578-488D-ACDF-627F-7B6EEFBF3BFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44087578-488D-ACDF-627F-7B6EEFBF3BFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1FE8CAA-141B-1FBD-4FE2-AB8B916E1CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1FE8CAA-141B-1FBD-4FE2-AB8B916E1CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1FE8CAA-141B-1FBD-4FE2-AB8B916E1CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1FE8CAA-141B-1FBD-4FE2-AB8B916E1CBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
