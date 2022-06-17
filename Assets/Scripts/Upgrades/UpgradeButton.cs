@@ -28,6 +28,7 @@ namespace Interface.Upgrades
         #region CONSTS
 
         private const string PRICE_PLAYER_PREFS = "PricePlayerPrefs";
+        private const string LEVEL_PLAYER_PREFS = "LevelPlayerPrefs";
 
         private const float START_Y_POSITION = 100f;
         private const float FIRST_Y_POSITION = 200f;
@@ -50,11 +51,14 @@ namespace Interface.Upgrades
         [Header("Components")]
         [SerializeField] private TextMeshProUGUI _nameText;
         [SerializeField] private TextMeshProUGUI _priceText;
+        [SerializeField] private TextMeshProUGUI _levelText;
+        [SerializeField] private Image _icon;
         [Space(height: 5f)]
 
         private Button _upgradeButton;
 
         private int _upgradePrice;
+        private int _upgradeLevel = 1;
 
         private Wallet _wallet;
 
@@ -99,9 +103,13 @@ namespace Interface.Upgrades
         {
             _nameText.text = _nameButton;
 
+            _icon.sprite = _parameters.IconUpgrades[_typeUpgradeIndex];
+
             _upgradePrice = PlayerPrefs.GetInt($"{PRICE_PLAYER_PREFS}{_typeUpgradeIndex}", _startPrice);
+            _upgradeLevel = PlayerPrefs.GetInt($"{LEVEL_PLAYER_PREFS}{_typeUpgradeIndex}", _upgradeLevel);
 
             _priceText.text = _upgradePrice.ToString();
+            _levelText.text = $"Level{_upgradeLevel}";
 
             _effect.anchoredPosition = new Vector2(_effect.anchoredPosition.x, START_Y_POSITION);
             _effect.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
@@ -126,7 +134,11 @@ namespace Interface.Upgrades
             _upgradePrice = newValue;
             PlayerPrefs.SetInt($"{PRICE_PLAYER_PREFS}{_typeUpgradeIndex}", _upgradePrice);
 
+            _upgradeLevel++;
+            PlayerPrefs.SetInt($"{LEVEL_PLAYER_PREFS}{_typeUpgradeIndex}", _upgradeLevel);
+
             _priceText.text = _upgradePrice.ToString();
+            _levelText.text = $"Level{_upgradeLevel}";
 
             StartCoroutine(AnimationCoroutine());
 

@@ -15,6 +15,10 @@ MonoBehaviour:
   _timePlayingAnimations: 0.5
   _yPosition: 200
   _multiplicationFactorPrice: 1.2
+  _iconUpgrades:
+  - {fileID: 21300000, guid: 56d32345f8628444c8bcd2c260ae6d88, type: 3}
+  - {fileID: 21300000, guid: e948b78cc376a394b893d97c3b08fad3, type: 3}
+  - {fileID: 21300000, guid: 27e912a15ef2a874dbe655cb14ae92cd, type: 3}
   NamesButton:
   - Slingshot
   - Force

@@ -13,10 +13,14 @@ namespace Configs
         [SerializeField] private float _multiplicationFactorPrice;
         [Space(height: 5f)]
 
+        [SerializeField] private Sprite[] _iconUpgrades;
+
         #region Public Fields
         public string[] NamesButton;
 
         public int[] StartPricesButton;
+
+        public Sprite[] IconUpgrades => _iconUpgrades;
 
         public float TimePlayingAnimations => _timePlayingAnimations;
         public float YPosition => _yPosition;
