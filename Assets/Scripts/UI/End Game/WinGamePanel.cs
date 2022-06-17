@@ -115,6 +115,8 @@ namespace Interface.EndGame
 
             _progressBarAmountImage.DOFillAmount(1f, _timeAnimation);
 
+            OnGetCoins?.Invoke(_coinsValue);
+
             yield return new WaitForSeconds(_timeAnimation);
 
             _coinRectTransform.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 1f), _timeAnimation / 2);
@@ -123,8 +125,6 @@ namespace Interface.EndGame
             yield return new WaitForSeconds(_timeAnimation / 2);
 
             _coinRectTransform.DOScale(new Vector3(0f, 0f, 0f), _timeAnimation / 2);
-
-            OnGetCoins?.Invoke(_coinsValue);
 
             yield break;
         }
