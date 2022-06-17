@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
-using System.Collections;
 using Configs;
-using Location;
 using Obstructions;
 using Interface.Upgrades;
 
@@ -27,11 +25,10 @@ namespace Character
 
         private const float FORCE_ROTATE = 30f;
         private const float DAMAGE = 1f;
-        private const float X_POSITION = 8.5f;
+        private const float X_POSITION = 8.45f;
 
         private const string TAG_FINISH = "Finish";
         private const string TAG_RESPAWN = "Respawn";
-        private const string TAG_EDITOR_ONLY = "EditorOnly";
 
         #endregion
 
@@ -52,7 +49,6 @@ namespace Character
         private int _startZPosition;
 
         private bool _isActiveGame = false;
-        private bool _isKissTheWall = false;
 
         private Transform _transform;
         private Rigidbody _rigidbody;
@@ -135,10 +131,30 @@ namespace Character
             float direction = _joystick.Horizontal;
             float divTime = 1;
 
+            #region Location Border
+
             if (_transform.position.x >= X_POSITION || _transform.position.x <= -X_POSITION)
             {
-                direction = 0;               
+                direction = 0;
+
+                if(_joystick.Horizontal < 0 && _transform.position.x >= X_POSITION)
+                {
+                    direction = _joystick.Horizontal;
+                }
+                else if (_joystick.Horizontal > 0 && _transform.position.x <= -X_POSITION)
+                {
+                    direction = _joystick.Horizontal;
+                }
+
+                _transform.localRotation = Quaternion.Euler(0f, direction * FORCE_ROTATE, 0f);
+                _transform.position += new Vector3(direction * divTime, 0f, MovingSpeed * Time.deltaTime);
+
+                return;
             }
+
+            #endregion
+
+            #region Timer
 
             if (_constMovingTime <= 0)
             {
@@ -157,6 +173,8 @@ namespace Character
                 _constMovingTime -= Time.deltaTime;
             }
 
+            #endregion
+
             if (MovingSpeed < 0)
             {
                 EndGame();
@@ -165,12 +183,6 @@ namespace Character
             }
 
             _transform.localRotation = Quaternion.Euler(0f, direction * FORCE_ROTATE, 0f);
-
-            if(_isKissTheWall == true)
-            {
-                direction = 0f;
-            }
-
             _transform.position += new Vector3(direction * divTime, 0f, MovingSpeed * Time.deltaTime);
         }
 
@@ -226,20 +238,6 @@ namespace Character
             if (collision.gameObject.CompareTag(TAG_RESPAWN))
             {
                 EndGame();
-            }
-
-            if (collision.gameObject.CompareTag(TAG_EDITOR_ONLY))
-            {
-                _isKissTheWall = true;
-            }
-        }
-
-
-        private void OnCollisionExit(Collision collision)
-        {
-            if (collision.gameObject.CompareTag(TAG_EDITOR_ONLY))
-            {
-                _isKissTheWall = false;
             }
         }
 
