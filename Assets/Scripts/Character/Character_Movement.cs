@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using Configs;
 using Obstructions;
 using Interface.Upgrades;
+using MoreMountains.NiceVibrations;
 
 namespace Character
 {
@@ -23,7 +24,7 @@ namespace Character
 
         #region CONSTS
 
-        private const float FORCE_ROTATE = 30f;
+        private const float FORCE_ROTATE = 25f;
         private const float DAMAGE = 1f;
         private const float X_POSITION = 8.45f;
 
@@ -35,6 +36,7 @@ namespace Character
         [Header("Parameters")]
         [SerializeField] private CharacterParametersConfig _parameters;
         [SerializeField] private Joystick _joystick;
+        [SerializeField] private HapticTypes _hapticTypes = HapticTypes.HeavyImpact;
 
         [HideInInspector] public float MovingSpeed;
 
@@ -196,7 +198,7 @@ namespace Character
                 ParticleSystem effect = Instantiate(_destroyEffect, _transform.position, Quaternion.identity);
                 Destroy(effect, 1f);
 
-                Handheld.Vibrate();
+                MMVibrationManager.Haptic(_hapticTypes, false, true, this);
 
                 EndGame();
             }
