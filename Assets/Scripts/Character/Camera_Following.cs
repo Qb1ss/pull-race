@@ -1,5 +1,6 @@
 using UnityEngine;
 using Character;
+using MoreMountains.NiceVibrations;
 
 namespace GameCamera
 {
@@ -9,6 +10,8 @@ namespace GameCamera
         [SerializeField] private float _distanceFollow = 5f;
         
         [SerializeField] private Vector3 _offset;
+
+        [SerializeField] private HapticTypes _hapticTypes;
         
         private Character_Movement _character;
 
@@ -43,7 +46,7 @@ namespace GameCamera
 
         private void OnShake()
         {
-            Handheld.Vibrate();
+            MMVibrationManager.Haptic(_hapticTypes, false, true, this);
         }
 
         #endregion
