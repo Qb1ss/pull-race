@@ -53,11 +53,11 @@
     <UnityVersion>2020.2.7f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Editor\MMNVAssetPostProcessor.cs" />
-    <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Editor\DefineSymbols\NiceVibrationsDefineSymbols.cs" />
     <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Editor\MMNVAndroidWaveFormAssetEditor.cs" />
-    <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Editor\MMNVBuildPostProcessor.cs" />
+    <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Editor\MMNVAssetPostProcessor.cs" />
     <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Editor\MMNVRumbleWaveFormAssetEditor.cs" />
+    <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Editor\DefineSymbols\NiceVibrationsDefineSymbols.cs" />
+    <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Editor\MMNVBuildPostProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Packs\NiceVibrations\Common\Scripts\Editor\MoreMountains.NiceVibrations.Editor.asmdef" />
@@ -307,6 +307,9 @@
     <Reference Include="Facebook.Unity.Editor">
       <HintPath>Assets\FacebookSDK\Plugins\Editor\Facebook.Unity.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Assets\Packs\NiceVibrations\ThirdParty\Newtonsoft\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Google.IOSResolver_v1.2.135.0">
       <HintPath>Assets\PlayServicesResolver\Editor\Google.IOSResolver_v1.2.135.0.dll</HintPath>
     </Reference>
@@ -324,9 +327,6 @@
     </Reference>
     <Reference Include="Facebook.Unity">
       <HintPath>Assets\FacebookSDK\Plugins\Facebook.Unity.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Assets\Packs\NiceVibrations\ThirdParty\Newtonsoft\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>

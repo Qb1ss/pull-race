@@ -53,17 +53,17 @@
     <UnityVersion>2020.2.7f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Haptics\MMNVAHAP.cs" />
-    <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Haptics\MMNVPlatform.cs" />
-    <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Haptics\MMNVAltThread.cs" />
-    <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Haptics\MMNVEnumCondition.cs" />
-    <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Haptics\MMNViOS.cs" />
-    <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Haptics\MMNVHapticTypes.cs" />
     <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Haptics\MMNVRumbleWaveFormAsset.cs" />
-    <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Haptics\MMNViOSCoreHaptics.cs" />
+    <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Haptics\MMNVHapticTypes.cs" />
+    <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Haptics\MMNViOS.cs" />
     <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Haptics\MMNVAndroid.cs" />
     <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Haptics\MMNVAndroidWaveFormAsset.cs" />
+    <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Haptics\MMNVEnumCondition.cs" />
+    <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Haptics\MMNViOSCoreHaptics.cs" />
+    <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Haptics\MMNVAltThread.cs" />
+    <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Haptics\MMNVAHAP.cs" />
     <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Haptics\MMNVInspectorButton.cs" />
+    <Compile Include="Assets\Packs\NiceVibrations\Common\Scripts\Haptics\MMNVPlatform.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Packs\NiceVibrations\Common\Scripts\Haptics\MoreMountains.NiceVibrations.Haptics.asmdef" />
@@ -304,6 +304,9 @@
     <Reference Include="Facebook.Unity.Editor">
       <HintPath>Assets\FacebookSDK\Plugins\Editor\Facebook.Unity.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Assets\Packs\NiceVibrations\ThirdParty\Newtonsoft\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Google.IOSResolver_v1.2.135.0">
       <HintPath>Assets\PlayServicesResolver\Editor\Google.IOSResolver_v1.2.135.0.dll</HintPath>
     </Reference>
@@ -321,9 +324,6 @@
     </Reference>
     <Reference Include="Facebook.Unity">
       <HintPath>Assets\FacebookSDK\Plugins\Facebook.Unity.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Assets\Packs\NiceVibrations\ThirdParty\Newtonsoft\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files (x86)\Unity\2020.2.7f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
