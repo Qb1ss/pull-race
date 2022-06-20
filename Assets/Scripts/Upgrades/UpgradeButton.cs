@@ -10,9 +10,9 @@ using WalletData;
 
 public enum TypeUpgrades
 {
-    Slingshot = 0,
+    Gaz = 0,
     Force = 1,
-    MovingTime = 2
+    Coins = 2
 }
 
 namespace Interface.Upgrades

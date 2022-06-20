@@ -8,11 +8,11 @@ namespace Configs
     {
         #region CONSTS
 
-        private const string TENSION_SLINGSHOT_PLAYER_PREFS = "TensionSlingshotPlayerPrefs";
+        private const string GAZ_PLAYER_PREFS = "GazPlayerPrefs";
         private const string FORCE_PLAYER_PREFS = "ForcePlayerPrefs";
         private const string MOVING_TIME_PLAYER_PREFS = "MovingTimePlayerPrefs";
 
-        private const float DEFAULT_TENSION_VALUE = 1f;
+        private const float DEFAULT_GAZ_VALUE = 8f;
         private const float DEFAULT_FORCE_VALUE = 1f;
 
         #endregion
@@ -30,12 +30,15 @@ namespace Configs
         [SerializeField] private float _slowerMovementTimer;
         [Space(height: 5f)]
 
-        [SerializeField] private float _multiplicationFactorForceTensionSlingshot = 0.5f;
         private float _forceTensionSlingshot = 1;
         [Space(height: 5f)]
 
         [SerializeField] private float _multiplicationFactorMaxCarForce = 0.5f;
         private float _maxCarForce = 1;
+         [Space(height: 5f)]
+
+        [SerializeField] private float _multiplicationFactorGaz = 1f;
+        private float _multiplicationGaz = 1f;
 
         #region Public Fields
 
@@ -65,34 +68,28 @@ namespace Configs
 
         private void StartUpdateParameters()
         {
-            _forceTensionSlingshot = PlayerPrefs.GetFloat(TENSION_SLINGSHOT_PLAYER_PREFS, DEFAULT_TENSION_VALUE);
-            _constMovementTimer = PlayerPrefs.GetFloat(MOVING_TIME_PLAYER_PREFS, _minMovementTimer);
+            _constMovementTimer = PlayerPrefs.GetFloat(GAZ_PLAYER_PREFS, DEFAULT_GAZ_VALUE);
             _maxCarForce = PlayerPrefs.GetFloat(FORCE_PLAYER_PREFS, DEFAULT_FORCE_VALUE);
+            _constMovementTimer = PlayerPrefs.GetFloat(MOVING_TIME_PLAYER_PREFS, _minMovementTimer);
         }
 
 
         private void OnUpgradeParameter(TypeUpgrades upgrades)
         {
-            if(upgrades == TypeUpgrades.Slingshot)
+            if(upgrades == TypeUpgrades.Gaz)
             {
-                _forceTensionSlingshot = _forceTensionSlingshot + _multiplicationFactorForceTensionSlingshot;
-                PlayerPrefs.SetFloat(TENSION_SLINGSHOT_PLAYER_PREFS, _forceTensionSlingshot);
-
-                Debug.Log($"New Tension: {_forceTensionSlingshot}");
+                _constMovementTimer = _constMovementTimer + _multiplicationFactorGaz;
+                PlayerPrefs.SetFloat(GAZ_PLAYER_PREFS, _forceTensionSlingshot);
             }
             else if (upgrades == TypeUpgrades.Force)
             {
                 _maxCarForce = _maxCarForce + _multiplicationFactorMaxCarForce;
                 PlayerPrefs.SetFloat(FORCE_PLAYER_PREFS, _maxCarForce);
-
-                Debug.Log($"New Force: {_maxCarForce}");
             }
-            else if (upgrades == TypeUpgrades.MovingTime)
+            else if (upgrades == TypeUpgrades.Coins)
             {
                 _constMovementTimer = _constMovementTimer + _multiplicationFactorSecMovementTimer;
                 PlayerPrefs.SetFloat(MOVING_TIME_PLAYER_PREFS, _constMovementTimer);
-
-                Debug.Log($"New Time: {_constMovementTimer}");
             }
         }
 
