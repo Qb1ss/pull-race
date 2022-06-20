@@ -10,10 +10,11 @@ namespace Configs
 
         private const string GAZ_PLAYER_PREFS = "GazPlayerPrefs";
         private const string FORCE_PLAYER_PREFS = "ForcePlayerPrefs";
-        private const string MOVING_TIME_PLAYER_PREFS = "MovingTimePlayerPrefs";
+        private const string COINS_PLAYER_PREFS = "MovingTimePlayerPrefs";
 
         private const float DEFAULT_GAZ_VALUE = 8f;
         private const float DEFAULT_FORCE_VALUE = 1f;
+        private const float DEFAULT_COIN_VALUE = 1f;
 
         #endregion
 
@@ -23,11 +24,11 @@ namespace Configs
         [Space(height: 5f)]
 
         [SerializeField] private ParticleSystem _destroyEffect;
-
         [Space(height: 5f)]
+
         [SerializeField] private float _multiplicationFactorSecMovementTimer = 2f;
-        private float _constMovementTimer;
         [SerializeField] private float _slowerMovementTimer;
+        private float _constMovementTimer;
         [Space(height: 5f)]
 
         private float _forceTensionSlingshot = 1;
@@ -35,7 +36,11 @@ namespace Configs
 
         [SerializeField] private float _multiplicationFactorMaxCarForce = 0.5f;
         private float _maxCarForce = 1;
-         [Space(height: 5f)]
+        [Space(height: 5f)]
+
+        [SerializeField] private float _multiplicationFactorCoin = 1f;
+        private float _multiplicationCoin = 1f;
+        [Space(height: 5f)]
 
         [SerializeField] private float _multiplicationFactorGaz = 1f;
         private float _multiplicationGaz = 1f;
@@ -70,7 +75,7 @@ namespace Configs
         {
             _constMovementTimer = PlayerPrefs.GetFloat(GAZ_PLAYER_PREFS, DEFAULT_GAZ_VALUE);
             _maxCarForce = PlayerPrefs.GetFloat(FORCE_PLAYER_PREFS, DEFAULT_FORCE_VALUE);
-            _constMovementTimer = PlayerPrefs.GetFloat(MOVING_TIME_PLAYER_PREFS, _minMovementTimer);
+            _multiplicationCoin = PlayerPrefs.GetFloat(COINS_PLAYER_PREFS, DEFAULT_COIN_VALUE);
         }
 
 
@@ -88,8 +93,8 @@ namespace Configs
             }
             else if (upgrades == TypeUpgrades.Coins)
             {
-                _constMovementTimer = _constMovementTimer + _multiplicationFactorSecMovementTimer;
-                PlayerPrefs.SetFloat(MOVING_TIME_PLAYER_PREFS, _constMovementTimer);
+                _multiplicationCoin = _multiplicationCoin + _multiplicationFactorCoin;
+                PlayerPrefs.SetFloat(COINS_PLAYER_PREFS, _multiplicationCoin);
             }
         }
 
