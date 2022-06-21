@@ -60,7 +60,6 @@ namespace Character
         #region Private Fields
 
         private float _movementSpeed => _parameters.MovementSpeed;
-        private float _slowerMovementTime => _parameters.SlowerMovementTimer;
 
         private ParticleSystem _destroyEffect => _parameters.DestroyEffect;
 
@@ -113,7 +112,6 @@ namespace Character
             _movementTime = _parameters.MovementTimer;
             _constMovingTime = _movementTime;
 
-            _constMovingTime = _movementTime;
             _slowerMovingTime = _movementTime / 10;
             _maxCarForce = _parameters.MaxCarForce;
             _carForce = _maxCarForce;
@@ -218,10 +216,10 @@ namespace Character
         {
             _isActiveGame = false;
 
-            MMVibrationManager.Haptic(_hapticTypes, false, true, this);
-
             OnLoseRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
             OnLoseLevel?.Invoke();
+
+            MMVibrationManager.Haptic(_hapticTypes, false, true, this);
         }
 
 
@@ -240,11 +238,6 @@ namespace Character
             if (collision.gameObject.TryGetComponent<Obstruction>(out Obstruction obstruction))
             {
                 CrashInObject(obstruction);
-            }
-
-            if (collision.gameObject.CompareTag(TAG_RESPAWN))
-            {
-                EndGame();
             }
         }
 

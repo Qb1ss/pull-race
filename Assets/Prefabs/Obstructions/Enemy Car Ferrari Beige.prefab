@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4853807086536006820}
   m_Layer: 0
   m_Name: Enemy Car Ferrari Beige
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
