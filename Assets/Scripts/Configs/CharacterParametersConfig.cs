@@ -27,9 +27,9 @@ namespace Configs
         [Tooltip("Скорость передвижения")]
         [SerializeField] private float _movementSpeed = 50f;
 
-        [Header("Time Parameters")]
-        [Tooltip("Множитель основного времени движения\n на сколько в секундах")]
-        [SerializeField] private float multiplicationFactorSecTime = 1f;
+        [Header("Time (Gaz) Parameters")]
+        [Tooltip("Множитель основного времени движения\n во сколько")]
+        [SerializeField] private float multiplicationFactorSecTime = 1.2f;
 
         [Tooltip("Время обычного движения")]
         [SerializeField] private float _movementTimer = 8f;
@@ -95,7 +95,7 @@ namespace Configs
         {
             if(upgrades == TypeUpgrades.Gaz)
             {
-                _movementTimer = _movementTimer + multiplicationFactorSecTime;
+                _movementTimer = _movementTimer * multiplicationFactorSecTime;
                 PlayerPrefs.SetFloat(GAZ_PLAYER_PREFS, _movementTimer);
             }
             else if (upgrades == TypeUpgrades.Force)

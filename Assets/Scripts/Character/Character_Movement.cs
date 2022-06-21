@@ -35,27 +35,27 @@ namespace Character
         #endregion
 
         [Header("Parameters")]
-        [SerializeField] private CharacterParametersConfig _parameters;
+        [SerializeField] private CharacterParametersConfig _parameters = null;
         [SerializeField] private HapticTypes _hapticTypes = HapticTypes.HeavyImpact;
-        private Transform _targetPosition;
+        private Transform _targetPosition = null;
 
         [HideInInspector] public float MovingSpeed;
 
-        private float _constMovingTime;
-        private float _movementTime;
-        private float _slowerMovingTime;
-        private float _subtractinSpeedFromTime;
-        private float _maxCarForce;
-        private float _carForce;
-        private float _xPosition;
+        private float _constMovingTime = 8f;
+        private float _movementTime = 8f;
+        private float _slowerMovingTime = 3f;
+        private float _subtractinSpeedFromTime = 0.2f;
+        private float _maxCarForce = 1f;
+        private float _carForce = 1f;
+        private float _xPosition = 0f;
 
-        private int _startZPosition;
+        private int _startZPosition = 0;
 
         private bool _isActiveGame = false;
 
-        private Transform _transform;
-        private Rigidbody _rigidbody;
-        private Camera _camera;
+        private Transform _transform = null;
+        private Rigidbody _rigidbody = null;
+        private Camera _camera = null;
 
         #region Private Fields
 
