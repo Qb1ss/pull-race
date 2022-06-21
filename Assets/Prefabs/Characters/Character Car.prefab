@@ -385,7 +385,7 @@ Transform:
   m_GameObject: {fileID: 3955272177634167102}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 9}
-  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
+  m_LocalScale: {x: 1.55, y: 1.55, z: 1.55}
   m_Children:
   - {fileID: 285904938327637589}
   - {fileID: 8749313834403902035}
@@ -436,6 +436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parameters: {fileID: 11400000, guid: 0154b1a375bef2b459eee6759c2ba7ca, type: 2}
+  _hapticTypes: 6
   MovingSpeed: 0
 --- !u!1 &5047913732088622668
 GameObject:

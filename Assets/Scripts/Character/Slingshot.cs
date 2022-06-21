@@ -10,26 +10,27 @@ namespace Character.Slingshot
         #region CONSTS
 
         private const float DIVISION_SLINGSHOT_FORCE = 5f;
+        private const float Z_POSITION = 4f;
 
         #endregion
 
         [Header("Anchors")]
-        [SerializeField] private Transform[] _leftAnchors;
-        [SerializeField] private Transform[] _rightAnchors;
+        [SerializeField] private Transform[] _leftAnchors = null;
+        [SerializeField] private Transform[] _rightAnchors = null;
         [Space(height: 5f)]
 
-        [SerializeField] private LineRenderer _line;
-        private LineRenderer[] _lines;
+        [SerializeField] private LineRenderer _line = null;
+        private LineRenderer[] _lines = null;
 
         [Header("Parameters")]
-        [SerializeField] private Transform _startBorder;
-        [SerializeField] private Transform _character;
+        [SerializeField] private Transform _startBorder = null;
+        private Transform _character = null;
         [Space(height: 5f)]
 
         [SerializeField] private float _maxDistanceTencion = 4f;
         [Space(height: 5f)]
 
-        [SerializeField] private Joystick _joysticForceTencion;
+        [SerializeField] private Joystick _joysticForceTencion = null;
 
         private bool _isStartingGame = false;
 
@@ -38,6 +39,12 @@ namespace Character.Slingshot
 
 
         #region MONO
+
+        private void Awake()
+        {
+            _character = FindObjectOfType<Character_Movement>().GetComponent<Transform>();
+        }
+
 
         private void Start()
         {
@@ -86,7 +93,7 @@ namespace Character.Slingshot
                 StartCoroutine(StartingCoroutine());
             }
 
-            _newPosition = new Vector3(_character.position.x, _character.position.y, _newPosition.z + _character.position.y + 3.5f);
+            _newPosition = new Vector3(_character.position.x, _character.position.y, _newPosition.z + _character.position.y + Z_POSITION);
 
             _character.position = _newPosition;
 
