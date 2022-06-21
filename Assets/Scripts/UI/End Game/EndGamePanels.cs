@@ -6,13 +6,17 @@ namespace Interface.EndGame
 {
     public class EndGamePanels : MonoBehaviour
     {
+        #region EVENTS
+
         public static UnityEvent<int> OnLoseLevel = new UnityEvent<int>();
 
-        [Header("Panels")]
-        [SerializeField] private WinGamePanel _winGamePanel;
-        [SerializeField] private LoseGamePanel _loseGamePanel;
+        #endregion
 
-        private int _value;
+        [Header("Panels")]
+        [SerializeField] private WinGamePanel _winGamePanel = null;
+        [SerializeField] private LoseGamePanel _loseGamePanel = null;
+
+        private int _value = 0;
 
 
         #region MONO
@@ -26,20 +30,24 @@ namespace Interface.EndGame
 
         private void OnEnable()
         {
-            Character_Movement.OnLoseRunOutTime.AddListener(ActivatingLoseLevelPanel);
             Character_Movement.OnWinLevel.AddListener(() => _winGamePanel.gameObject.SetActive(true));
+            Character_Movement.OnLoseLevel.AddListener(() => ActivatingLoseLevelPanel());
+
+            CoinsDisplay.OnGetCoin.AddListener(GetCoin);
         }
 
         #endregion
 
-        private void ActivatingLoseLevelPanel(int endValue, int startValue)
+        private void GetCoin(int value)
         {
-            int value = (int)(endValue - startValue) / 10;
-
             _value = value;
+        }
 
+
+        private void ActivatingLoseLevelPanel()
+        {
             _loseGamePanel.gameObject.SetActive(true);
-
+            
             OnLoseLevel?.Invoke(_value);
         }
     }
