@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dba28b4cca9e4147a63b32050fc2e03, type: 3}
   m_Name: Character Level 1
   m_EditorClassIdentifier: 
-  _movementSpeed: 50
-  _minMovementTimer: 8
   _destroyEffect: {fileID: 19817582, guid: ce451fdc4bbd26b469c9c189bee0a37e, type: 3}
-  _multiplicationFactorSecMovementTimer: 1
+  _movementSpeed: 50
+  multiplicationFactorSecTime: 1.2
+  _movementTimer: 11.52
   _slowerMovementTimer: 5
   _multiplicationFactorMaxCarForce: 0.5
-  _multiplicationFactorGaz: 1
+  _maxCarForce: 1
+  _multiplicationFactorCoin: 1
+  _multiplicationCoin: 1

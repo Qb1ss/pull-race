@@ -372,7 +372,7 @@ GameObject:
   - component: {fileID: 2572042376130593814}
   m_Layer: 0
   m_Name: Enemy Car Ferrari Red
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -386,7 +386,7 @@ Transform:
   m_GameObject: {fileID: 7874257298764398618}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
+  m_LocalScale: {x: 1.55, y: 1.55, z: 1.55}
   m_Children:
   - {fileID: 2899279696968004430}
   - {fileID: 3108573591206430136}

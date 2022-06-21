@@ -1,5 +1,4 @@
 using UnityEngine;
-using Interface.Upgrades;
 
 namespace Configs
 {
@@ -18,42 +17,55 @@ namespace Configs
 
         #endregion
 
+        #region Inspector
+
         [Header("Character Parameters")]
-        [SerializeField] private float _movementSpeed;
-        [SerializeField] private float _minMovementTimer = 10f;
+        [Tooltip("Эффект взрыва")]
+        [SerializeField] private ParticleSystem _destroyEffect = null;
+        
+        [Header("Speed Parameters")]
+        [Tooltip("Скорость передвижения")]
+        [SerializeField] private float _movementSpeed = 50f;
+
+        [Header("Time (Gaz) Parameters")]
+        [Tooltip("Множитель основного времени движения\n во сколько")]
+        [SerializeField] private float multiplicationFactorSecTime = 1.2f;
+
+        [Tooltip("Время обычного движения")]
+        [SerializeField] private float _movementTimer = 8f;
         [Space(height: 5f)]
 
-        [SerializeField] private ParticleSystem _destroyEffect;
-        [Space(height: 5f)]
+        [Tooltip("Время замедленного движения")]
+        [SerializeField] private float _slowerMovementTimer = 5f;
 
-        [SerializeField] private float _multiplicationFactorSecMovementTimer = 2f;
-        [SerializeField] private float _slowerMovementTimer;
-        private float _constMovementTimer;
-        [Space(height: 5f)]
-
-        private float _forceTensionSlingshot = 1;
-        [Space(height: 5f)]
-
+        [Header("Force Parameters")]
+        [Tooltip("Множитель здоровья автомобиля\n на сколько")]
         [SerializeField] private float _multiplicationFactorMaxCarForce = 0.5f;
-        private float _maxCarForce = 1;
-        [Space(height: 5f)]
 
+        [Tooltip("Здоровье автомобиля")]
+        [SerializeField] private float _maxCarForce = 1f;
+
+        [Header("Coin Parameters")]
+        [Tooltip("Множитель монет\n на сколько")]
         [SerializeField] private float _multiplicationFactorCoin = 1f;
-        private float _multiplicationCoin = 1f;
-        [Space(height: 5f)]
 
-        [SerializeField] private float _multiplicationFactorGaz = 1f;
-        private float _multiplicationGaz = 1f;
+        [Tooltip("Множитель монет")]
+        [SerializeField] private float _multiplicationCoin = 1f;
+
+        #endregion
 
         #region Public Fields
 
+        public ParticleSystem DestroyEffect => _destroyEffect;
+
         public float MovementSpeed => _movementSpeed;
-        public float ConstMovementTimer => _constMovementTimer;
+
+        public float MovementTimer => _movementTimer;
         public float SlowerMovementTimer => _slowerMovementTimer;
-        public float ForceTensionSlingshot => _forceTensionSlingshot;
+
         public float MaxCarForce => _maxCarForce;
 
-        public ParticleSystem DestroyEffect => _destroyEffect;
+        public float MultiplicationCoin => _multiplicationCoin;
 
         #endregion
 
@@ -64,7 +76,7 @@ namespace Configs
         {
             StartUpdateParameters();
 
-            UpgradeButton.OnUpgradeParameter.AddListener(OnUpgradeParameter);
+            Interface.Upgrades.UpgradeButton.OnUpgradeParameter.AddListener(OnUpgradeParameter);
         }
 
         #endregion
@@ -73,7 +85,7 @@ namespace Configs
 
         private void StartUpdateParameters()
         {
-            _constMovementTimer = PlayerPrefs.GetFloat(GAZ_PLAYER_PREFS, DEFAULT_GAZ_VALUE);
+            _movementTimer = PlayerPrefs.GetFloat(GAZ_PLAYER_PREFS, DEFAULT_GAZ_VALUE);
             _maxCarForce = PlayerPrefs.GetFloat(FORCE_PLAYER_PREFS, DEFAULT_FORCE_VALUE);
             _multiplicationCoin = PlayerPrefs.GetFloat(COINS_PLAYER_PREFS, DEFAULT_COIN_VALUE);
         }
@@ -83,8 +95,8 @@ namespace Configs
         {
             if(upgrades == TypeUpgrades.Gaz)
             {
-                _constMovementTimer = _constMovementTimer + _multiplicationFactorGaz;
-                PlayerPrefs.SetFloat(GAZ_PLAYER_PREFS, _forceTensionSlingshot);
+                _movementTimer = _movementTimer * multiplicationFactorSecTime;
+                PlayerPrefs.SetFloat(GAZ_PLAYER_PREFS, _movementTimer);
             }
             else if (upgrades == TypeUpgrades.Force)
             {

@@ -1,5 +1,7 @@
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
+using Configs;
 using Character;
 using WalletData;
 using Interface.EndGame;
@@ -8,13 +10,34 @@ namespace Interface
 {
     public class CoinsDisplay : MonoBehaviour
     {
-        private Wallet _wallet;
+        #region EVENTS
 
-        private TextMeshProUGUI _coinsDisplay;
+        public static UnityEvent<int> OnGetCoin = new UnityEvent<int>();
+
+        #endregion
+
+        #region CONSTS
+
+        private const int DIVISION_COIN = 10;
+
+        #endregion
+
+        [SerializeField] private CharacterParametersConfig _parameters = null;
+
+        private Wallet _wallet = null;
+
+        private TextMeshProUGUI _coinsDisplay = null;
 
         private int _coins = 0; 
-        private int _coinValue = 0; 
-        private int _coinDivision = 10;
+        private int _coinValue = 0;
+
+        private bool _isStopedGame = false;
+
+        #region Private Fields
+
+        private int _multiplicationCoin => (int)_parameters.MultiplicationCoin;
+
+        #endregion
 
 
         #region MONO
@@ -35,15 +58,17 @@ namespace Interface
 
         private void OnEnable()
         {
-            WinGamePanel.OnGetCoins.AddListener(UpdateCoins); 
-            Character_Movement.OnRunOutTime.AddListener(RunOutTime);
+            Character_Movement.OnWinRunOutTime.AddListener(WinRunOutTime);
             Character_Movement.OnLoseRunOutTime.AddListener(LoseRunOutTime);
+            
+            WinGamePanel.OnGetCoins.AddListener(UpdateCoins);
+
             Wallet.OnUpdateDisplay.AddListener(UpdateCoinsDisplay);
         }
 
         #endregion
 
-        #region PrivateMethods
+        #region Private Methods
 
         private void UpdateStartCoinsDisplay()
         {
@@ -53,15 +78,22 @@ namespace Interface
         }
 
 
-        private void RunOutTime(int startValue, int endValue)
+        private void WinRunOutTime(int startValue, int endValue)
         {
-            _coinValue = (int)(endValue - startValue) / _coinDivision;
+            _coinValue = (int)(endValue - startValue) / DIVISION_COIN * _multiplicationCoin;
         }
 
 
         private void LoseRunOutTime(int startValue, int endValue)
         {
-            int value = (int)(endValue - startValue) / _coinDivision;
+            if (_isStopedGame == true) 
+                return;
+            else 
+                _isStopedGame = true;
+
+            int value = (int)(endValue - startValue) / DIVISION_COIN * _multiplicationCoin;
+
+            OnGetCoin?.Invoke(value);
 
             _wallet.Increase(Currency.Coin, value);
             UpdateCoinsDisplay(Currency.Coin, value);
@@ -70,6 +102,11 @@ namespace Interface
 
         private void UpdateCoins(int value)
         {
+            if (_isStopedGame == true) 
+                return;
+            else 
+                _isStopedGame = true;
+
             value = _coinValue;
 
             _wallet.Increase(Currency.Coin, value);

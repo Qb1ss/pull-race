@@ -13,22 +13,19 @@ namespace Interface.EndGame
         [SerializeField] private float _timeAnimation = 1f;
 
         [Header("Compenents")]
-        [SerializeField] private Button _restartLevelButton;
+        [SerializeField] private Button _restartLevelButton = null;
         [Space(height: 5f)]
 
-        [SerializeField] private TextMeshProUGUI _headerText;
-        [SerializeField] private TextMeshProUGUI _buttonRestartLevelText;
+        [SerializeField] private TextMeshProUGUI _headerText = null;
+        [SerializeField] private TextMeshProUGUI _buttonRestartLevelText = null;
         [Space(height: 5f)]
 
-        private int _coins = 0;
-        private int _coinDivision = 10;
+        private Image _loseGamePanel = null;
 
-        private Image _loseGamePanel;
-
-        private SceneTrancition _sceneTrancition;
+        private SceneTrancition _sceneTrancition = null;
 
         [Header("Coin Animation")]
-        [SerializeField] private RectTransform _coinRectTransform;
+        [SerializeField] private RectTransform _coinRectTransform = null;
         [Space(height: 5f)]
 
         [SerializeField] private float _timePlayingAnimation = 2f;
@@ -61,7 +58,7 @@ namespace Interface.EndGame
 
         private void UpdateCoins(int value)
         {
-            _headerText.text = $"You Get {-value}!";
+            _headerText.text = $"You Get {value}!";
 
             StartingAnimation();
         }

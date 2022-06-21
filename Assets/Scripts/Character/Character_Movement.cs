@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using Configs;
 using Obstructions;
 using Interface.Upgrades;
+using MoreMountains.NiceVibrations;
 
 namespace Character
 {
@@ -11,7 +12,7 @@ namespace Character
     {
         #region EVENTS
 
-        public static UnityEvent<int, int> OnRunOutTime = new UnityEvent<int, int>();
+        public static UnityEvent<int, int> OnWinRunOutTime = new UnityEvent<int, int>();
         public static UnityEvent<int, int> OnLoseRunOutTime = new UnityEvent<int, int>();
         public static UnityEvent<float> OnStartedGame = new UnityEvent<float>();
 
@@ -34,32 +35,31 @@ namespace Character
         #endregion
 
         [Header("Parameters")]
-        [SerializeField] private CharacterParametersConfig _parameters;
-        private Transform _targetPosition;
+        [SerializeField] private CharacterParametersConfig _parameters = null;
+        [SerializeField] private HapticTypes _hapticTypes = HapticTypes.HeavyImpact;
+        private Transform _targetPosition = null;
 
         [HideInInspector] public float MovingSpeed;
 
-        private float _constMovingTime;
-        private float _constMovementTime;
-        private float _forceTensionSlingshot;
-        private float _slowerMovingTime;
-        private float _subtractinSpeedFromTime;
-        private float _maxCarForce;
-        private float _carForce;
-        private float _xPosition;
+        private float _constMovingTime = 8f;
+        private float _movementTime = 8f;
+        private float _slowerMovingTime = 3f;
+        private float _subtractinSpeedFromTime = 0.2f;
+        private float _maxCarForce = 1f;
+        private float _carForce = 1f;
+        private float _xPosition = 0f;
 
-        private int _startZPosition;
+        private int _startZPosition = 0;
 
         private bool _isActiveGame = false;
 
-        private Transform _transform;
-        private Rigidbody _rigidbody;
-        private Camera _camera;
+        private Transform _transform = null;
+        private Rigidbody _rigidbody = null;
+        private Camera _camera = null;
 
         #region Private Fields
 
         private float _movementSpeed => _parameters.MovementSpeed;
-        private float _slowerMovementTime => _parameters.SlowerMovementTimer;
 
         private ParticleSystem _destroyEffect => _parameters.DestroyEffect;
 
@@ -109,12 +109,10 @@ namespace Character
 
         private void UpdateParameters()
         {
-            _constMovementTime = _parameters.ConstMovementTimer;
-            _constMovingTime = _constMovementTime;
-            _forceTensionSlingshot = _parameters.ForceTensionSlingshot;
+            _movementTime = _parameters.MovementTimer;
+            _constMovingTime = _movementTime;
 
-            _constMovingTime = _constMovementTime;
-            _slowerMovingTime = _constMovementTime / 10;
+            _slowerMovingTime = _movementTime / 10;
             _maxCarForce = _parameters.MaxCarForce;
             _carForce = _maxCarForce;
         }
@@ -129,7 +127,7 @@ namespace Character
 
             UpdateParameters();
 
-            OnStartedGame?.Invoke(_constMovementTime);
+            OnStartedGame?.Invoke(_movementTime);
         }
 
 
@@ -203,8 +201,6 @@ namespace Character
                 ParticleSystem effect = Instantiate(_destroyEffect, _transform.position, Quaternion.identity);
                 Destroy(effect, 1f);
 
-                Handheld.Vibrate();
-
                 EndGame();
             }
             else
@@ -222,6 +218,8 @@ namespace Character
 
             OnLoseRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
             OnLoseLevel?.Invoke();
+
+            MMVibrationManager.Haptic(_hapticTypes, false, true, this);
         }
 
 
@@ -229,7 +227,7 @@ namespace Character
         {
             _isActiveGame = false;
 
-            OnRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
+            OnWinRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
             OnWinLevel?.Invoke();
         }
 
@@ -240,11 +238,6 @@ namespace Character
             if (collision.gameObject.TryGetComponent<Obstruction>(out Obstruction obstruction))
             {
                 CrashInObject(obstruction);
-            }
-
-            if (collision.gameObject.CompareTag(TAG_RESPAWN))
-            {
-                EndGame();
             }
         }
 
