@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using Configs;
 using Character;
 using WalletData;
 using Interface.EndGame;
@@ -8,13 +9,26 @@ namespace Interface
 {
     public class CoinsDisplay : MonoBehaviour
     {
+        #region CONSTS
+
+        private const int DIVISION_COIN = 10;
+
+        #endregion
+
+        [SerializeField] private CharacterParametersConfig _parameters = null;
+
         private Wallet _wallet;
 
         private TextMeshProUGUI _coinsDisplay;
 
         private int _coins = 0; 
-        private int _coinValue = 0; 
-        private int _coinDivision = 10;
+        private int _coinValue = 0;
+
+        #region Private Fields
+
+        private int _multiplicationCoin => (int)_parameters.MultiplicationCoin;
+
+        #endregion
 
 
         #region MONO
@@ -36,7 +50,7 @@ namespace Interface
         private void OnEnable()
         {
             WinGamePanel.OnGetCoins.AddListener(UpdateCoins); 
-            Character_Movement.OnRunOutTime.AddListener(RunOutTime);
+            Character_Movement.OnWinRunOutTime.AddListener(RunOutTime);
             Character_Movement.OnLoseRunOutTime.AddListener(LoseRunOutTime);
             Wallet.OnUpdateDisplay.AddListener(UpdateCoinsDisplay);
         }
@@ -55,13 +69,13 @@ namespace Interface
 
         private void RunOutTime(int startValue, int endValue)
         {
-            _coinValue = (int)(endValue - startValue) / _coinDivision;
+            _coinValue = (int)(endValue - startValue) / DIVISION_COIN * _multiplicationCoin;
         }
 
 
         private void LoseRunOutTime(int startValue, int endValue)
         {
-            int value = (int)(endValue - startValue) / _coinDivision;
+            int value = (int)(endValue - startValue) / DIVISION_COIN * _multiplicationCoin;
 
             _wallet.Increase(Currency.Coin, value);
             UpdateCoinsDisplay(Currency.Coin, value);
