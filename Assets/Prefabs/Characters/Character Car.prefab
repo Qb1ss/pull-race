@@ -92,7 +92,6 @@ GameObject:
   - component: {fileID: 1602927579720329022}
   - component: {fileID: 218008851055703372}
   - component: {fileID: 7726241934984833927}
-  - component: {fileID: 4010962918265315324}
   m_Layer: 3
   m_Name: FrontRightWheel
   m_TagString: Untagged
@@ -163,19 +162,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4010962918265315324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1221772066836853643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdd7a00c441090845b4992495cf1a48d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _character: {fileID: 2503095562529922154}
 --- !u!1 &2294656912092679036
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +205,6 @@ GameObject:
   - component: {fileID: 1977760358688571649}
   - component: {fileID: 1744569179543805236}
   - component: {fileID: 9146084354693161217}
-  - component: {fileID: 9079671178617540823}
   m_Layer: 3
   m_Name: RearRightWheel
   m_TagString: Untagged
@@ -290,19 +275,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &9079671178617540823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2512618245930667354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdd7a00c441090845b4992495cf1a48d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _character: {fileID: 2503095562529922154}
 --- !u!1 &3671403455644733447
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,7 +436,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parameters: {fileID: 11400000, guid: 0154b1a375bef2b459eee6759c2ba7ca, type: 2}
-  _joystick: {fileID: 0}
   MovingSpeed: 0
 --- !u!1 &5047913732088622668
 GameObject:
@@ -477,7 +448,6 @@ GameObject:
   - component: {fileID: 3440107154725191950}
   - component: {fileID: 327072879134201347}
   - component: {fileID: 2355527933096528699}
-  - component: {fileID: 7686950797554991618}
   m_Layer: 3
   m_Name: FrontLeftWheel
   m_TagString: Untagged
@@ -548,19 +518,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7686950797554991618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5047913732088622668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdd7a00c441090845b4992495cf1a48d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _character: {fileID: 0}
 --- !u!1 &5366275406922367150
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,7 +560,6 @@ GameObject:
   - component: {fileID: 7247219469130477090}
   - component: {fileID: 4062337352591075139}
   - component: {fileID: 938160096618024349}
-  - component: {fileID: 9095017671635585091}
   m_Layer: 3
   m_Name: RearLeftWheel
   m_TagString: Untagged
@@ -674,19 +630,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &9095017671635585091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7498939430663839323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdd7a00c441090845b4992495cf1a48d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _character: {fileID: 2503095562529922154}
 --- !u!1 &7642259498315373554
 GameObject:
   m_ObjectHideFlags: 0

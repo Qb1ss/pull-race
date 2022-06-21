@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using Configs;
 using Obstructions;
 using Interface.Upgrades;
+using MoreMountains.NiceVibrations;
 
 namespace Character
 {
@@ -35,13 +36,13 @@ namespace Character
 
         [Header("Parameters")]
         [SerializeField] private CharacterParametersConfig _parameters;
+        [SerializeField] private HapticTypes _hapticTypes = HapticTypes.HeavyImpact;
         private Transform _targetPosition;
 
         [HideInInspector] public float MovingSpeed;
 
         private float _constMovingTime;
-        private float _constMovementTime;
-        private float _forceTensionSlingshot;
+        private float _movementTime;
         private float _slowerMovingTime;
         private float _subtractinSpeedFromTime;
         private float _maxCarForce;
@@ -109,12 +110,11 @@ namespace Character
 
         private void UpdateParameters()
         {
-            _constMovementTime = _parameters.ConstMovementTimer;
-            _constMovingTime = _constMovementTime;
-            _forceTensionSlingshot = _parameters.ForceTensionSlingshot;
+            _movementTime = _parameters.MovementTimer;
+            _constMovingTime = _movementTime;
 
-            _constMovingTime = _constMovementTime;
-            _slowerMovingTime = _constMovementTime / 10;
+            _constMovingTime = _movementTime;
+            _slowerMovingTime = _movementTime / 10;
             _maxCarForce = _parameters.MaxCarForce;
             _carForce = _maxCarForce;
         }
@@ -129,7 +129,7 @@ namespace Character
 
             UpdateParameters();
 
-            OnStartedGame?.Invoke(_constMovementTime);
+            OnStartedGame?.Invoke(_movementTime);
         }
 
 
@@ -203,8 +203,6 @@ namespace Character
                 ParticleSystem effect = Instantiate(_destroyEffect, _transform.position, Quaternion.identity);
                 Destroy(effect, 1f);
 
-                Handheld.Vibrate();
-
                 EndGame();
             }
             else
@@ -219,6 +217,8 @@ namespace Character
         private void EndGame()
         {
             _isActiveGame = false;
+
+            MMVibrationManager.Haptic(_hapticTypes, false, true, this);
 
             OnLoseRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
             OnLoseLevel?.Invoke();
