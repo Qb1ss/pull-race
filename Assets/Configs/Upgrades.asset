@@ -16,11 +16,11 @@ MonoBehaviour:
   _yPosition: 200
   _multiplicationFactorPrice: 1.2
   _iconUpgrades:
-  - {fileID: 21300000, guid: dde6412d335d4974d83cc42b03ce7d3d, type: 3}
-  - {fileID: 21300000, guid: e948b78cc376a394b893d97c3b08fad3, type: 3}
-  - {fileID: 21300000, guid: 16246f94a1ae5b14ab56b6b421c30748, type: 3}
+  - {fileID: 21300000, guid: d342e7f358cbab74ba170cdd4164ce5b, type: 3}
+  - {fileID: 21300000, guid: a54670832349afd4bb741000cc54cc78, type: 3}
+  - {fileID: 21300000, guid: b410abab01462854692cea7e03b2e86b, type: 3}
   NamesButton:
   - Gaz
-  - Force
-  - Multy Coins
+  - Health
+  - Multi Coins
   StartPricesButton: 0a0000006400000014000000

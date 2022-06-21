@@ -15,12 +15,12 @@ namespace Interface.Upgrades
 
         #endregion
 
-        [SerializeField] private UpgradesConfigs _parameters;
+        [SerializeField] private UpgradesConfigs _parameters = null;
 
         [Header("Panels")]
-        [SerializeField] private RectTransform _upgradeSlingshotPanel;
-        [SerializeField] private RectTransform _upgradeForceCarPanel;
-        [SerializeField] private RectTransform _upgradeTimeMovingCarPanel;
+        [SerializeField] private RectTransform _upgradeSlingshotPanel = null;
+        [SerializeField] private RectTransform _upgradeForceCarPanel = null;
+        [SerializeField] private RectTransform _upgradeTimeMovingCarPanel = null;
 
         #region Private Fields
 
