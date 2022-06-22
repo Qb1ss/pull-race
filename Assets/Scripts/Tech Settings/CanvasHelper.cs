@@ -20,7 +20,7 @@ namespace TechSettings
 
         #endregion
 
-        private static ScreenOrientation _lastOrientation = ScreenOrientation.Landscape;
+        private static ScreenOrientation _lastOrientation = ScreenOrientation.LandscapeLeft;
 
         private static bool _screenChangeVarsInitialized = false;
 

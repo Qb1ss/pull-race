@@ -12,7 +12,7 @@ namespace Character
     {
         #region EVENTS
 
-        public static UnityEvent<int, int> OnWinRunOutTime = new UnityEvent<int, int>();
+        public static UnityEvent<int, int> OnRunOutTime = new UnityEvent<int, int>();
         public static UnityEvent<int, int> OnLoseRunOutTime = new UnityEvent<int, int>();
         public static UnityEvent<float> OnStartedGame = new UnityEvent<float>();
 
@@ -24,42 +24,41 @@ namespace Character
 
         #region CONSTS
 
-        private const float FORCE_ROTATE = 30f;
+        private const float FORCE_ROTATE = 25f;
         private const float DAMAGE = 1f;
         private const float X_POSITION = 8.45f;
 
         private const string TAG_FINISH = "Finish";
         private const string TAG_RESPAWN = "Respawn";
-        private const string TAG_GAME_CONRTOLLER = "GameController";
 
         #endregion
 
         [Header("Parameters")]
-        [SerializeField] private CharacterParametersConfig _parameters = null;
+        [SerializeField] private CharacterParametersConfig _parameters;
+        [SerializeField] private Joystick _joystick;
         [SerializeField] private HapticTypes _hapticTypes = HapticTypes.HeavyImpact;
-        private Transform _targetPosition = null;
 
         [HideInInspector] public float MovingSpeed;
 
-        private float _constMovingTime = 8f;
-        private float _movementTime = 8f;
-        private float _slowerMovingTime = 3f;
-        private float _subtractinSpeedFromTime = 0.2f;
-        private float _maxCarForce = 1f;
-        private float _carForce = 1f;
-        private float _xPosition = 0f;
+        private float _constMovingTime;
+        private float _constMovementTime;
+        private float _forceTensionSlingshot;
+        private float _slowerMovingTime;
+        private float _subtractinSpeedFromTime;
+        private float _maxCarForce;
+        private float _carForce;
 
-        private int _startZPosition = 0;
+        private int _startZPosition;
 
         private bool _isActiveGame = false;
 
-        private Transform _transform = null;
-        private Rigidbody _rigidbody = null;
-        private Camera _camera = null;
+        private Transform _transform;
+        private Rigidbody _rigidbody;
 
         #region Private Fields
 
         private float _movementSpeed => _parameters.MovementSpeed;
+        private float _slowerMovementTime => _parameters.SlowerMovementTimer;
 
         private ParticleSystem _destroyEffect => _parameters.DestroyEffect;
 
@@ -72,10 +71,6 @@ namespace Character
         {
             _transform = GetComponent<Transform>();
             _rigidbody = GetComponent<Rigidbody>();
-
-            _camera = Camera.main;
-
-            _targetPosition = GameObject.FindGameObjectWithTag(TAG_GAME_CONRTOLLER).GetComponent<Transform>();
         }
 
 
@@ -109,10 +104,12 @@ namespace Character
 
         private void UpdateParameters()
         {
-            _movementTime = _parameters.MovementTimer;
-            _constMovingTime = _movementTime;
+            _constMovementTime = _parameters.ConstMovementTimer;
+            _constMovingTime = _constMovementTime;
+            _forceTensionSlingshot = _parameters.ForceTensionSlingshot;
 
-            _slowerMovingTime = _movementTime / 10;
+            _constMovingTime = _constMovementTime;
+            _slowerMovingTime = _constMovementTime / 10;
             _maxCarForce = _parameters.MaxCarForce;
             _carForce = _maxCarForce;
         }
@@ -127,13 +124,37 @@ namespace Character
 
             UpdateParameters();
 
-            OnStartedGame?.Invoke(_movementTime);
+            OnStartedGame?.Invoke(_constMovementTime);
         }
 
 
         private void Movement()
         {
+            float direction = _joystick.Horizontal;
             float divTime = 1;
+
+            #region Location Border
+
+            if (_transform.position.x >= X_POSITION || _transform.position.x <= -X_POSITION)
+            {
+                direction = 0;
+
+                if(_joystick.Horizontal < 0 && _transform.position.x >= X_POSITION)
+                {
+                    direction = _joystick.Horizontal;
+                }
+                else if (_joystick.Horizontal > 0 && _transform.position.x <= -X_POSITION)
+                {
+                    direction = _joystick.Horizontal;
+                }
+
+                _transform.localRotation = Quaternion.Euler(0f, direction * FORCE_ROTATE, 0f);
+                _transform.position += new Vector3(direction * divTime, 0f, MovingSpeed * Time.deltaTime);
+
+                return;
+            }
+
+            #endregion
 
             #region Timer
 
@@ -163,32 +184,8 @@ namespace Character
                 return;
             }
 
-            #region Control
-
-            Ray ray = _camera.ScreenPointToRay(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                _xPosition = hit.point.x;
-
-                if (hit.point.x <= -X_POSITION)
-                {
-                    _xPosition = -X_POSITION;
-                }
-                else if (hit.point.x >= X_POSITION)
-                {
-                    _xPosition = X_POSITION;
-                }
-            }
-
-            _targetPosition.position = new Vector3(_xPosition * divTime, _targetPosition.position.y, _targetPosition.position.z);
-            _targetPosition.position += Vector3.forward * MovingSpeed * Time.deltaTime;
-
-            #endregion
-
-            _transform.LookAt(_targetPosition);
-            _transform.Translate(0f, 0f, MovingSpeed * Time.deltaTime);
+            _transform.localRotation = Quaternion.Euler(0f, direction * FORCE_ROTATE, 0f);
+            _transform.position += new Vector3(direction * divTime, 0f, MovingSpeed * Time.deltaTime);
         }
 
 
@@ -200,6 +197,8 @@ namespace Character
             {
                 ParticleSystem effect = Instantiate(_destroyEffect, _transform.position, Quaternion.identity);
                 Destroy(effect, 1f);
+
+                MMVibrationManager.Haptic(_hapticTypes, false, true, this);
 
                 EndGame();
             }
@@ -218,8 +217,6 @@ namespace Character
 
             OnLoseRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
             OnLoseLevel?.Invoke();
-
-            MMVibrationManager.Haptic(_hapticTypes, false, true, this);
         }
 
 
@@ -227,7 +224,7 @@ namespace Character
         {
             _isActiveGame = false;
 
-            OnWinRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
+            OnRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
             OnWinLevel?.Invoke();
         }
 
@@ -238,6 +235,11 @@ namespace Character
             if (collision.gameObject.TryGetComponent<Obstruction>(out Obstruction obstruction))
             {
                 CrashInObject(obstruction);
+            }
+
+            if (collision.gameObject.CompareTag(TAG_RESPAWN))
+            {
+                EndGame();
             }
         }
 
