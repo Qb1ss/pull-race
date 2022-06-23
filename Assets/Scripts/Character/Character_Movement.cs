@@ -12,7 +12,7 @@ namespace Character
     {
         #region EVENTS
 
-        public static UnityEvent<int, int> OnRunOutTime = new UnityEvent<int, int>();
+        public static UnityEvent<int, int> OnWinRunOutTime = new UnityEvent<int, int>();
         public static UnityEvent<int, int> OnLoseRunOutTime = new UnityEvent<int, int>();
         public static UnityEvent<float> OnStartedGame = new UnityEvent<float>();
 
@@ -42,7 +42,6 @@ namespace Character
 
         private float _constMovingTime;
         private float _constMovementTime;
-        private float _forceTensionSlingshot;
         private float _slowerMovingTime;
         private float _subtractinSpeedFromTime;
         private float _maxCarForce;
@@ -104,9 +103,8 @@ namespace Character
 
         private void UpdateParameters()
         {
-            _constMovementTime = _parameters.ConstMovementTimer;
+            _constMovementTime = _parameters.MovementTimer;
             _constMovingTime = _constMovementTime;
-            _forceTensionSlingshot = _parameters.ForceTensionSlingshot;
 
             _constMovingTime = _constMovementTime;
             _slowerMovingTime = _constMovementTime / 10;
@@ -224,7 +222,7 @@ namespace Character
         {
             _isActiveGame = false;
 
-            OnRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
+            OnWinRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
             OnWinLevel?.Invoke();
         }
 
