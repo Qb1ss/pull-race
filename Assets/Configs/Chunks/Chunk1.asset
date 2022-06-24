@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Chunk1
   m_EditorClassIdentifier: 
   _xSpawnerPosition: 6
-  _obstructionsPrefabs:
+  _blockPrefabs:
+  - {fileID: 5828045746418677496, guid: 31da00a684cc6e646a92a297c934abec, type: 3}
   - {fileID: -6339067318644717140, guid: 56fbbbd8e46201b4f833a4ac2eda48d6, type: 3}
   - {fileID: 1651213424211147182, guid: 0277f4ad14de8324aa3186aadafd082e, type: 3}
-  - {fileID: 2572042376130593814, guid: 802501a67101daf4fb0290a89e366d8b, type: 3}
+  - {fileID: 1581346721192250748, guid: f463e091638850d49be9b7fe970a5df1, type: 3}
+  _carPrefabs:
   - {fileID: 4853807086536006820, guid: ec885e4d4f3c52c4385d959e2172f12b, type: 3}
-  - {fileID: 6664177840045996993, guid: eae2b838ce8ab7941b5fdc7eb9c9c6a6, type: 3}
   - {fileID: 541482465734075379, guid: b0dd73fa1d56404419f4d95376d1c213, type: 3}

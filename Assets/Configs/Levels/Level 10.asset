@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _chunkPrefab:
   - {fileID: 8426717075529223074, guid: c78939dd28aa9fe448d7d03f2b0b4460, type: 3}
-  - {fileID: 7674870088569003678, guid: f02408d2e7c8d6d4bbd4d7658466962d, type: 3}
   - {fileID: 8426717075529223074, guid: c78939dd28aa9fe448d7d03f2b0b4460, type: 3}
+  - {fileID: 7674870088569003678, guid: f02408d2e7c8d6d4bbd4d7658466962d, type: 3}
   - {fileID: 5025781278766608652, guid: 7eeee6e95f11c494ea8985ed0b84360a, type: 3}
   - {fileID: 8426717075529223074, guid: c78939dd28aa9fe448d7d03f2b0b4460, type: 3}
   - {fileID: 8426717075529223074, guid: c78939dd28aa9fe448d7d03f2b0b4460, type: 3}

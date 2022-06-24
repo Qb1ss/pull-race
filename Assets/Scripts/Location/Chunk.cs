@@ -31,12 +31,13 @@ namespace Location
         [SerializeField] private TypePosition _typePosition;
         [Space(height: 5f)]
  
-
         private float _xPosition = 0f;
 
         #region Private Methods
 
-        private Obstruction[] _obstructions => _parameters.ObstructionsPrefabs;
+        private Obstruction[] _obstructionBlocks => _parameters.ObstructionsBlockPrefabs;
+        private Obstruction[] _obstructionCar => _parameters.ObstructionsCarPrefabs;
+
         private float _xSpawnerPosition => _parameters.XSpawnerPosition;
 
         #endregion
@@ -50,11 +51,11 @@ namespace Location
 
             if (_obstructionTypes == ObstructionTypes.Block)
             {
-                obstruction = Instantiate(_obstructions[Random.Range(0, NUMBER_WALL)]);
+                obstruction = Instantiate(_obstructionBlocks[Random.Range(0, _obstructionBlocks.Length)]);
             }
             else if (_obstructionTypes == ObstructionTypes.Car)
             {
-                obstruction = Instantiate(_obstructions[Random.Range(NUMBER_WALL, _obstructions.Length)]);
+                obstruction = Instantiate(_obstructionCar[Random.Range(0, _obstructionCar.Length)]);
             }
             else if (_obstructionTypes == ObstructionTypes.Non)
             {
