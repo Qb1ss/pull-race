@@ -36,7 +36,8 @@ namespace Location
 
         #region Private Methods
 
-        private Obstruction[] _obstructions => _parameters.ObstructionsPrefabs;
+        private Obstruction[] _blockObstructions => _parameters.ObstructionsBlockPrefabs;
+        private Obstruction[] _carObstructions => _parameters.ObstructionsCarPrefabs;
         private float _xSpawnerPosition => _parameters.XSpawnerPosition;
 
         #endregion
@@ -50,11 +51,11 @@ namespace Location
 
             if (_obstructionTypes == ObstructionTypes.Block)
             {
-                obstruction = Instantiate(_obstructions[Random.Range(0, NUMBER_WALL)]);
+                obstruction = Instantiate(_blockObstructions[Random.Range(0, _blockObstructions.Length)]);
             }
             else if (_obstructionTypes == ObstructionTypes.Car)
             {
-                obstruction = Instantiate(_obstructions[Random.Range(NUMBER_WALL, _obstructions.Length)]);
+                obstruction = Instantiate(_carObstructions[Random.Range(0, _carObstructions.Length)]);
             }
             else if (_obstructionTypes == ObstructionTypes.Non)
             {
