@@ -26,7 +26,7 @@ namespace Interface
 
         private Wallet _wallet = null;
 
-        private TextMeshProUGUI _coinsDisplay = null;
+        [SerializeField] private TextMeshProUGUI _coinsDisplay = null;
 
         private int _coins = 0; 
         private int _coinValue = 0;
@@ -41,11 +41,6 @@ namespace Interface
 
 
         #region MONO
-
-        private void Awake()
-        {
-            _coinsDisplay = GetComponent<TextMeshProUGUI>();
-        }
 
         private void Start()
         {
@@ -77,7 +72,7 @@ namespace Interface
 
         private void UpdateStartCoinsDisplay()
         {
-            _coins = _wallet.GetCount(Currency.Coin);
+            _coins = _wallet.GetCount();
 
             _coinsDisplay.text = _coins.ToString();
         }
@@ -100,8 +95,8 @@ namespace Interface
 
             OnGetCoin?.Invoke(value);
 
-            _wallet.Increase(Currency.Coin, value);
-            UpdateCoinsDisplay(Currency.Coin, value);
+            _wallet.Increase(value);
+            UpdateCoinsDisplay(value);
         }
 
 
@@ -114,14 +109,14 @@ namespace Interface
 
             value = _coinValue;
 
-            _wallet.Increase(Currency.Coin, value);
-            UpdateCoinsDisplay(Currency.Coin, value);
+            _wallet.Increase(value);
+            UpdateCoinsDisplay(value);
         }
 
 
-        private void UpdateCoinsDisplay(Currency currency, int value)
+        private void UpdateCoinsDisplay(int value)
         {
-            _coins = _wallet.GetCount(Currency.Coin);
+            _coins = _wallet.GetCount();
 
             _coinsDisplay.text = _coins.ToString();
         }

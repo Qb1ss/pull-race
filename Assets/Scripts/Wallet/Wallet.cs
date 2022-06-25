@@ -8,53 +8,53 @@ namespace WalletData
     {
         #region EVENTS
 
-        public static Action<Currency, int> OnCurrencyIncreased;
-        public static Action<Currency, int> OnCurrencyDecreased;
+        public static Action<int> OnCurrencyIncreased;
+        public static Action<int> OnCurrencyDecreased;
 
-        public static UnityEvent<Currency, int> OnUpdateDisplay = new UnityEvent<Currency, int>();
+        public static UnityEvent<int> OnUpdateDisplay = new UnityEvent<int>();
 
         #endregion
 
         #region Public Methods
 
-        public int GetCount(Currency currency)
+        public int GetCount()
         {
-            return PlayerPrefs.GetInt(currency.ToString(), 0);
+            return PlayerPrefs.GetInt("Coins", 0);
         }
 
 
-        public void Increase(Currency currency, int value)
+        public void Increase(int value)
         {
-            ChangeCurrency(currency, value);
+            ChangeCurrency(value);
 
-            OnCurrencyIncreased?.Invoke(currency, value);
+            OnCurrencyIncreased?.Invoke(value);
         }
 
 
-        public void Decrease(Currency currency, int value)
+        public void Decrease(int value)
         {
-            ChangeCurrency(currency, -value);
+            ChangeCurrency(-value);
 
-            OnCurrencyDecreased?.Invoke(currency, value);
+            OnCurrencyDecreased?.Invoke(value);
         }
 
         #endregion
 
         #region Private Methods
 
-        private void ChangeCurrency(Currency currency, int value)
+        private void ChangeCurrency(int value)
         {
-            int current = GetCount(currency);
+            int current = GetCount();
 
-            SetCount(currency, current + value);
+            SetCount(current + value);
         }
 
 
-        private void SetCount(Currency currency, int value)
+        private void SetCount(int value)
         {
-            PlayerPrefs.SetInt(currency.ToString(), value);
+            PlayerPrefs.SetInt("Coins", value);
 
-            OnUpdateDisplay?.Invoke(currency, value);
+            OnUpdateDisplay?.Invoke(value);
         }
 
         #endregion
