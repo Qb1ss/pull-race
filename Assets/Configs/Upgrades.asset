@@ -16,9 +16,15 @@ MonoBehaviour:
   _yPosition: 200
   _multiplicationFactorPrice: 1.2
   _iconUpgrades:
+<<<<<<< HEAD
   - {fileID: 21300000, guid: d342e7f358cbab74ba170cdd4164ce5b, type: 3}
   - {fileID: 21300000, guid: a54670832349afd4bb741000cc54cc78, type: 3}
   - {fileID: 21300000, guid: b410abab01462854692cea7e03b2e86b, type: 3}
+=======
+  - {fileID: 21300000, guid: 76055f550e7ff452f93c4b66049673c8, type: 3}
+  - {fileID: 21300000, guid: 35233483abd554578954c89cda735b43, type: 3}
+  - {fileID: 21300000, guid: bcc911abe7f9445c8874464e48a31577, type: 3}
+>>>>>>> Hypex-Design
   NamesButton:
   - Gaz
   - Health
