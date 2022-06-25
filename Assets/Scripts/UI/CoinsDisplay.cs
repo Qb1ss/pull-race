@@ -47,23 +47,28 @@ namespace Interface
             _coinsDisplay = GetComponent<TextMeshProUGUI>();
         }
 
-
         private void Start()
         {
             _wallet = new Wallet();
 
             UpdateStartCoinsDisplay();
-        }
 
+        }
 
         private void OnEnable()
         {
             Character_Movement.OnWinRunOutTime.AddListener(WinRunOutTime);
             Character_Movement.OnLoseRunOutTime.AddListener(LoseRunOutTime);
-            
+
             WinGamePanel.OnGetCoins.AddListener(UpdateCoins);
 
             Wallet.OnUpdateDisplay.AddListener(UpdateCoinsDisplay);
+        }
+
+        private void OnDisable()
+        {
+            Character_Movement.OnWinRunOutTime.AddListener(WinRunOutTime);
+            Character_Movement.OnLoseRunOutTime.AddListener(LoseRunOutTime);
         }
 
         #endregion
