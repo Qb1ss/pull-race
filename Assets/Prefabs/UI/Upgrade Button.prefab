@@ -557,7 +557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd1a7bc814737040a47d54bde99705a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _parameters: {fileID: 0}
+  _parameters: {fileID: 11400000, guid: 61035d3fbb4eebe4fbeab44e24177aee, type: 2}
   _typeUpgrades: 1
   _effect: {fileID: 9130000290481942449}
   _colorEffect: {r: 1, g: 0.8745099, b: 0.31764707, a: 1}
@@ -796,7 +796,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e948b78cc376a394b893d97c3b08fad3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 98ad6283a73d84e0e88c52390aaf2911, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
