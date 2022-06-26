@@ -3,7 +3,6 @@ using UnityEngine.Events;
 using Configs;
 using Obstructions;
 using Interface.Upgrades;
-using MoreMountains.NiceVibrations;
 
 namespace Character
 {
@@ -35,7 +34,6 @@ namespace Character
 
         [Header("Parameters")]
         [SerializeField] private CharacterParametersConfig _parameters;
-        [SerializeField] private HapticTypes _hapticTypes = HapticTypes.HeavyImpact;
         private Transform _targetPosition;
 
         [HideInInspector] public float MovingSpeed;
@@ -197,12 +195,7 @@ namespace Character
             _carForce -= DAMAGE;
 
             if (_carForce <= 0)
-            {
-                ParticleSystem effect = Instantiate(_destroyEffect, _transform.position, Quaternion.identity);
-                Destroy(effect, 1f);
-
-                MMVibrationManager.Haptic(_hapticTypes, false, true, this);
-
+            {         
                 EndGame();
             }
             else
@@ -218,8 +211,13 @@ namespace Character
         {
             _isActiveGame = false;
 
+            ParticleSystem effect = Instantiate(_destroyEffect, _transform.position, Quaternion.identity);
+            Destroy(effect, 1f);
+
             OnRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
             OnLoseLevel?.Invoke();
+
+            Handheld.Vibrate();
         }
 
 
