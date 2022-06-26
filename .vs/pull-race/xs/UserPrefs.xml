@@ -1,0 +1,14 @@
+﻿<Properties StartupConfiguration="{D7277881-5F85-1904-45C8-747735567FAD}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Packs/NiceVibrations/Common/Scripts/Editor/MMNVBuildPostProcessor.cs">
+    <Files>
+      <File FileName="Assets/Packs/NiceVibrations/Common/Scripts/Editor/MMNVBuildPostProcessor.cs" Line="43" Column="61" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="4fc93478-2089-4a60-b09e-e12fc2b47bb5" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

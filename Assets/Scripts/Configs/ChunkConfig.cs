@@ -10,12 +10,15 @@ namespace Configs
         [SerializeField] private float _xSpawnerPosition = 6.5f;
         [Space(height: 5f)]
 
-        [SerializeField] private Obstruction[] _obstructionsPrefabs;
+        [Header("Obstructions")]
+        [SerializeField] private Obstruction[] _blockPrefabs;
+        [SerializeField] private Obstruction[] _carPrefabs;
 
         #region Private Fields
         public float XSpawnerPosition => _xSpawnerPosition;
 
-        public Obstruction[] ObstructionsPrefabs => _obstructionsPrefabs;
+        public Obstruction[] ObstructionsBlockPrefabs => _blockPrefabs;
+        public Obstruction[] ObstructionsCarPrefabs => _carPrefabs;
 
         #endregion
     }

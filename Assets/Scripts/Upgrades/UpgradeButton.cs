@@ -118,9 +118,9 @@ namespace Interface.Upgrades
 
         private void OnUpgrading()
         {
-            if(_wallet.GetCount(Currency.Coin) >= _upgradePrice)
+            if(_wallet.GetCount() >= _upgradePrice)
             {
-                _wallet.Decrease(Currency.Coin, _upgradePrice);
+                _wallet.Decrease(_upgradePrice);
 
                 OnUpgrade();
             }

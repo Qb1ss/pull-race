@@ -26,7 +26,7 @@ namespace Interface
 
         private Wallet _wallet = null;
 
-        private TextMeshProUGUI _coinsDisplay = null;
+        [SerializeField] private TextMeshProUGUI _coinsDisplay = null;
 
         private int _coins = 0; 
         private int _coinValue = 0;
@@ -42,28 +42,26 @@ namespace Interface
 
         #region MONO
 
-        private void Awake()
-        {
-            _coinsDisplay = GetComponent<TextMeshProUGUI>();
-        }
-
-
         private void Start()
         {
             _wallet = new Wallet();
 
             UpdateStartCoinsDisplay();
-        }
 
+        }
 
         private void OnEnable()
         {
-            Character_Movement.OnWinRunOutTime.AddListener(WinRunOutTime);
-            Character_Movement.OnLoseRunOutTime.AddListener(LoseRunOutTime);
-            
+            Character_Movement.OnRunOutTime.AddListener(RunOutTime);
+
             WinGamePanel.OnGetCoins.AddListener(UpdateCoins);
 
             Wallet.OnUpdateDisplay.AddListener(UpdateCoinsDisplay);
+        }
+
+        private void OnDisable()
+        {
+            Character_Movement.OnRunOutTime.AddListener(RunOutTime);
         }
 
         #endregion
@@ -72,19 +70,13 @@ namespace Interface
 
         private void UpdateStartCoinsDisplay()
         {
-            _coins = _wallet.GetCount(Currency.Coin);
+            _coins = _wallet.GetCount();
 
             _coinsDisplay.text = _coins.ToString();
         }
 
 
-        private void WinRunOutTime(int startValue, int endValue)
-        {
-            _coinValue = (int)(endValue - startValue) / DIVISION_COIN * _multiplicationCoin;
-        }
-
-
-        private void LoseRunOutTime(int startValue, int endValue)
+        private void RunOutTime(int startValue, int endValue)
         {
             if (_isStopedGame == true) 
                 return;
@@ -95,8 +87,8 @@ namespace Interface
 
             OnGetCoin?.Invoke(value);
 
-            _wallet.Increase(Currency.Coin, value);
-            UpdateCoinsDisplay(Currency.Coin, value);
+            _wallet.Increase(value);
+            UpdateCoinsDisplay(value);
         }
 
 
@@ -109,14 +101,14 @@ namespace Interface
 
             value = _coinValue;
 
-            _wallet.Increase(Currency.Coin, value);
-            UpdateCoinsDisplay(Currency.Coin, value);
+            _wallet.Increase(value);
+            UpdateCoinsDisplay(value);
         }
 
 
-        private void UpdateCoinsDisplay(Currency currency, int value)
+        private void UpdateCoinsDisplay(int value)
         {
-            _coins = _wallet.GetCount(Currency.Coin);
+            _coins = _wallet.GetCount();
 
             _coinsDisplay.text = _coins.ToString();
         }

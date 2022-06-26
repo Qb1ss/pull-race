@@ -213,7 +213,6 @@ namespace MoreMountains.NiceVibrations
 				switch (type)
 				{
                     case HapticTypes.None:
-                        // do nothing
                         break;
 					case HapticTypes.Selection:
 						MMNVAndroid.AndroidVibrate (LightDuration, LightAmplitude);
@@ -239,7 +238,8 @@ namespace MoreMountains.NiceVibrations
                         MMNVAndroid.AndroidVibrate (_mediumImpactPattern, _mediumImpactPatternAmplitude, -1);
 						break;
 
-					case HapticTypes.HeavyImpact:
+                    case HapticTypes.HeavyImpact:
+                        Debug.Log("Work");
                         MMNVAndroid.AndroidVibrate (_HeavyImpactPattern, _HeavyImpactPatternAmplitude, -1);
 						break;
                     case HapticTypes.RigidImpact:

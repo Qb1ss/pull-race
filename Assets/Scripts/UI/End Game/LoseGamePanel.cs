@@ -12,17 +12,10 @@ namespace Interface.EndGame
         [Header("Parameters")]
         [SerializeField] private float _timeAnimation = 1f;
 
-        [Header("Compenents")]
+        [Header("Components")]
         [SerializeField] private Button _restartLevelButton = null;
-        [Space(height: 5f)]
-
-        [SerializeField] private TextMeshProUGUI _headerText = null;
-        [SerializeField] private TextMeshProUGUI _buttonRestartLevelText = null;
-        [Space(height: 5f)]
-
-        private Image _loseGamePanel = null;
-
-        private SceneTrancition _sceneTrancition = null;
+        [SerializeField] private TextMeshProUGUI _getCoinText = null;
+        [SerializeField] private TextMeshProUGUI _levelText;
 
         [Header("Coin Animation")]
         [SerializeField] private RectTransform _coinRectTransform = null;
@@ -34,6 +27,7 @@ namespace Interface.EndGame
         [SerializeField] private Vector2 _startPosition;
         private Vector2 _targetPosition;
 
+        private SceneTrancition _sceneTrancition = null;
 
         #region MONO
 
@@ -58,37 +52,21 @@ namespace Interface.EndGame
 
         private void UpdateCoins(int value)
         {
-            _headerText.text = $"You Get {value}!";
-
-            StartingAnimation();
+            _getCoinText.text = $"You Get {value}!";
         }
 
 
         private void UpdateStartVisual()
         {
-            _loseGamePanel = GetComponent<Image>();
-
-            _restartLevelButton.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
-            _headerText.color = new Color(1f, 1f, 1f, 0f);
-            _buttonRestartLevelText.color = new Color(1f, 1f, 1f, 0f);
-            _loseGamePanel.color = new Color(0f, 0f, 0f, 0f);
-
             _targetPosition = _coinRectTransform.anchoredPosition;
             _coinRectTransform.anchoredPosition = _startPosition;
             _coinRectTransform.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
 
-            StartingAnimation();
-        }
+            _getCoinText.DOColor(new Color(1f, 1f, 1f, 1f), _timeAnimation);
 
+            _levelText.text = $"Level {_sceneTrancition.GetCurrentScene()}";
 
-        private void StartingAnimation()
-        {
-            _restartLevelButton.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 1f), _timeAnimation);
-            _headerText.DOColor(new Color(1f, 1f, 1f, 1f), _timeAnimation);
-            _buttonRestartLevelText.DOColor(new Color(1f, 1f, 1f, 1f), _timeAnimation);
-            _loseGamePanel.DOColor(new Color(0f, 0f, 0f, 1f), _timeAnimation);
-
-            StartCoroutine(ProgressBarCoroutine());
+            StartCoroutine(GetCoinCoroutine());
         }
 
 
@@ -99,7 +77,7 @@ namespace Interface.EndGame
 
         #endregion
 
-        private IEnumerator ProgressBarCoroutine()
+        private IEnumerator GetCoinCoroutine()
         {
             yield return new WaitForSeconds(_timeAnimation);
 
