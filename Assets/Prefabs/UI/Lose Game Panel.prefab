@@ -255,7 +255,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL 1
+  m_text: Level 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5a2a31d59e0790141a992ec9e5ef1ea8, type: 2}
   m_sharedMaterial: {fileID: -4711155809980732540, guid: 5a2a31d59e0790141a992ec9e5ef1ea8, type: 2}
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1108,7 +1108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7758499258716374139
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1183,6 +1183,7 @@ MonoBehaviour:
   _timeAnimation: 1
   _restartLevelButton: {fileID: 4732988600591371825}
   _getCoinText: {fileID: 5141415151941577559}
+  _levelText: {fileID: 7641926159515554259}
   _coinRectTransform: {fileID: 1157277591599280837}
   _timePlayingAnimation: 1
   _startPosition: {x: 0, y: 0}

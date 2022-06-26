@@ -403,6 +403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeAnimation: 1
   _nextLevelButton: {fileID: 5033998883885687503}
+  _levelText: {fileID: 6997696456256081460}
   _getCoinText: {fileID: 7411078176685543662}
   _coinRectTransform: {fileID: 8737609138597000483}
   _timePlayingAnimation: 1
@@ -1122,7 +1123,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL 1
+  m_text: Level 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5a2a31d59e0790141a992ec9e5ef1ea8, type: 2}
   m_sharedMaterial: {fileID: -4711155809980732540, guid: 5a2a31d59e0790141a992ec9e5ef1ea8, type: 2}
@@ -1155,7 +1156,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

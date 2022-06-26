@@ -15,6 +15,7 @@ namespace Interface.EndGame
         [Header("Components")]
         [SerializeField] private Button _restartLevelButton = null;
         [SerializeField] private TextMeshProUGUI _getCoinText = null;
+        [SerializeField] private TextMeshProUGUI _levelText;
 
         [Header("Coin Animation")]
         [SerializeField] private RectTransform _coinRectTransform = null;
@@ -62,6 +63,8 @@ namespace Interface.EndGame
             _coinRectTransform.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
 
             _getCoinText.DOColor(new Color(1f, 1f, 1f, 1f), _timeAnimation);
+
+            _levelText.text = $"Level {_sceneTrancition.GetCurrentScene()}";
 
             StartCoroutine(GetCoinCoroutine());
         }

@@ -23,6 +23,7 @@ namespace Interface.EndGame
         [SerializeField] private Button _nextLevelButton;
         [Space(height: 5f)]
 
+        [SerializeField] private TextMeshProUGUI _levelText;
         [SerializeField] private TextMeshProUGUI _getCoinText;
 
         private int _coinsValue;
@@ -53,22 +54,28 @@ namespace Interface.EndGame
 
             _nextLevelButton.onClick.AddListener(() => TrancitionToNextLevel());
 
-            StartCoroutine(ProgressBarCoroutine());
-
-            _targetPosition = _coinRectTransform.anchoredPosition;
-            _coinRectTransform.anchoredPosition = _startPosition;
-            _coinRectTransform.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
+            UpdateStartVisual();
         }
 
         #endregion
 
         #region Private Methods
 
+        private void UpdateStartVisual()
+        {
+            _targetPosition = _coinRectTransform.anchoredPosition;
+            _coinRectTransform.anchoredPosition = _startPosition;
+            _coinRectTransform.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
+
+            _levelText.text = $"Level {_sceneTrancition.GetCurrentScene()}";
+
+            StartCoroutine(ProgressBarCoroutine());
+        }
+
         private void TrancitionToNextLevel()
         {
             _sceneTrancition.OnTrancitionToNextScene();
         }
-
 
         private void UpdateCoins(int value)
         {

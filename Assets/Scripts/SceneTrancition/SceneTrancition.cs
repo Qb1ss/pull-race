@@ -31,7 +31,6 @@ namespace Scenes
             Analytics_GameAnalytics.TransitionOnCurrentLevel(Level);
         }
 
-
         public void OnTrancitionToNextScene()
         {
             Level = SceneManager.GetActiveScene().buildIndex;
@@ -69,6 +68,13 @@ namespace Scenes
 
             Analytics_Facebook.OnTrancitionLastLevel(Level);
             Analytics_GameAnalytics.TransitionOnLastLevel(Level);
+        }
+
+        public int GetCurrentScene()
+        {
+            int currentLevel = SceneManager.GetActiveScene().buildIndex + 1;
+
+            return currentLevel;
         }
 
         #endregion
