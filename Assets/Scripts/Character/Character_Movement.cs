@@ -239,11 +239,6 @@ namespace Character
             {
                 CrashInObject(obstruction);
             }
-
-            if (collision.gameObject.CompareTag(TAG_RESPAWN))
-            {
-                EndGame();
-            }
         }
 
 
