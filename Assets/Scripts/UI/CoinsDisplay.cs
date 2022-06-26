@@ -52,8 +52,7 @@ namespace Interface
 
         private void OnEnable()
         {
-            Character_Movement.OnWinRunOutTime.AddListener(WinRunOutTime);
-            Character_Movement.OnLoseRunOutTime.AddListener(LoseRunOutTime);
+            Character_Movement.OnRunOutTime.AddListener(RunOutTime);
 
             WinGamePanel.OnGetCoins.AddListener(UpdateCoins);
 
@@ -62,8 +61,7 @@ namespace Interface
 
         private void OnDisable()
         {
-            Character_Movement.OnWinRunOutTime.AddListener(WinRunOutTime);
-            Character_Movement.OnLoseRunOutTime.AddListener(LoseRunOutTime);
+            Character_Movement.OnRunOutTime.AddListener(RunOutTime);
         }
 
         #endregion
@@ -78,23 +76,7 @@ namespace Interface
         }
 
 
-        private void WinRunOutTime(int startValue, int endValue)
-        {
-            if (_isStopedGame == true)
-                return;
-            else
-                _isStopedGame = true;
-
-            _coinValue = (int)(endValue - startValue) / DIVISION_COIN * _multiplicationCoin;
-
-            OnGetCoin?.Invoke(_coinValue);
-
-            _wallet.Increase(_coinValue);
-            UpdateCoinsDisplay(_coinValue);
-        }
-
-
-        private void LoseRunOutTime(int startValue, int endValue)
+        private void RunOutTime(int startValue, int endValue)
         {
             if (_isStopedGame == true) 
                 return;

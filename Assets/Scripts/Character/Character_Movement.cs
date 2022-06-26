@@ -12,8 +12,7 @@ namespace Character
     {
         #region EVENTS
 
-        public static UnityEvent<int, int> OnWinRunOutTime = new UnityEvent<int, int>();
-        public static UnityEvent<int, int> OnLoseRunOutTime = new UnityEvent<int, int>();
+        public static UnityEvent<int, int> OnRunOutTime = new UnityEvent<int, int>();
         public static UnityEvent<float> OnStartedGame = new UnityEvent<float>();
 
         public static UnityEvent OnLoseLevel = new UnityEvent();
@@ -219,7 +218,7 @@ namespace Character
         {
             _isActiveGame = false;
 
-            OnLoseRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
+            OnRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
             OnLoseLevel?.Invoke();
         }
 
@@ -228,7 +227,7 @@ namespace Character
         {
             _isActiveGame = false;
 
-            OnWinRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
+            OnRunOutTime?.Invoke(_startZPosition, (int)_transform.position.z);
             OnWinLevel?.Invoke();
         }
 
