@@ -8,6 +8,7 @@ namespace Interface.EndGame
     {
         #region EVENTS
 
+        public static UnityEvent<int> OnWinLevel = new UnityEvent<int>();
         public static UnityEvent<int> OnLoseLevel = new UnityEvent<int>();
 
         #endregion
@@ -30,7 +31,7 @@ namespace Interface.EndGame
 
         private void OnEnable()
         {
-            Character_Movement.OnWinLevel.AddListener(() => _winGamePanel.gameObject.SetActive(true));
+            Character_Movement.OnWinLevel.AddListener(() => ActivatingWinLevelPanel());
             Character_Movement.OnLoseLevel.AddListener(() => ActivatingLoseLevelPanel());
 
             CoinsDisplay.OnGetCoin.AddListener(GetCoin);
@@ -43,6 +44,12 @@ namespace Interface.EndGame
             _value = value;
         }
 
+        private void ActivatingWinLevelPanel()
+        {
+            _winGamePanel.gameObject.SetActive(true);
+
+            OnWinLevel?.Invoke(_value);
+        }
 
         private void ActivatingLoseLevelPanel()
         {

@@ -57,8 +57,6 @@ namespace Interface.EndGame
 
         private void UpdateStartVisual()
         {
-            //_getCoinText.color = new Color(1f, 1f, 1f, 0f);
-
             _targetPosition = _coinRectTransform.anchoredPosition;
             _coinRectTransform.anchoredPosition = _startPosition;
             _coinRectTransform.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);

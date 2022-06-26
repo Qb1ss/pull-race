@@ -42,6 +42,11 @@ namespace Interface.EndGame
 
         #region MONO
 
+        private void Awake()
+        {
+            EndGamePanels.OnWinLevel.AddListener(UpdateCoins);
+        }
+
         private void Start()
         {
             _sceneTrancition = new SceneTrancition();
@@ -64,14 +69,18 @@ namespace Interface.EndGame
             _sceneTrancition.OnTrancitionToNextScene();
         }
 
+
+        private void UpdateCoins(int value)
+        {
+            _coinsValue = value;
+
+            _getCoinText.text = $"{_coinsValue}!";
+        }
+
         #endregion
 
         private IEnumerator ProgressBarCoroutine()
         {
-            _getCoinText.text = $"{_coinsValue}";
-
-            OnGetCoins?.Invoke(_coinsValue);
-
             yield return new WaitForSeconds(_timeAnimation);
 
             _coinRectTransform.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 1f), _timeAnimation / 2);

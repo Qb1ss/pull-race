@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5022993116437630826}
-  - component: {fileID: 2694054680757568297}
   m_Layer: 5
   m_Name: SafeArea
   m_TagString: Untagged
@@ -41,18 +40,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2694054680757568297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 32428882622009953}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d1152508a3791f48bee2fef5042ce83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &960839678111915360
 GameObject:
   m_ObjectHideFlags: 0

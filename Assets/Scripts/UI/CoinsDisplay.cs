@@ -80,7 +80,17 @@ namespace Interface
 
         private void WinRunOutTime(int startValue, int endValue)
         {
+            if (_isStopedGame == true)
+                return;
+            else
+                _isStopedGame = true;
+
             _coinValue = (int)(endValue - startValue) / DIVISION_COIN * _multiplicationCoin;
+
+            OnGetCoin?.Invoke(_coinValue);
+
+            _wallet.Increase(_coinValue);
+            UpdateCoinsDisplay(_coinValue);
         }
 
 
