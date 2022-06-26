@@ -2,17 +2,14 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 8
+  serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ToonBlueSkyBox 2
   m_Shader: {fileID: 10700, guid: 0000000000000000f000000000000000, type: 0}
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _EMISSION
-  - _SUNDISK_HIGH_QUALITY
+  m_ShaderKeywords: 
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -23,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BackTex:
-        m_Texture: {fileID: 2800000, guid: e765d5c0f2333bb499550d0821808a31, type: 3}
+        m_Texture: {fileID: 2800000, guid: 95c7a8de78ec9d94d8012309e54e37f6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -43,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DownTex:
-        m_Texture: {fileID: 2800000, guid: e765d5c0f2333bb499550d0821808a31, type: 3}
+        m_Texture: {fileID: 2800000, guid: 95c7a8de78ec9d94d8012309e54e37f6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -51,11 +48,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FrontTex:
-        m_Texture: {fileID: 2800000, guid: e765d5c0f2333bb499550d0821808a31, type: 3}
+        m_Texture: {fileID: 2800000, guid: 95c7a8de78ec9d94d8012309e54e37f6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _LeftTex:
-        m_Texture: {fileID: 2800000, guid: e765d5c0f2333bb499550d0821808a31, type: 3}
+        m_Texture: {fileID: 2800000, guid: 95c7a8de78ec9d94d8012309e54e37f6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -75,7 +72,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RightTex:
-        m_Texture: {fileID: 2800000, guid: e765d5c0f2333bb499550d0821808a31, type: 3}
+        m_Texture: {fileID: 2800000, guid: 95c7a8de78ec9d94d8012309e54e37f6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Tex:
@@ -83,10 +80,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _UpTex:
-        m_Texture: {fileID: 2800000, guid: e765d5c0f2333bb499550d0821808a31, type: 3}
+        m_Texture: {fileID: 2800000, guid: 95c7a8de78ec9d94d8012309e54e37f6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Ints: []
     m_Floats:
     - _AtmosphereThickness: 1
     - _BumpScale: 1
