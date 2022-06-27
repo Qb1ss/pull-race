@@ -146,7 +146,7 @@ MonoBehaviour:
   _parameters: {fileID: 11400000, guid: 6aca2851e799c354491720321d8527d0, type: 2}
   Start: {fileID: 5320156820899615629}
   End: {fileID: 4834628936264463666}
-  _obstructionTypes: 0
+  _obstructionTypes: 2
   _typePosition: 3
 --- !u!54 &1618425051516529462
 Rigidbody:
