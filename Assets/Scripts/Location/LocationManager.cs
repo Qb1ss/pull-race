@@ -35,7 +35,7 @@ namespace Location
         {
             for (int i = 0; i <= _chunkNumber; i++)
             {
-                if(i < _chunkNumber)
+                if (i < _chunkNumber)
                 {
                     Chunk newChunk = Instantiate(_chunkPrefab[i]);
 
