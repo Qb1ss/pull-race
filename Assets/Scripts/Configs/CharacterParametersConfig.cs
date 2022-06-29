@@ -11,7 +11,7 @@ namespace Configs
         private const string FORCE_PLAYER_PREFS = "ForcePlayerPrefs";
         private const string COINS_PLAYER_PREFS = "MovingTimePlayerPrefs";
 
-        private const float DEFAULT_GAZ_VALUE = 8f;
+        private const float DEFAULT_GAZ_VALUE = 12f;
         private const float DEFAULT_FORCE_VALUE = 1f;
         private const float DEFAULT_COIN_VALUE = 1f;
 
@@ -32,7 +32,7 @@ namespace Configs
         [SerializeField] private float multiplicationFactorSecTime = 1.2f;
 
         [Tooltip("Время обычного движения")]
-        [SerializeField] private float _movementTimer = 8f;
+        [SerializeField] private float _movementTimer = 12f;
         [Space(height: 5f)]
 
         [Tooltip("Время замедленного движения")]

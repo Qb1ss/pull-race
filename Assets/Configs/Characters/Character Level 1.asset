@@ -15,9 +15,9 @@ MonoBehaviour:
   _destroyEffect: {fileID: 19817582, guid: ce451fdc4bbd26b469c9c189bee0a37e, type: 3}
   _movementSpeed: 50
   multiplicationFactorSecTime: 1.2
-  _movementTimer: 11.52
+  _movementTimer: 12
   _slowerMovementTimer: 5
-  _multiplicationFactorMaxCarForce: 0.5
-  _maxCarForce: 1
+  _multiplicationFactorMaxCarForce: 1
+  _maxCarForce: 2
   _multiplicationFactorCoin: 1
-  _multiplicationCoin: 1
+  _multiplicationCoin: 2
