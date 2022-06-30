@@ -15,7 +15,6 @@ MonoBehaviour:
   _xSpawnerPosition: 6
   _blockPrefabs:
   - {fileID: -6339067318644717140, guid: 56fbbbd8e46201b4f833a4ac2eda48d6, type: 3}
-  - {fileID: 1651213424211147182, guid: 0277f4ad14de8324aa3186aadafd082e, type: 3}
   - {fileID: 1063903795677522968, guid: 0135b5a77012e9f4b9397851980480b5, type: 3}
   - {fileID: 5212752634908835599, guid: 1dd4f7a1c9372ff45a78efeefda73fd7, type: 3}
   _carPrefabs:
