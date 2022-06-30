@@ -24,17 +24,17 @@ namespace Character
 
         private const float FORCE_ROTATE = 25f;
         private const float DAMAGE = 1f;
-        private const float X_POSITION = 8.45f;
+        private const float X_POSITION = 7.25f;
 
         private const string TAG_FINISH = "Finish";
-        private const string TAG_RESPAWN = "Respawn";
-        private const string TAG_GAME_CONTROLLER = "GameController";
+
+        private const string NAME_JOYSTICK = "Dynamic Joystick";
 
         #endregion
 
         [Header("Parameters")]
         [SerializeField] private CharacterParametersConfig _parameters;
-        private Transform _targetPosition;
+        private Joystick _joystick;
 
         [HideInInspector] public float MovingSpeed;
 
@@ -44,15 +44,12 @@ namespace Character
         private float _subtractinSpeedFromTime;
         private float _maxCarForce;
         private float _carForce;
-        private float _xPosition;
 
         private int _startZPosition;
 
         private bool _isActiveGame = false;
 
         private Transform _transform;
-        private Rigidbody _rigidbody;
-        private Camera _camera;
 
         #region Private Fields
 
@@ -69,10 +66,8 @@ namespace Character
         private void Awake()
         {
             _transform = GetComponent<Transform>();
-            _rigidbody = GetComponent<Rigidbody>();
 
-            _targetPosition = GameObject.FindGameObjectWithTag(TAG_GAME_CONTROLLER).GetComponent<Transform>();
-            _camera = Camera.main;
+            _joystick = GameObject.Find(NAME_JOYSTICK).GetComponent<Joystick>();
         }
 
 
@@ -131,7 +126,31 @@ namespace Character
 
         private void Movement()
         {
+            float direction = _joystick.Horizontal;
             float divTime = 1;
+
+            #region Location Border
+
+            if (_transform.position.x >= X_POSITION || _transform.position.x <= -X_POSITION)
+            {
+                direction = 0;
+
+                if (_joystick.Horizontal < 0 && _transform.position.x >= X_POSITION)
+                {
+                    direction = _joystick.Horizontal;
+                }
+                else if (_joystick.Horizontal > 0 && _transform.position.x <= -X_POSITION)
+                {
+                    direction = _joystick.Horizontal;
+                }
+
+                _transform.localRotation = Quaternion.Euler(0f, direction * FORCE_ROTATE, 0f);
+                _transform.position += new Vector3(direction * divTime, 0f, MovingSpeed * Time.deltaTime);
+
+                return;
+            }
+
+            #endregion
 
             #region Timer
 
@@ -161,33 +180,10 @@ namespace Character
                 return;
             }
 
-            #region Control
-
-            Ray ray = _camera.ScreenPointToRay(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                _xPosition = hit.point.x;
-
-                if (hit.point.x <= -X_POSITION)
-                {
-                    _xPosition = -X_POSITION;
-                }
-                else if (hit.point.x >= X_POSITION)
-                {
-                    _xPosition = X_POSITION;
-                }
-            }
-
-            _targetPosition.position = new Vector3(_xPosition * divTime, _targetPosition.position.y, _targetPosition.position.z);
-            _targetPosition.position += Vector3.forward * MovingSpeed * Time.deltaTime;
-
-            #endregion
-
-            _transform.LookAt(_targetPosition);
-            _transform.Translate(new Vector3(0f, 0f, MovingSpeed * Time.deltaTime));
+            _transform.localRotation = Quaternion.Euler(0f, direction * FORCE_ROTATE, 0f);
+            _transform.position += new Vector3(direction * divTime, 0f, MovingSpeed * Time.deltaTime);
         }
+
 
 
         private void CrashInObject(Obstruction obstruction)
