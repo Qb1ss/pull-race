@@ -25,7 +25,7 @@ MonoBehaviour:
   xfbml: 0
   frictionlessRequests: 1
   androidKeystorePath: D:\Users\GLEB\Desktop\Onix Games\2. Medium projects\foteam\Pull
-    Race\Unity\pull-race\pull-race.keysore
+    Race\pull-race\pull-race.keystore
   iosURLSuffix: 
   appLinkSchemes:
   - list: []
