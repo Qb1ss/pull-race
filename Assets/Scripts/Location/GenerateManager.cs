@@ -12,6 +12,13 @@ namespace Location
         Default = 2
     }
 
+    public enum BuildsType
+    {
+        Clear = 0,
+        City = 1,
+        Track = 2,
+        Cave = 3
+    }
 
     #endregion
 
@@ -20,7 +27,12 @@ namespace Location
         [Header("Paremeters")]
         public LocationType Type = LocationType.AllBlock;
         public int ChunkNumber = 0;
-        [Space(height: 5f)]
+
+        public bool IsCoins = false;
+
+        public int CoinFequency = 5;
+
+        public CoinModel CoinPrefab = null;
 
         public Chunk[] CarChunkPrefab = null;
         public Chunk[] BlockChunkPrefab = null;
@@ -48,6 +60,8 @@ namespace Location
 
         private void GenerateAllCarLocation()
         {
+            int count = 0;
+
             for (int i = 0; i <= ChunkNumber; i++)
             {
                 if (i < 2)
@@ -78,6 +92,15 @@ namespace Location
                         newChunk.transform.position = gameObject.transform.position;
                     }
 
+                    count++;
+
+                    if (count == CoinFequency)
+                    {
+                        CheckCoinStatus(newChunk);
+
+                        count = 0;
+                    };
+
                     newChunk.Create();
 
                     _spawnedChunks.Add(newChunk);
@@ -93,6 +116,8 @@ namespace Location
 
         private void GenerateAllBlockLocation()
         {
+            int count = 0;
+
             for (int i = 0; i <= ChunkNumber; i++)
             {
                 if (i < 2)
@@ -123,6 +148,15 @@ namespace Location
                         newChunk.transform.position = gameObject.transform.position;
                     }
 
+                    count++;
+
+                    if (count == CoinFequency)
+                    {
+                        CheckCoinStatus(newChunk);
+
+                        count = 0;
+                    }
+
                     newChunk.Create();
 
                     _spawnedChunks.Add(newChunk);
@@ -138,9 +172,11 @@ namespace Location
 
         private void GenerateDefaultLocation()
         {
+            int count = 0;
+
             for (int i = 0; i <= ChunkNumber; i++)
             {
-                if (i < 2)
+                 if (i < 2)
                 {
                     Chunk newChunk = Instantiate(ClearChunkPrefab);
 
@@ -168,6 +204,15 @@ namespace Location
                         newChunk.transform.position = gameObject.transform.position;
                     }
 
+                    count++;
+
+                    if (count == CoinFequency)
+                    {
+                        CheckCoinStatus(newChunk);
+
+                        count = 0;
+                    }
+
                     newChunk.Create();
 
                     _spawnedChunks.Add(newChunk);
@@ -182,6 +227,21 @@ namespace Location
         }
 
         #endregion
+
+        private void CheckCoinStatus(Chunk chunk)
+        {
+            if(IsCoins == true)
+            {
+                float xPosition = 7.75f;
+
+                CoinModel coin = Instantiate
+                    (
+                    CoinPrefab, 
+                    new Vector3(Random.Range(-xPosition, xPosition), 2f, chunk.gameObject.transform.position.z),
+                    Quaternion.Euler(0f, 90f, 90f)
+                    );
+            }
+        }
 
         #endregion
     }

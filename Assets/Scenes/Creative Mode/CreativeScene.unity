@@ -242,6 +242,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   ChunkNumber: 60
+  IsCoins: 1
+  CoinFequency: 2
+  CoinPrefab: {fileID: 4247489174880886549, guid: 0cabb9355deb03641a53a79223a617b1, type: 3}
   CarChunkPrefab:
   - {fileID: 5159125602747774358, guid: d5c7a8ee2d16a6744a3fbf2fc8781453, type: 3}
   - {fileID: 5025781278766608652, guid: 7eeee6e95f11c494ea8985ed0b84360a, type: 3}
