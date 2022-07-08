@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 2552317932866626646}
   - component: {fileID: 2503095562529922154}
   m_Layer: 3
-  m_Name: Character Car
+  m_Name: Character Yellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -436,7 +436,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parameters: {fileID: 11400000, guid: 0154b1a375bef2b459eee6759c2ba7ca, type: 2}
-  _hapticTypes: 6
   MovingSpeed: 0
 --- !u!1 &5047913732088622668
 GameObject:
