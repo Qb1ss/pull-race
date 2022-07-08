@@ -12,6 +12,7 @@ namespace Interface.CreativeMenu
 
         private const string COINS_PLAYER_PREFS = "CoinsPlayerPrefs";
         private const string LOCATION_TYPE_PLAYER_PREFS = "LocationTypePlayerPrefs";
+        private const string SKINS_PLAYER_PREFS = "SkinsPlayerPrefs";
 
         #endregion
 
@@ -30,6 +31,9 @@ namespace Interface.CreativeMenu
 
         [Header("Location Type")]
         [SerializeField] private Button[] _locationTypeButtons;
+
+        [Header("Skins")]
+        [SerializeField] private Button[] _skinsButtons;
 
         private SceneTrancition _sceneTrancition = null;
 
@@ -50,6 +54,12 @@ namespace Interface.CreativeMenu
             _locationTypeButtons[0].onClick.AddListener(() => ChangedLocationTypeStatus(0));
             _locationTypeButtons[1].onClick.AddListener(() => ChangedLocationTypeStatus(1));
             _locationTypeButtons[2].onClick.AddListener(() => ChangedLocationTypeStatus(2));
+
+            _skinsButtons[0].onClick.AddListener(() => ChangedSkinStatus(0));
+            _skinsButtons[1].onClick.AddListener(() => ChangedSkinStatus(1));
+            _skinsButtons[2].onClick.AddListener(() => ChangedSkinStatus(2));
+            _skinsButtons[3].onClick.AddListener(() => ChangedSkinStatus(3));
+            _skinsButtons[4].onClick.AddListener(() => ChangedSkinStatus(4));
         }
 
         #endregion
@@ -88,6 +98,18 @@ namespace Interface.CreativeMenu
             }
 
             _locationTypeButtons[typeIndex].GetComponent<Image>().color = _onColor;
+        }
+
+        private void ChangedSkinStatus(int skinIndex)
+        {
+            PlayerPrefs.SetInt(SKINS_PLAYER_PREFS, skinIndex);
+
+            foreach (Button image in _skinsButtons)
+            {
+                image.GetComponent<Image>().color = _offColor;
+            }
+
+            _locationTypeButtons[skinIndex].GetComponent<Image>().color = _onColor;
         }
 
         #endregion
