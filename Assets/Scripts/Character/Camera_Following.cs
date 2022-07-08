@@ -23,6 +23,10 @@ namespace GameCamera
             _character = FindObjectOfType<Character_Movement>();
         }
 
+        private void Start()
+        {
+            if(_character == null) _character = FindObjectOfType<Character_Movement>();
+        }
 
         private void OnEnable()
         {

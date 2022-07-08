@@ -24,6 +24,13 @@ namespace Location
 
     public class GenerateManager : MonoBehaviour
     {
+        #region CONSTS
+
+        private const string COINS_PLAYER_PREFS = "CoinsPlayerPrefs";
+        private const string LOCATION_TYPE_PLAYER_PREFS = "LocationTypePlayerPrefs";
+
+        #endregion
+
         [Header("Paremeters")]
         public LocationType Type = LocationType.AllBlock;
         public int ChunkNumber = 0;
@@ -47,6 +54,8 @@ namespace Location
 
         private void Start()
         {
+            CheckSceneStatus();
+
             if (Type == LocationType.AllBlock) GenerateAllBlockLocation();
             if (Type == LocationType.AllCar) GenerateAllCarLocation();
             if (Type == LocationType.Default) GenerateDefaultLocation();
@@ -227,6 +236,18 @@ namespace Location
         }
 
         #endregion
+
+        private void CheckSceneStatus()
+        {
+            int checkIsCoin = PlayerPrefs.GetInt(COINS_PLAYER_PREFS, 0);
+
+            if (checkIsCoin == 0) IsCoins = false;
+            else IsCoins = true;
+
+            int checkLocationType = PlayerPrefs.GetInt(LOCATION_TYPE_PLAYER_PREFS, 2);
+
+            Type = (LocationType)checkLocationType;
+        }
 
         private void CheckCoinStatus(Chunk chunk)
         {
