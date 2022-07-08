@@ -11,8 +11,8 @@ namespace Configs
         private const string FORCE_PLAYER_PREFS = "ForcePlayerPrefs";
         private const string COINS_PLAYER_PREFS = "MovingTimePlayerPrefs";
 
-        private const float DEFAULT_GAZ_VALUE = 12f;
-        private const float DEFAULT_FORCE_VALUE = 1f;
+        private const float DEFAULT_GAZ_VALUE = 25f;
+        private const float DEFAULT_FORCE_VALUE = 3f;
         private const float DEFAULT_COIN_VALUE = 1f;
 
         #endregion

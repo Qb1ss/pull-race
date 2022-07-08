@@ -3,15 +3,30 @@ using System.Collections.Generic;
 
 namespace Location
 {
+    #region ENUMS
+
+    public enum LocationType
+    {
+        AllCar = 0,
+        AllBlock = 1,
+        Default = 2
+    }
+
+
+    #endregion
+
     public class GenerateManager : MonoBehaviour
     {
         [Header("Paremeters")]
-        [SerializeField] private int _chunkNumber = 0;
+        public LocationType Type = LocationType.AllBlock;
+        public int ChunkNumber = 0;
         [Space(height: 5f)]
 
-        [SerializeField] private Chunk[] _chunkPrefab = null;
-        [SerializeField] private Chunk _clearChunkPrefab = null;
-        [SerializeField] private Chunk _finishChunkPrefab = null;
+        public Chunk[] CarChunkPrefab = null;
+        public Chunk[] BlockChunkPrefab = null;
+        public Chunk[] AllChunkPrefab = null;
+        public Chunk ClearChunkPrefab = null;
+        public Chunk FinishChunkPrefab = null;
 
         private List<Chunk> _spawnedChunks = new List<Chunk>();
 
@@ -20,20 +35,24 @@ namespace Location
 
         private void Start()
         {
-            GenerateLocation();
+            if (Type == LocationType.AllBlock) GenerateAllBlockLocation();
+            if (Type == LocationType.AllCar) GenerateAllCarLocation();
+            if (Type == LocationType.Default) GenerateDefaultLocation();
         }
 
         #endregion
 
         #region Private Methods
 
-        private void GenerateLocation()
+        #region Location
+
+        private void GenerateAllCarLocation()
         {
-            for (int i = 0; i <= _chunkNumber; i++)
+            for (int i = 0; i <= ChunkNumber; i++)
             {
                 if (i < 2)
                 {
-                    Chunk newChunk = Instantiate(_clearChunkPrefab);
+                    Chunk newChunk = Instantiate(ClearChunkPrefab);
 
                     if (_spawnedChunks.Count != 0)
                     {
@@ -46,9 +65,9 @@ namespace Location
 
                     _spawnedChunks.Add(newChunk);
                 }
-                else if (i >= 2 && i < _chunkNumber)
+                else if (i >= 2 && i < ChunkNumber)
                 {
-                    Chunk newChunk = Instantiate(_chunkPrefab[Random.Range(0, _chunkPrefab.Length)]);
+                    Chunk newChunk = Instantiate(CarChunkPrefab[Random.Range(0, CarChunkPrefab.Length)]);
 
                     if (_spawnedChunks.Count != 0)
                     {
@@ -63,14 +82,106 @@ namespace Location
 
                     _spawnedChunks.Add(newChunk);
                 }
-                else if (i == _chunkNumber)
+                else if (i == ChunkNumber)
                 {
-                    Chunk newChunk = Instantiate(_finishChunkPrefab);
+                    Chunk newChunk = Instantiate(FinishChunkPrefab);
                     newChunk.transform.position = _spawnedChunks[_spawnedChunks.Count - 1].End.position - newChunk.Start.localPosition * 2;
                     _spawnedChunks.Add(newChunk);
                 }
             }
         }
+
+        private void GenerateAllBlockLocation()
+        {
+            for (int i = 0; i <= ChunkNumber; i++)
+            {
+                if (i < 2)
+                {
+                    Chunk newChunk = Instantiate(ClearChunkPrefab);
+
+                    if (_spawnedChunks.Count != 0)
+                    {
+                        newChunk.transform.position = _spawnedChunks[_spawnedChunks.Count - 1].End.position - newChunk.Start.localPosition * 2;
+                    }
+                    else
+                    {
+                        newChunk.transform.position = gameObject.transform.position;
+                    }
+
+                    _spawnedChunks.Add(newChunk);
+                }
+                else if (i >= 2 && i < ChunkNumber)
+                {
+                    Chunk newChunk = Instantiate(BlockChunkPrefab[Random.Range(0, BlockChunkPrefab.Length)]);
+
+                    if (_spawnedChunks.Count != 0)
+                    {
+                        newChunk.transform.position = _spawnedChunks[_spawnedChunks.Count - 1].End.position - newChunk.Start.localPosition * 2;
+                    }
+                    else
+                    {
+                        newChunk.transform.position = gameObject.transform.position;
+                    }
+
+                    newChunk.Create();
+
+                    _spawnedChunks.Add(newChunk);
+                }
+                else if (i == ChunkNumber)
+                {
+                    Chunk newChunk = Instantiate(FinishChunkPrefab);
+                    newChunk.transform.position = _spawnedChunks[_spawnedChunks.Count - 1].End.position - newChunk.Start.localPosition * 2;
+                    _spawnedChunks.Add(newChunk);
+                }
+            }
+        }
+
+        private void GenerateDefaultLocation()
+        {
+            for (int i = 0; i <= ChunkNumber; i++)
+            {
+                if (i < 2)
+                {
+                    Chunk newChunk = Instantiate(ClearChunkPrefab);
+
+                    if (_spawnedChunks.Count != 0)
+                    {
+                        newChunk.transform.position = _spawnedChunks[_spawnedChunks.Count - 1].End.position - newChunk.Start.localPosition * 2;
+                    }
+                    else
+                    {
+                        newChunk.transform.position = gameObject.transform.position;
+                    }
+
+                    _spawnedChunks.Add(newChunk);
+                }
+                else if (i >= 2 && i < ChunkNumber)
+                {
+                    Chunk newChunk = Instantiate(AllChunkPrefab[Random.Range(0, AllChunkPrefab.Length)]);
+
+                    if (_spawnedChunks.Count != 0)
+                    {
+                        newChunk.transform.position = _spawnedChunks[_spawnedChunks.Count - 1].End.position - newChunk.Start.localPosition * 2;
+                    }
+                    else
+                    {
+                        newChunk.transform.position = gameObject.transform.position;
+                    }
+
+                    newChunk.Create();
+
+                    _spawnedChunks.Add(newChunk);
+                }
+                else if (i == ChunkNumber)
+                {
+                    Chunk newChunk = Instantiate(FinishChunkPrefab);
+                    newChunk.transform.position = _spawnedChunks[_spawnedChunks.Count - 1].End.position - newChunk.Start.localPosition * 2;
+                    _spawnedChunks.Add(newChunk);
+                }
+            }
+        }
+
+        #endregion
 
         #endregion
     }

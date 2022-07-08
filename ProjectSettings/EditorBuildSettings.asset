@@ -36,6 +36,6 @@ EditorBuildSettings:
     path: Assets/Scenes/10.unity
     guid: 84afda434159a244ba8a210164cdeb9e
   - enabled: 1
-    path: Assets/Scenes/Creative Mode/CarsScene.unity
+    path: Assets/Scenes/Creative Mode/CreativeScene.unity
     guid: c38b8e5931602184c9aaa73a771f17ba
   m_configObjects: {}
