@@ -48,6 +48,8 @@ namespace Character.Slingshot
 
         private void Start()
         {
+            if(_character == null) _character = FindObjectOfType<Character_Movement>().GetComponent<Transform>();
+
             _startPosition = _startBorder.position;
 
             _lines = new LineRenderer[3];
