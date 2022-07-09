@@ -14,6 +14,7 @@ namespace Interface.EndGame
 
         [Header("Components")]
         [SerializeField] private Button _restartLevelButton = null;
+        [SerializeField] private Button _lastLevelButton = null;
         [SerializeField] private TextMeshProUGUI _getCoinText = null;
         [SerializeField] private TextMeshProUGUI _levelText;
 
@@ -42,6 +43,7 @@ namespace Interface.EndGame
             _sceneTrancition = new SceneTrancition();
 
             _restartLevelButton.onClick.AddListener(() => TrancitionToNextLevel());
+            _lastLevelButton.onClick.AddListener(() => _sceneTrancition.OnTrancitionToLastScene());
 
             UpdateStartVisual();
         }

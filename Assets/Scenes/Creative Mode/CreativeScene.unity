@@ -167,11 +167,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characters:
+  - {fileID: 2503095562529922154, guid: 54b46933eb0bd6443b762e67b57edd2b, type: 3}
+  - {fileID: -7476336241993708339, guid: 7e23d1358eb59084cac08840d9fc6e14, type: 3}
   - {fileID: -4430043469941776757, guid: 57f7454b9757b3d44bc33d74089f7074, type: 3}
   - {fileID: 8788575208242445088, guid: 09d76c5f281de5b48866f6f8f47d4876, type: 3}
   - {fileID: -4909460285886820262, guid: fc0941feb6f4b5543a8d91fc91f3bdc9, type: 3}
-  - {fileID: -7476336241993708339, guid: 7e23d1358eb59084cac08840d9fc6e14, type: 3}
-  - {fileID: 2503095562529922154, guid: 54b46933eb0bd6443b762e67b57edd2b, type: 3}
   _slingshot: {fileID: 1836141296}
 --- !u!1001 &421826638
 PrefabInstance:

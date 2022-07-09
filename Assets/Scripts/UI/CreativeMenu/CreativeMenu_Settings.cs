@@ -109,7 +109,7 @@ namespace Interface.CreativeMenu
                 image.GetComponent<Image>().color = _offColor;
             }
 
-            _locationTypeButtons[skinIndex].GetComponent<Image>().color = _onColor;
+            _skinsButtons[skinIndex].GetComponent<Image>().color = _onColor;
         }
 
         #endregion
