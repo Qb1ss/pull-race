@@ -14,6 +14,7 @@ namespace Interface.EndGame
 
         [Header("Components")]
         [SerializeField] private Button _restartLevelButton = null;
+        [SerializeField] private Button _nextLevelButton = null;
         [SerializeField] private TextMeshProUGUI _getCoinText = null;
         [SerializeField] private TextMeshProUGUI _levelText;
 
@@ -42,6 +43,7 @@ namespace Interface.EndGame
             _sceneTrancition = new SceneTrancition();
 
             _restartLevelButton.onClick.AddListener(() => TrancitionToNextLevel());
+            _nextLevelButton.onClick.AddListener(() => _sceneTrancition.OnTrancitionToNextScene());
 
             UpdateStartVisual();
         }
@@ -81,7 +83,7 @@ namespace Interface.EndGame
         {
             yield return new WaitForSeconds(_timeAnimation);
 
-            _coinRectTransform.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 1f), _timeAnimation / 2);
+            //_coinRectTransform.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 1f), _timeAnimation / 2);
             _coinRectTransform.DOAnchorPos(_targetPosition, _timePlayingAnimation);
 
             yield return new WaitForSeconds(_timeAnimation / 2);
