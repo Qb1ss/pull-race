@@ -1,5 +1,4 @@
 using UnityEngine.SceneManagement;
-using Analytics;
 
 namespace Scenes
 {
@@ -26,9 +25,6 @@ namespace Scenes
             Level = SceneManager.GetActiveScene().buildIndex;
 
             SceneManager.LoadScene(Level);
-
-            Analytics_Facebook.OnTrancitionCurrentLevel(Level);
-            Analytics_GameAnalytics.TransitionOnCurrentLevel(Level);
         }
 
         public void OnTrancitionToNextScene()
@@ -46,9 +42,6 @@ namespace Scenes
             }
 
             SceneManager.LoadScene(Level);
-
-            Analytics_Facebook.OnTrancitionNextLevel(Level);
-            Analytics_GameAnalytics.TransitionOnNextLevel(Level);
         }
 
         public void OnTrancitionToLastScene()
@@ -65,9 +58,6 @@ namespace Scenes
             }
 
             SceneManager.LoadScene(Level);
-
-            Analytics_Facebook.OnTrancitionLastLevel(Level);
-            Analytics_GameAnalytics.TransitionOnLastLevel(Level);
         }
 
         public int GetCurrentScene()
@@ -83,8 +73,7 @@ namespace Scenes
 
         private void OnStartGame()
         {
-            Analytics_GameAnalytics.OnStartGame(Level);
-            Analytics_Facebook.OnStartGame(Level);
+            
         }
 
         #endregion

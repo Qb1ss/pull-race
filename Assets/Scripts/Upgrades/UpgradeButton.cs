@@ -5,7 +5,6 @@ using System.Collections;
 using TMPro;
 using DG.Tweening;
 using Configs;
-using Analytics;
 using WalletData;
 
 public enum TypeUpgrades
@@ -143,9 +142,6 @@ namespace Interface.Upgrades
             StartCoroutine(AnimationCoroutine());
 
             OnUpgradeParameter?.Invoke(_typeUpgrades);
-
-            Analytics_GameAnalytics.OnUpgradeParameter(_typeUpgrades);
-            Analytics_Facebook.OnUpgradeParameter(_typeUpgrades);
         }
 
         #endregion

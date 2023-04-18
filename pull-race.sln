@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{D7277881-5F85-1904-45C8-747735567FAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameAnalyticsSDK", "GameAnalyticsSDK.csproj", "{0ACB9ACC-101C-5890-9D36-F9C6C6EE121B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreMountains.NiceVibrations.Haptics", "MoreMountains.NiceVibrations.Haptics.csproj", "{6B6C0996-B391-C763-41AA-10141D0EF6AD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToonyColorsPro2.Demo", "ToonyColorsPro2.Demo.csproj", "{28EDD162-ED53-F9F8-F9AF-B21A24131CF1}"
@@ -21,8 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToonyColorsPro.Editor", "To
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{0D6C7310-A1DB-F8A5-60D8-CDDBCCCA2EF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameAnalyticsSDK.Editor", "GameAnalyticsSDK.Editor.csproj", "{44087578-488D-ACDF-627F-7B6EEFBF3BFB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToonyColorsPro.Demo.Editor", "ToonyColorsPro.Demo.Editor.csproj", "{2E89F2D4-D36C-DA41-48B8-EF7CCC796613}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreMountains.NiceVibrations.Editor", "MoreMountains.NiceVibrations.Editor.csproj", "{B1FE8CAA-141B-1FBD-4FE2-AB8B916E1CBD}"
@@ -37,10 +33,6 @@ Global
 		{D7277881-5F85-1904-45C8-747735567FAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7277881-5F85-1904-45C8-747735567FAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7277881-5F85-1904-45C8-747735567FAD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0ACB9ACC-101C-5890-9D36-F9C6C6EE121B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0ACB9ACC-101C-5890-9D36-F9C6C6EE121B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0ACB9ACC-101C-5890-9D36-F9C6C6EE121B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0ACB9ACC-101C-5890-9D36-F9C6C6EE121B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6B6C0996-B391-C763-41AA-10141D0EF6AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6B6C0996-B391-C763-41AA-10141D0EF6AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B6C0996-B391-C763-41AA-10141D0EF6AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -73,10 +65,6 @@ Global
 		{0D6C7310-A1DB-F8A5-60D8-CDDBCCCA2EF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D6C7310-A1DB-F8A5-60D8-CDDBCCCA2EF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D6C7310-A1DB-F8A5-60D8-CDDBCCCA2EF2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{44087578-488D-ACDF-627F-7B6EEFBF3BFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{44087578-488D-ACDF-627F-7B6EEFBF3BFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{44087578-488D-ACDF-627F-7B6EEFBF3BFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{44087578-488D-ACDF-627F-7B6EEFBF3BFB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2E89F2D4-D36C-DA41-48B8-EF7CCC796613}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2E89F2D4-D36C-DA41-48B8-EF7CCC796613}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E89F2D4-D36C-DA41-48B8-EF7CCC796613}.Release|Any CPU.ActiveCfg = Release|Any CPU
